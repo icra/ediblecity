@@ -2,19 +2,35 @@
 % Please edit documentation in R/set_scenario.R
 \name{set_scenario}
 \alias{set_scenario}
-\title{Dibuja el histograma de una variable superponiendo la densidad normal ajustada}
+\title{Set the scenario for your edible city}
 \usage{
-set_scenario()
+set_scenario(
+  x,
+  pGardens = 1,
+  pVacant = 1,
+  pRooftop = 1,
+  min_area_rooftop = 100
+)
 }
 \arguments{
-\item{x}{vector de datos cuyo histograma se va a calcular}
+\item{x}{An 'sf' object with the urban model of your city.}
 
-\item{dens}{valor lógico: TRUE=Superponer estimador de núcleo de la densidad}
+\item{pGardens}{The proportion of private gardens (Function == 'Gardens') that will become
+edible gardens.}
+
+\item{pVacant}{The proportion of vacant plot (Function == 'Vacant') that will become
+edible gardens.}
+
+\item{pRooftop}{The proportion of rooftops (Function == 'Rooftop') out of rooftops larger than
+'min_area_rooftop' that will become edible rooftops.}
+
+\item{min_area_rooftop}{The minimum area that a flat rooftop must have to become an edible rooftop.}
 }
 \value{
-el histograma con la densidad normal superpuesta
+An 'sf' object as 'x' with the respective proportion of gardens, vacant plots and rooftop
+labelled as edible gardens.
 }
 \description{
-Función que dibuja el histograma de una variable x, superponiendo la densidad normal
-ajustada. Si el usuario lo desea puede superponer también un estimador de núcleo de la densidad.
+You can adjust different parameters to define different city scenarios.
+The object must contain a field 'Function' which describes the function or type of each feature.
 }
