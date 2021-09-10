@@ -21,7 +21,7 @@ edible gardens.}
 \item{pVacant}{The proportion of vacant plot (Function == 'Vacant') that will become
 edible gardens.}
 
-\item{pRooftop}{The proportion of rooftops (Function == 'Rooftop') out of rooftops larger than
+\item{pRooftop}{The proportion of rooftops (Function == 'Flat rooftop') out of rooftops larger than
 'min_area_rooftop' that will become edible rooftops.}
 
 \item{min_area_rooftop}{The minimum area that a flat rooftop must have to become an edible rooftop.}
