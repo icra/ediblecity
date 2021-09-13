@@ -90,7 +90,6 @@ set_scenario <- function(x,
     #set transformed vacants, commercial and community proportions to zero
     total_vacant <- 0
     commercial <- 0
-    community <- 0
 
     #define categories in a vector
     vacant_cat <- c("Community garden", "Commercial garden")
@@ -124,6 +123,53 @@ set_scenario <- function(x,
 
     x$edible_area[new_index] <-
       x$area[new_index]*runif(length(new_index), perc_vacant[1], perc_vacant[2])
+
+  }
+
+  #CONVERT ROOFTOPS TO ROOFTOP GARDENS OR HYDROPONIC ROOFTOPS
+  if (pRooftop > 0){
+
+    #locate and count vacant plots
+    rooftop_index <- which(x$Function %in% rooftop_from & x$area >= min_area_rooftop)
+    new_index <- rooftop_index
+    nRooftop <- sum(x$Function %in% rooftop_from)
+
+    #set transformed vacants, commercial and community proportions to zero
+    total_rooftop <- 0
+    commercial <- 0
+
+    #define categories in a vector
+    rooftop_cat <- c("Rooftop garden", "Hydroponic rooftop")
+
+    if (length(rooftop_index) < nRooftop*pRooftop){
+      warning(paste("Only", length(rooftop_index), "rooftops out of", nRooftop*pRooftop, "assumed satisfy the 'min_area_rooftop'"))
+      nRooftop <- length(rooftop_index)
+
+    } else {
+      nRooftop <- nRooftop*pRooftop
+    }
+
+    while (total_rooftop < nRooftop){
+
+      larger <- which(x$area == max(x$area[rooftop_index]) & x$Function %in% rooftop_from)
+      if (length(larger) > 1) larger <- larger[1]
+      rooftop_index <- rooftop_index[rooftop_index != larger]
+
+      if (commercial < pCommercial){
+
+        x$Function[larger] <- rooftop_cat[2]
+        commercial <- sum(x$Function == rooftop_cat[2])/nRooftop
+
+      } else {
+
+        x$Function[larger] <- rooftop_cat[1]
+      }
+
+      total_rooftop <- total_rooftop + 1
+    }
+
+    x$edible_area[new_index] <-
+      x$area[new_index]*runif(length(new_index), perc_rooftop[1], perc_rooftop[2])
 
   }
 
