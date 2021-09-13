@@ -4,14 +4,14 @@
 #' confidence interval of the number of jobs by simulating a random uniform distribution of 1000 values
 #' within the provided range.
 #' @param x An 'sf' object with the urban model of your city.
-#' @ebile The categories in 'Functions' that represent commercial edible gardens.
-#' @area_field The field to be used as the area of each feature. If NULL, the area is calculated with
+#' @param edible The categories in 'Functions' that represent commercial edible gardens.
+#' @param area_field The field to be used as the area of each feature. If NULL, the area is calculated with
 #' sf::st_area()
 
 
 edible_jobs <- function(x,
                         jobs = c(0.000163, 0.022),
-                        edible = c("Commercial gardens", "Hydroponic rooftops"),
+                        edible = c("Commercial garden", "Hydroponic rooftop"),
                         area_field = 'flat_area'){
 
     #filter x based on edible

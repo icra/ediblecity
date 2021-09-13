@@ -13,6 +13,11 @@ edible_volunteers(
 }
 \arguments{
 \item{x}{An 'sf' object with the urban model of your city.}
+
+\item{edible}{The categories in 'Functions' that represent community edible gardens.}
+
+\item{area_field}{The field to be used as the area of each feature. If NULL, the area is calculated with
+sf::st_area()}
 }
 \description{
 This indicator estimates the number of volunteers potentially involved in community urban agriculture

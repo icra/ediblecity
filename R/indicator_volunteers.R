@@ -5,14 +5,14 @@
 #' within the provided range. The default range came from required work hours in urban agriculture assessed
 #' in scientific literature, assuming that a volunteers dedicates a 10% of a full-time job.
 #' @param x An 'sf' object with the urban model of your city.
-#' @ebile The categories in 'Functions' that represent community edible gardens.
-#' @area_field The field to be used as the area of each feature. If NULL, the area is calculated with
+#' @param edible The categories in 'Functions' that represent community edible gardens.
+#' @param area_field The field to be used as the area of each feature. If NULL, the area is calculated with
 #' sf::st_area()
 
 
 edible_volunteers <- function(x,
                         volunteers = c(0.000163, 0.022),
-                        edible = c("Community gardens", "Rooftop gardens"),
+                        edible = c("Community garden", "Rooftop garden"),
                         area_field = 'flat_area'){
 
   #filter x based on edible
