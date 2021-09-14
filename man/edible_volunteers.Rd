@@ -6,18 +6,23 @@
 \usage{
 edible_volunteers(
   x,
-  volunteers = c(0.000163, 0.022),
-  edible = c("Community gardens", "Rooftop gardens"),
-  area_field = "flat_area"
+  volunteers = c(0.00163, 0.22),
+  edible = c("Community garden", "Rooftop garden"),
+  area_field = "flat_area",
+  interval = 0.95
 )
 }
 \arguments{
-\item{x}{An 'sf' object with the urban model of your city.}
+\item{x}{An 'sf' object with the urban model of your city and a 'Function' field with categories of urban features.}
+
+\item{volunteers}{A vector of length 2 with the range of volunteers involved by square meter of edible gardens.}
 
 \item{edible}{The categories in 'Functions' that represent community edible gardens.}
 
 \item{area_field}{The field to be used as the area of each feature. If NULL, the area is calculated with
 sf::st_area()}
+
+\item{interval}{A numeric value with the confidence interval returned by the function.}
 }
 \description{
 This indicator estimates the number of volunteers potentially involved in community urban agriculture

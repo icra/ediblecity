@@ -1,7 +1,7 @@
 #' @title Set the scenario for your edible city
 #' @description You can adjust different parameters to define different city scenarios.
 #' The object must contain a field 'Function' which describes the function or type of each feature.
-#' @param x An 'sf' object with the urban model of your city.
+#' @param x An 'sf' object with the urban model of your city and a 'Function' field with categories of urban features.
 #' @param pGardens The proportion of private gardens (Function == 'Gardens')
 #' that will become edible gardens [0-1].
 #' @param pVacant The proportion of vacant plot (Function == 'Vacant') with 'area >= min_area_vacant'
@@ -26,7 +26,11 @@
 #' vacant plots ('Community plot garden', 'Commercial plot garden') and rooftop gardens ('Community rooftop garden',
 #' 'Commercial hydroponic rooftop')
 #' labelled as edible gardens.
-
+#' @details When pGardens is lower than 1, the gardens are selected randomly among gardens with an area larger than
+#' 'min_area_garden'. However, vacant plots and rooftops are selected from larger to smaller, assuming that the best
+#' spots (i.e. larger) are occupied first. Likewise, when pCommercial > 0, commercial gardens and hydroponic rooftops are
+#' settled in the larger features, assuming that commercial initiatives have the power to acquire the best spots.
+#' @export
 
 set_scenario <- function(x,
                          pGardens = 1,
@@ -62,16 +66,16 @@ set_scenario <- function(x,
 
     if (pGardens == 1 || nGardens*pGardens >= length(gardens_index)){
 
-      x$Function[gardens_index] <- "Edible private garden"
+      x$Function[gardens_index] <- get_categories()$edible_green$private
 
       if (nGardens*pGardens >= length(gardens_index)){
-        warning(paste("Only", length(gardens_index), "private gardens out of", nGardens*pGardens, "assumed satisfy the 'min_area_garden'"))
+        warning(cat("Only", length(gardens_index), "private gardens out of", nGardens*pGardens, "assumed satisfy the 'min_area_garden'"))
       }
 
     } else if (pGarden < 1){
       nGardens <- nGardens*pGardens
       gardens_index <- sample(gardens_index, nGardens)
-      x$Function[gardens_index] <- "Edible private garden"
+      x$Function[gardens_index] <- ediblecity::get_categories()$edible_green$private
 
     }
 
@@ -92,7 +96,7 @@ set_scenario <- function(x,
     commercial <- 0
 
     #define categories in a vector
-    vacant_cat <- c("Community garden", "Commercial garden")
+    vacant_cat <- ediblecity::get_categories()$edible_green$on_ground
 
     if (length(vacant_index) < nVacant*pVacant){
       warning(paste("Only", length(vacant_index), "vacant plots out of", nVacant*pVacant, "assumed satisfy the 'min_area_vacant'"))
@@ -110,12 +114,12 @@ set_scenario <- function(x,
 
       if (commercial < pCommercial){
 
-        x$Function[larger] <- vacant_cat[2]
-        commercial <- sum(x$Function == vacant_cat[2])/nVacant
+        x$Function[larger] <- vacant_cat[1]
+        commercial <- sum(x$Function == vacant_cat[1])/nVacant
 
       } else {
 
-        x$Function[larger] <- vacant_cat[1]
+        x$Function[larger] <- vacant_cat[2]
       }
 
       total_vacant <- total_vacant + 1
@@ -139,7 +143,7 @@ set_scenario <- function(x,
     commercial <- 0
 
     #define categories in a vector
-    rooftop_cat <- c("Rooftop garden", "Hydroponic rooftop")
+    rooftop_cat <- ediblecity::get_categories()$edible_green$rooftop
 
     if (length(rooftop_index) < nRooftop*pRooftop){
       warning(paste("Only", length(rooftop_index), "rooftops out of", nRooftop*pRooftop, "assumed satisfy the 'min_area_rooftop'"))
@@ -157,12 +161,12 @@ set_scenario <- function(x,
 
       if (commercial < pCommercial){
 
-        x$Function[larger] <- rooftop_cat[2]
-        commercial <- sum(x$Function == rooftop_cat[2])/nRooftop
+        x$Function[larger] <- rooftop_cat[1]
+        commercial <- sum(x$Function == rooftop_cat[1])/nRooftop
 
       } else {
 
-        x$Function[larger] <- rooftop_cat[1]
+        x$Function[larger] <- rooftop_cat[2]
       }
 
       total_rooftop <- total_rooftop + 1

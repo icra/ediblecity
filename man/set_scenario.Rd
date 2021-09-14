@@ -23,7 +23,7 @@ set_scenario(
 )
 }
 \arguments{
-\item{x}{An 'sf' object with the urban model of your city.}
+\item{x}{An 'sf' object with the urban model of your city and a 'Function' field with categories of urban features.}
 
 \item{pGardens}{The proportion of private gardens (Function == 'Gardens')
 that will become edible gardens [0-1].}
@@ -68,4 +68,10 @@ labelled as edible gardens.
 \description{
 You can adjust different parameters to define different city scenarios.
 The object must contain a field 'Function' which describes the function or type of each feature.
+}
+\details{
+When pGardens is lower than 1, the gardens are selected randomly among gardens with an area larger than
+'min_area_garden'. However, vacant plots and rooftops are selected from larger to smaller, assuming that the best
+spots (i.e. larger) are occupied first. Likewise, when pCommercial > 0, commercial gardens and hydroponic rooftops are
+settled in the larger features, assuming that commercial initiatives have the power to acquire the best spots.
 }

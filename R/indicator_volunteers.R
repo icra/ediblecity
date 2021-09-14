@@ -4,16 +4,20 @@
 #' confidence interval of the number of volunteers by simulating a random uniform distribution of 1000 values
 #' within the provided range. The default range came from required work hours in urban agriculture assessed
 #' in scientific literature, assuming that a volunteers dedicates a 10% of a full-time job.
-#' @param x An 'sf' object with the urban model of your city.
+#' @param x An 'sf' object with the urban model of your city and a 'Function' field with categories of urban features.
+#' @param volunteers A vector of length 2 with the range of volunteers involved by square meter of edible gardens.
 #' @param edible The categories in 'Functions' that represent community edible gardens.
 #' @param area_field The field to be used as the area of each feature. If NULL, the area is calculated with
 #' sf::st_area()
+#' @param interval A numeric value with the confidence interval returned by the function.
+#' @export
 
 
 edible_volunteers <- function(x,
-                        volunteers = c(0.000163, 0.022),
+                        volunteers = c(0.00163, 0.22),
                         edible = c("Community garden", "Rooftop garden"),
-                        area_field = 'flat_area'){
+                        area_field = 'flat_area',
+                        interval = 0.95){
 
   #filter x based on edible
   filtered <- x %>%
@@ -29,6 +33,6 @@ edible_volunteers <- function(x,
   #use the jobs range to create a random uniform distribution
   dist <- area * runif(1000, min = volunteers[1], max = volunteers[2])
 
-  #return 5%, 50% and 95% of dist
-  return(c(quantile(dist,0.05), "50%" = median(dist), quantile(dist,0.95)))
+  #return median and confidence interval of dist
+  return(c(quantile(dist,1-interval), "50%" = median(dist), quantile(dist,interval)))
 }
