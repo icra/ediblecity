@@ -60,7 +60,7 @@ set_scenario <- function(x,
   x$edible_area <- 0
 
   #CONVERT PRIVATE GARDENS TO EDIBLE GARDENS
-  if (pGarden > 0){
+  if (pGardens > 0){
     gardens_index <- which(x$Function %in% private_gardens_from & x$area >= min_area_garden)
     nGardens <- sum(x$Function %in% private_gardens_from)
 
@@ -69,10 +69,10 @@ set_scenario <- function(x,
       x$Function[gardens_index] <- get_categories()$edible_green$private
 
       if (nGardens*pGardens >= length(gardens_index)){
-        warning(cat("Only", length(gardens_index), "private gardens out of", nGardens*pGardens, "assumed satisfy the 'min_area_garden'"))
+        warning(paste("Only", length(gardens_index), "private gardens out of", nGardens*pGardens, "assumed satisfy the 'min_area_garden'"))
       }
 
-    } else if (pGarden < 1){
+    } else if (pGardens < 1){
       nGardens <- nGardens*pGardens
       gardens_index <- sample(gardens_index, nGardens)
       x$Function[gardens_index] <- ediblecity::get_categories()$edible_green$private
@@ -146,7 +146,7 @@ set_scenario <- function(x,
     rooftop_cat <- ediblecity::get_categories()$edible_green$rooftop
 
     if (length(rooftop_index) < nRooftop*pRooftop){
-      warning(paste("Only", length(rooftop_index), "rooftops out of", nRooftop*pRooftop, "assumed satisfy the 'min_area_rooftop'"))
+      warning(paste("Only", length(rooftop_index), "rooftops out of", nRooftop*pRooftop, "assumed satisfy the 'min_area_rooftop'\n"))
       nRooftop <- length(rooftop_index)
 
     } else {

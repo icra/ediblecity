@@ -7,19 +7,19 @@
 edible_jobs(
   x,
   jobs = c(0.000163, 0.022),
-  edible = c("Commercial garden", "Hydroponic rooftop"),
-  area_field = "flat_area",
+  edible = NULL,
+  area_col = "flat_area",
   interval = 0.95
 )
 }
 \arguments{
-\item{x}{An 'sf' object with the urban model of your city and a 'Function' field with categories of urban features.}
+\item{x}{An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.}
 
 \item{jobs}{A vector of length 2 with the range of jobs created by square meter of edible gardens.}
 
 \item{edible}{The categories in 'Functions' that represent commercial edible gardens.}
 
-\item{area_field}{The field to be used as the area of each feature. If NULL, the area is calculated with
+\item{area_col}{The column to be used as the area of each feature. If NULL, the area is calculated with
 sf::st_area()}
 
 \item{interval}{A numeric value with the confidence interval returned by the function.}

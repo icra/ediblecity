@@ -9,28 +9,45 @@ green_capita(
   green_categories = NULL,
   inhabitants = NULL,
   neighbourhoods = NULL,
-  inh_field = "inhabitants",
-  private = FALSE
+  inh_col = NULL,
+  name_col = NULL,
+  private = FALSE,
+  verbose = FALSE,
+  min_inh = 0
 )
 }
 \arguments{
-\item{x}{An 'sf' object with the urban model of your city and a 'Function' field with categories of urban features.}
+\item{x}{An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.}
 
 \item{green_categories}{The categories that are considered as urban green. If NULL, categories of 'get_categories()'
 are considered.}
 
 \item{inhabitants}{A value representing the inhabitants in the city.}
 
-\item{inh_field}{(optional) The field in 'neighbourhoods' indicating the inhabitants in each neighbourhood.}
+\item{inh_col}{(optional) The col in 'x' or in 'neighbourhoods' indicating the inhabitants in each neighbourhood.}
+
+\item{name_col}{(optional) The col in 'x' or in 'neighbourhoods' indicating the name of each neighbourhood}
 
 \item{private}{If FALSE (default), only public areas are considered in the indicator.}
 
+\item{verbose}{If FALSE (default), the indicator returns the proportion between the most and the least green neighbourhoods.
+Otherwise, it will return a tibble with the green per capita in each neigbourhood.}
+
+\item{min_inh}{If neighbourhoods are used, those with less inhabitants than 'min-inh' will be discarded.}
+
 \item{neighbourboods}{(optional) An 'sf' object with polygons representing the neighbourhoods in the city.}
+}
+\value{
+A numeric value expressing the square meters of green per capita. Or a numeric value expressing
+the proportion between the greenest and the least green neighbourhood. Or a tibble with the green area,
+inhabitants and green per capita in each neighbourhood.
 }
 \description{
 This indicators calculates the amount of green per capita in the city. This may include private green
 such as gardens and crops or exclude them.
 }
 \details{
-If neighbourhoods are provided the 'inh_field' must also be provided. Then, 'inhabitants' is ignored.
+If 'inh_col' and 'name_col' are defined and  'neighbourhoods' is NULL, the function searches
+the columns in 'x'. If 'neighbourhoods' is defined along with previous both, the columns are searched in
+'neighbourhoods' and spatially joined with 'x'. In both cases, 'inhabitants' is ignored.
 }

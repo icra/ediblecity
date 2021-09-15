@@ -7,7 +7,7 @@
 edible_volunteers(
   x,
   volunteers = c(0.00163, 0.22),
-  edible = c("Community garden", "Rooftop garden"),
+  edible = NULL,
   area_field = "flat_area",
   interval = 0.95
 )

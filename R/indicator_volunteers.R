@@ -4,10 +4,10 @@
 #' confidence interval of the number of volunteers by simulating a random uniform distribution of 1000 values
 #' within the provided range. The default range came from required work hours in urban agriculture assessed
 #' in scientific literature, assuming that a volunteers dedicates a 10% of a full-time job.
-#' @param x An 'sf' object with the urban model of your city and a 'Function' field with categories of urban features.
+#' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.
 #' @param volunteers A vector of length 2 with the range of volunteers involved by square meter of edible gardens.
 #' @param edible The categories in 'Functions' that represent community edible gardens.
-#' @param area_field The field to be used as the area of each feature. If NULL, the area is calculated with
+#' @param area_col The column to be used as the area of each feature. If NULL, the area is calculated with
 #' sf::st_area()
 #' @param interval A numeric value with the confidence interval returned by the function.
 #' @export
@@ -15,20 +15,28 @@
 
 edible_volunteers <- function(x,
                         volunteers = c(0.00163, 0.22),
-                        edible = c("Community garden", "Rooftop garden"),
-                        area_field = 'flat_area',
+                        edible = NULL,
+                        area_col = 'flat_area',
                         interval = 0.95){
+
+  #get categories
+  if (is.null(edible)){
+    edible <- c(
+      get_categories()$edible_green$on_ground[2],
+      get_categories()$edible_green$rooftop[2]
+    )
+  }
 
   #filter x based on edible
   filtered <- x %>%
     dplyr::filter(Function %in% edible)
 
-  #calculates area of filtered based on st_area() or in area_field
-  area <- ifelse(is.null(area_field),
+  #calculates area of filtered based on st_area() or in area_col
+  area <- ifelse(is.null(area_col),
                  sum(sf::st_area(filtered)),
                  as.data.frame(filtered) %>%
-                   dplyr::select(matches(area_field)) %>%
-                   sum(.[area_field]))
+                   dplyr::select(matches(area_col)) %>%
+                   sum(.[area_col]))
 
   #use the jobs range to create a random uniform distribution
   dist <- area * runif(1000, min = volunteers[1], max = volunteers[2])
