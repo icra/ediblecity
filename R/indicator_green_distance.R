@@ -17,7 +17,6 @@
 #' returns a numeric value with the percentage of residences further than 'max_dist' from its closest
 #' public green area.
 #' @export
-#'
 
 green_distance <- function(x,
                            green_cat = NULL,

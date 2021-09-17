@@ -9,7 +9,8 @@ edible_jobs(
   jobs = c(0.000163, 0.022),
   edible = NULL,
   area_col = "flat_area",
-  interval = 0.95
+  interval = 0.95,
+  verbose = F
 )
 }
 \arguments{
@@ -23,6 +24,8 @@ edible_jobs(
 sf::st_area()}
 
 \item{interval}{A numeric value with the confidence interval returned by the function.}
+
+\item{verbose}{If TRUE, the indicators returns a vector (N=1000) with all simulated values.}
 }
 \value{
 It returns a named vector with the median and the low and high confidence intervals

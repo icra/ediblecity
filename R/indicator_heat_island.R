@@ -6,18 +6,18 @@
 #' are considered.
 #' @param pGreen A vector of same length than green_categories with the percentage of green in each category.
 #' If pGreen is NULL, green_categories are considered totally green.
-#' @param SVF A 'stars' or 'raster' object representing sky view factor. It can be computed, e.g. with 'shadow::SVF()' or
-#' with SAGA's Sky View Factor algorithm.
+#' @param SVF A 'stars' object representing sky view factor. It can be computed, e.g. with SAGA's
+#' Sky View Factor algorithm and then loaded with stars::read_stars().
 #' @param Qql A numerical value representing the average solar radiation in W/m2/hour.
 #' @param Cair A numerical value representing the air heat capacity in J.
 #' @param Pair A numerical value representing the air density in kg/m3.
 #' @param Tmax Averaged maximum temperature in ºC.
 #' @param Tmin Averaged minimum temperature in ºC.
-#' @param verbose If TRUE, the raster of UHI values is returned. Otherwise, a summary of raster values is returned.
+#' @param return_raster If TRUE, the raster of UHI values is returned. Otherwise, a summary of raster values is returned.
+#' @param verbose If TRUE, returns a vector with UHI value in each cell.
 #' @details DEFAULT values are the values for 'city_example' dataset in August (averaged values from 2011-2020)
-#' @returns If verbose is TRUE, the output is a 'raster' object with values of UHI. Otherwise, the output is the
-#' summary of UHI in the city.
-#' @import stars
+#' @return A 'stars' object with values of UHI. Or a numerical vector or summary statistic for UHI values.
+#' See params for more information on how to select each one.
 #' @export
 
 
@@ -41,42 +41,41 @@ UHI <- function(
                 Pair = 1.14,
                 Tmax = 30.8,
                 Tmin = 20.0,
+                windspeed = 2.77,
+                return_raster = F,
                 verbose = F
                 ){
 
-  if(class(SVF) != 'stars'){
-    if(class(SVF)[1] == "RasterLayer") {
-      SVF <- stars::st_as_stars(SVF)
-    } else {
-      stop("SVF is not a 'raster' neither a 'stars' object")
-    }
-  }
-
-    # x$area <- as.numeric(sf::st_area(x))
-
   x$green <- ifelse(x$Function %in% unlist(get_categories()),1,0)
-
-  x_sp <- as(x, Class = "Spatial")
 
   x_rast <- stars::st_rasterize(x['green'], dx=5, dy=5)
 
-
-
-  x_rast <- raster::raster(crs = raster::crs(x_sp),
-                           vals = 0,
-                           resolution = c(5, 5),
-                           ext = raster::extent(x_sp)) %>%
-    raster::rasterize(x_sp, ., field = "green")
-
-  if(st_crs(x_rast) != st_crs(SVF)) SVF <- st_transform(SVF, st_crs(x_rast))
+  # Reproject SVF if necessary
+  if(sf::st_crs(x_rast) != sf::st_crs(SVF)){
+    warning("Reprojecting SVF to ", sf::st_crs(x_rast)[[1]])
+    SVF <- sf::st_transform(SVF, sf::st_crs(x_rast))
+    }
 
   if(attr(SVF, "dimensions")[[1]]$delta < attr(x_rast, "dimensions")[[1]]$delta){
-    agg <- aggregate(SVF, x_rast, mean)
+    SVF <- stars::st_warp(SVF, x_rast)
   }
 
+  S <- Qql /(Cair * Pair)
+  result <- (2 - SVF - x_rast) * ((S * (Tmax - Tmin)^3/windspeed)^(1/4))
+
+  if(return_raster) return(result)
+
+  if (verbose) return(dplyr::as_tibble(result) %>%
+                        dplyr::filter(!is.na(.[[3]])) %>%
+                                 .[[3]]
+                      )
+
+  return(summary(dplyr::as_tibble(result)[[3]]))
 
 
 
+
+  return(summary(result))
 
 }
 
