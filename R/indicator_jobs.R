@@ -9,6 +9,7 @@
 #' @param area_col The column to be used as the area of each feature. If NULL, the area is calculated with
 #' sf::st_area()
 #' @param interval A numeric value with the confidence interval returned by the function.
+#' @param verbose If TRUE, the indicators returns a vector (N=1000) with all simulated values.
 #' @return It returns a named vector with the median and the low and high confidence intervals
 #' @export
 
@@ -17,7 +18,8 @@ edible_jobs <- function(x,
                         jobs = c(0.000163, 0.022),
                         edible = NULL,
                         area_col = 'flat_area',
-                        interval = 0.95){
+                        interval = 0.95,
+                        verbose = F){
 
     #get categories
     if (is.null(edible)){

@@ -13,6 +13,7 @@ RoxygenNote: 7.1.1
 Imports: 
   sf (>= 0.9),
   dplyr (>= 1.0.6),
-  magrittr (>= 2.0.1)
+  magrittr (>= 2.0.1),
+  raster (>= 3.4)
 Depends: 
     R (>= 2.10)

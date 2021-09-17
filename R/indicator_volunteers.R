@@ -8,8 +8,9 @@
 #' @param volunteers A vector of length 2 with the range of volunteers involved by square meter of edible gardens.
 #' @param edible The categories in 'Functions' that represent community edible gardens.
 #' @param area_col The column to be used as the area of each feature. If NULL, the area is calculated with
-#' sf::st_area()
+#' sf::st_area().
 #' @param interval A numeric value with the confidence interval returned by the function.
+#' @param verbose If TRUE, the indicators returns a vector (N=1000) with all simulated values.
 #' @export
 
 
@@ -17,7 +18,8 @@ edible_volunteers <- function(x,
                         volunteers = c(0.00163, 0.22),
                         edible = NULL,
                         area_col = 'flat_area',
-                        interval = 0.95){
+                        interval = 0.95,
+                        verbose = F){
 
   #get categories
   if (is.null(edible)){
