@@ -66,7 +66,7 @@ set_scenario <- function(x,
 
     if (pGardens == 1 || nGardens*pGardens >= length(gardens_index)){
 
-      x$Function[gardens_index] <- get_categories()$edible_green$private
+      x$Function[gardens_index] <- city_functions$functions[city_functions$location == "garden"]
 
       if (nGardens*pGardens >= length(gardens_index)){
         warning(paste("Only", length(gardens_index), "private gardens out of", nGardens*pGardens, "assumed satisfy the 'min_area_garden'"))
@@ -75,7 +75,7 @@ set_scenario <- function(x,
     } else if (pGardens < 1){
       nGardens <- nGardens*pGardens
       gardens_index <- sample(gardens_index, nGardens)
-      x$Function[gardens_index] <- ediblecity::get_categories()$edible_green$private
+      x$Function[gardens_index] <- city_functions$functions[city_functions$location == "garden"]
 
     }
 
@@ -96,7 +96,9 @@ set_scenario <- function(x,
     commercial <- 0
 
     #define categories in a vector
-    vacant_cat <- ediblecity::get_categories()$edible_green$on_ground
+    commercial_garden <- city_functions$functions[city_functions$jobs & city_functions$location == "vacant"]
+    community_garden <- city_functions$functions[city_functions$volunteers & city_functions$location == "vacant"]
+
 
     if (length(vacant_index) < nVacant*pVacant){
       warning(paste("Only", length(vacant_index), "vacant plots out of", nVacant*pVacant, "assumed satisfy the 'min_area_vacant'"))
@@ -114,12 +116,12 @@ set_scenario <- function(x,
 
       if (commercial < pCommercial){
 
-        x$Function[larger] <- vacant_cat[1]
-        commercial <- sum(x$Function == vacant_cat[1])/nVacant
+        x$Function[larger] <- commercial_garden
+        commercial <- sum(x$Function == commercial_garden)/nVacant
 
       } else {
 
-        x$Function[larger] <- vacant_cat[2]
+        x$Function[larger] <- community_garden
       }
 
       total_vacant <- total_vacant + 1
@@ -142,8 +144,9 @@ set_scenario <- function(x,
     total_rooftop <- 0
     commercial <- 0
 
-    #define categories in a vector
-    rooftop_cat <- ediblecity::get_categories()$edible_green$rooftop
+    #define categories
+    rooftop_garden <- city_functions$functions[city_functions$volunteers & city_functions$location == 'rooftop']
+    hydroponic_rooftop <- city_functions$functions[city_functions$jobs & city_functions$location == 'rooftop']
 
     if (length(rooftop_index) < nRooftop*pRooftop){
       warning(paste("Only", length(rooftop_index), "rooftops out of", nRooftop*pRooftop, "assumed satisfy the 'min_area_rooftop'\n"))
@@ -161,12 +164,12 @@ set_scenario <- function(x,
 
       if (commercial < pCommercial){
 
-        x$Function[larger] <- rooftop_cat[1]
-        commercial <- sum(x$Function == rooftop_cat[1])/nRooftop
+        x$Function[larger] <- hydroponic_rooftop
+        commercial <- sum(x$Function == hydroponic_rooftop)/nRooftop
 
       } else {
 
-        x$Function[larger] <- rooftop_cat[2]
+        x$Function[larger] <- rooftop_garden
       }
 
       total_rooftop <- total_rooftop + 1

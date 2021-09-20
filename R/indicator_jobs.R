@@ -5,7 +5,8 @@
 #' within the provided range.
 #' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.
 #' @param jobs A vector of length 2 with the range of jobs created by square meter of edible gardens.
-#' @param edible The categories in 'Functions' that represent commercial edible gardens.
+#' @param edible The categories in 'Functions' that represent commercial edible gardens. If NULL, the
+#' functions from 'city_functions' dataset are used where jobs is TRUE.
 #' @param area_col The column to be used as the area of each feature. If NULL, the area is calculated with
 #' sf::st_area()
 #' @param interval A numeric value with the confidence interval returned by the function.
@@ -23,10 +24,7 @@ edible_jobs <- function(x,
 
     #get categories
     if (is.null(edible)){
-      edible <- c(
-        get_categories()$edible_green$on_ground[1],
-        get_categories()$edible_green$rooftop[1]
-        )
+      edible <- city_functions$functions[city_functions$jobs]
     }
 
     #filter x based on edible

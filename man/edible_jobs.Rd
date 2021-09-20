@@ -18,7 +18,8 @@ edible_jobs(
 
 \item{jobs}{A vector of length 2 with the range of jobs created by square meter of edible gardens.}
 
-\item{edible}{The categories in 'Functions' that represent commercial edible gardens.}
+\item{edible}{The categories in 'Functions' that represent commercial edible gardens. If NULL, the
+functions from 'city_functions' dataset are used where jobs is TRUE.}
 
 \item{area_col}{The column to be used as the area of each feature. If NULL, the area is calculated with
 sf::st_area()}

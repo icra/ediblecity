@@ -4,7 +4,7 @@
 #' than a defined distance.
 #' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.
 #' @param green_cat A vector with the categories in 'Function' that must be considered in the calculations. If
-#' NULL (default), the public categories from get_categories() are used.
+#' NULL (default), the 'city_functions' dataset is used where 'public' is TRUE.
 #' @param min_area A numerical value (in meters). smaller green areas are not considered in the calculations.
 #' @param residence_col The column 'x' where the residences are specified.
 #' @param residences A vector with the categories that represent residences.
@@ -30,11 +30,7 @@ green_distance <- function(x,
 
   #get categories
   if (is.null(green_cat)){
-    green_cat <- c(
-      get_categories()$edible_green$on_ground[2],
-      get_categories()$edible_green$rooftop[2],
-      get_categories()$green$public[-4]
-      )
+    green_cat <- city_functions$functions[city_functions$public]
   }
 
   # get green areas layer

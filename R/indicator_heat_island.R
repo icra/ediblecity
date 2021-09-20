@@ -2,10 +2,9 @@
 #' @description The indicator calculates de urban heat island (UHI) using the DPRA guidelines of the Dutch
 #' government.
 #' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.
-#' @param green_categories A vector of categories that are considered as urban green. If NULL, categories of 'get_categories()'
-#' are considered.
-#' @param pGreen A vector of same length than green_categories with the percentage of green in each category.
-#' If pGreen is NULL, green_categories are considered totally green.
+#' @param green_df A dataframe of categories that are considered as urban green with two columns. 'functions'
+#' with the names of 'Function' in 'x' to be considered as green; a 'pGreen' with the percentage of green
+#' of that function. If NULL, categories and values of 'city_functions' dataset are considered.
 #' @param SVF A 'stars' object representing sky view factor. It can be computed, e.g. with SAGA's
 #' Sky View Factor algorithm and then loaded with stars::read_stars().
 #' @param Qql A numerical value representing the average solar radiation in W/m2/hour.
@@ -20,21 +19,9 @@
 #' See params for more information on how to select each one.
 #' @export
 
-
-
-## FORMULA (data from August in SFL)
-# UHImax = (2 - SVF - Fveg) * ((S * (Tmax - Tmin)^3)/U)^(1/4)
-# SVF <- shadow::SVF() Sky view factor (average windows?)
-# Fveg <- The amount of green in each pixel (average windows depending on wind
-#                             https://support.tygron.com/wiki/Average_calculation_model_(Heat_Overlay))
-# S <- Daily average global radiation (W/m2/hr = 6.11) / air heat capacity (=1007) * Pair (=1.14)
-# Tmax = 30.8
-# Tmin = 20.0
-
 UHI <- function(
                 x,
-                green_categories = NULL,
-                pGreen = NULL,
+                green_df = NULL,
                 SVF,
                 Qql = 6.11,
                 Cair = 1007,
@@ -46,9 +33,23 @@ UHI <- function(
                 verbose = F
                 ){
 
-  x$green <- ifelse(x$Function %in% unlist(get_categories()),1,0)
+  city_functions <- city_functions %>%
+    mutate(pGreen = ifelse(!is.na(pGreen),
+                           pGreen,
+                           ifelse(location == "rooftop",
+                                  0.61,
+                                  1))) %>%
+    select(functions, pGreen)
 
-  x_rast <- stars::st_rasterize(x['green'], dx=5, dy=5)
+  if (is.null(green_df)) green_df <- city_functions
+
+  x <- x %>%
+    left_join(green_df, by = c("Function" = "functions")) %>%
+    mutate(pGreen = ifelse(is.na(pGreen),
+                           0,
+                           pGreen))
+
+  x_rast <- stars::st_rasterize(x['pGreen'], dx=5, dy=5)
 
   # Reproject SVF if necessary
   if(sf::st_crs(x_rast) != sf::st_crs(SVF)){
@@ -78,6 +79,3 @@ UHI <- function(
   return(summary(result))
 
 }
-
-
-

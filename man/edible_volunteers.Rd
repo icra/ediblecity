@@ -18,7 +18,8 @@ edible_volunteers(
 
 \item{volunteers}{A vector of length 2 with the range of volunteers involved by square meter of edible gardens.}
 
-\item{edible}{The categories in 'Functions' that represent community edible gardens.}
+\item{edible}{The categories in 'Functions' that represent community edible gardens. If NULL, functions
+from 'city_functions' dataset area used where volunteers is TRUE.}
 
 \item{area_col}{The column to be used as the area of each feature. If NULL, the area is calculated with
 sf::st_area().}

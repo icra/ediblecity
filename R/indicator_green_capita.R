@@ -20,6 +20,7 @@
 #' inhabitants and green per capita in each neighbourhood.
 #' @importFrom magrittr "%>%"
 #' @import dplyr
+#' @import sf
 #' @export
 #'
 
@@ -37,18 +38,23 @@ green_capita <- function(
                         ){
   if (is.null(green_categories)){
     if (private){
-      green_categories <- unlist(ediblecity::get_categories(), use.names = F)
+      green_categories <- city_functions$functions
     } else {
-      green_categories <- c(
-        ediblecity::get_categories()$edible_green$on_ground[2],
-        ediblecity::get_categories()$edible_green$rooftop[2],
-        ediblecity::get_categories()$green$public
-        )
+      green_categories <- city_functions$functions[city_functions$public]
     }
   }
 
   green_areas <- x %>%
-    filter(Function %in% green_categories)
+    dplyr::filter(Function %in% green_categories)
+
+  if (sum(green_areas$Function %in% city_functions$functions) == nrow(green_areas)){
+    green_areas <- dplyr::left_join(green_areas, city_functions, by = c("Function" = "functions"))
+  } else {
+    green_areas$pGreen <- NA
+    green_areas$location <- NA
+  }
+
+
 
   if(!is.null(inh_col) && !is.null(name_col)){
 
@@ -61,10 +67,14 @@ green_capita <- function(
 
     }
 
-    green_areas <- green_areas %>%
+     green_areas <- green_areas %>%
       dplyr::filter(!is.na(!!as.symbol(name_col)),
                     !!as.symbol(inh_col) > min_inh) %>%
-      dplyr::mutate(area = sf::st_area(.)) %>%
+      dplyr::mutate(area = ifelse(!is.na(pGreen),
+                           sf::st_area(.) * pGreen,
+                           ifelse(location == "rooftop",
+                                  sf::st_area(.) * 0.61,
+                                  sf::st_area(.)))) %>%
       sf::st_drop_geometry() %>%
       dplyr::select(Function,!!as.symbol(name_col), !!as.symbol(inh_col), area) %>%
       dplyr::group_by(!!as.symbol(name_col)) %>%
@@ -83,8 +93,15 @@ green_capita <- function(
 
   } else {
 
-    green_areas$area <- sf::st_area(green_areas)
-    result <- sum(as.numeric(green_areas$area))/inhabitants
+    area <-  green_areas %>%
+      dplyr::mutate(area = ifelse(!is.na(pGreen),
+                          (sf::st_area(.) * pGreen),
+                          (ifelse(location == "rooftop",
+                                 sf::st_area(.) * 0.61,
+                                 sf::st_area(.))))) %>%
+      .$area
+
+    result <- sum(as.numeric(area))/inhabitants
 
   }
 

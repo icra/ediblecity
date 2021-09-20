@@ -19,7 +19,7 @@ green_distance(
 \item{x}{An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.}
 
 \item{green_cat}{A vector with the categories in 'Function' that must be considered in the calculations. If
-NULL (default), the public categories from get_categories() are used.}
+NULL (default), the 'city_functions' dataset is used where 'public' is TRUE.}
 
 \item{min_area}{A numerical value (in meters). smaller green areas are not considered in the calculations.}
 

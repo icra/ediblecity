@@ -6,3 +6,4 @@ NO2_seq <- data.frame(
 )
 
 usethis::use_data(NO2_seq, overwrite = TRUE)
+

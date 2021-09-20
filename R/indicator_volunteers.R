@@ -6,7 +6,8 @@
 #' in scientific literature, assuming that a volunteers dedicates a 10% of a full-time job.
 #' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.
 #' @param volunteers A vector of length 2 with the range of volunteers involved by square meter of edible gardens.
-#' @param edible The categories in 'Functions' that represent community edible gardens.
+#' @param edible The categories in 'Functions' that represent community edible gardens. If NULL, functions
+#' from 'city_functions' dataset area used where volunteers is TRUE.
 #' @param area_col The column to be used as the area of each feature. If NULL, the area is calculated with
 #' sf::st_area().
 #' @param interval A numeric value with the confidence interval returned by the function.
@@ -23,10 +24,7 @@ edible_volunteers <- function(x,
 
   #get categories
   if (is.null(edible)){
-    edible <- c(
-      get_categories()$edible_green$on_ground[2],
-      get_categories()$edible_green$rooftop[2]
-    )
+    edible <- city_functions$functions[city_functions$volunteers]
   }
 
   #filter x based on edible

@@ -6,8 +6,7 @@
 \usage{
 UHI(
   x,
-  green_categories = NULL,
-  pGreen = NULL,
+  green_df = NULL,
   SVF,
   Qql = 6.11,
   Cair = 1007,
@@ -22,11 +21,9 @@ UHI(
 \arguments{
 \item{x}{An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.}
 
-\item{green_categories}{A vector of categories that are considered as urban green. If NULL, categories of 'get_categories()'
-are considered.}
-
-\item{pGreen}{A vector of same length than green_categories with the percentage of green in each category.
-If pGreen is NULL, green_categories are considered totally green.}
+\item{green_df}{A dataframe of categories that are considered as urban green with two columns. 'functions'
+with the names of 'Function' in 'x' to be considered as green; a 'pGreen' with the percentage of green
+of that function. If NULL, categories and values of 'city_functions' dataset are considered.}
 
 \item{SVF}{A 'stars' object representing sky view factor. It can be computed, e.g. with SAGA's
 Sky View Factor algorithm and then loaded with stars::read_stars().}
