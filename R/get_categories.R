@@ -1,5 +1,4 @@
 #' @title Categories of urban edible and non-edible green
-#' @export
 #'
 
 

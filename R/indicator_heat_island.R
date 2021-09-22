@@ -3,7 +3,7 @@
 #' government.
 #' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.
 #' @param green_df A dataframe of categories that are considered as urban green with two columns. 'functions'
-#' with the names of 'Function' in 'x' to be considered as green; a 'pGreen' with the percentage of green
+#' with the names of 'Function' in 'x' to be considered as green; a 'pGreen' column with the percentage of green
 #' of that function. If NULL, categories and values of 'city_functions' dataset are considered.
 #' @param SVF A 'stars' object representing sky view factor. It can be computed, e.g. with SAGA's
 #' Sky View Factor algorithm and then loaded with stars::read_stars().
@@ -63,6 +63,7 @@ UHI <- function(
 
   S <- Qql /(Cair * Pair)
   result <- (2 - SVF - x_rast) * ((S * (Tmax - Tmin)^3/windspeed)^(1/4))
+  names(result) <- "UHI"
 
   if(return_raster) return(result)
 
@@ -79,3 +80,4 @@ UHI <- function(
   return(summary(result))
 
 }
+
