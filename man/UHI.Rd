@@ -22,7 +22,7 @@ UHI(
 \item{x}{An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.}
 
 \item{green_df}{A dataframe of categories that are considered as urban green with two columns. 'functions'
-with the names of 'Function' in 'x' to be considered as green; a 'pGreen' with the percentage of green
+with the names of 'Function' in 'x' to be considered as green; a 'pGreen' column with the percentage of green
 of that function. If NULL, categories and values of 'city_functions' dataset are considered.}
 
 \item{SVF}{A 'stars' object representing sky view factor. It can be computed, e.g. with SAGA's
