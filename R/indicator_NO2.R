@@ -14,18 +14,49 @@
 
 no2_seq <- function(x,
                     green_df = NULL,
-                    return_raster = F,
+                    traffic_lanes = 'Streets',
+                    max_dist = Inf,
                     verbose = F
                     ){
 
 
   if(is.null(green_df)){
     green_df <- city_functions %>%
-      select(functions, no2_seq)
+      mutate(pGreen = ifelse(!is.na(pGreen),
+                             pGreen,
+                             ifelse(location == "rooftop",
+                                    0.61,
+                                    1))) %>%
+      select(functions, no2_seq1, no2_seq2, pGreen)
   }
 
+  x <- x %>% filter(Function %in% green_df)
+
+
   x <- left_join(x,green_df, by=c("Function" = "functions"))
-  x$no2_seq[is.na(x$no2_seq)] <- 0
+  x$pGreen[is.na(x$pGreen)] <- 0
+
+  x$area <- sf::st_area(x)
+  x$green_area <- as.numeric(sf::st_area(x)) * x$pGreen
+  x$no2_seq <- 0
+
+  for (i in 1:nrow(green_df)){
+    f <- green_df$functions[i]
+
+    if (green_df$no2_seq1[i] != green_df$no2_seq2[i]){
+      x$no2_seq[x$Function == f] <-  x$green_area[x$Function == f] * runif(
+                                                                        length(x$green_area[x$Function == f]),
+                                                                        green_df$no2_seq1[i],
+                                                                        green_df$no2_seq2[i])
+
+      } else {
+      x$no2_seq[x$Function == f] <-  x$green_area[x$Function == f]
+    }
+  }
+
+
+### OLD
+
 
   sequest <- stars::st_rasterize(x['no2_seq'], dx=5, dy=5)
 
@@ -41,3 +72,4 @@ no2_seq <- function(x,
 
 }
 
+x %>% select(Function, green_area, no2_seq) %>% filter(Function == "Arable land") %>% mutate(area = sf::st_area(.))
