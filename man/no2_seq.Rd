@@ -4,20 +4,23 @@
 \alias{no2_seq}
 \title{Sequestration of nitrogen dioxide}
 \usage{
-no2_seq(x, green_df = NULL, return_raster = F, verbose = F)
+no2_seq(x, green_df = NULL)
 }
 \arguments{
 \item{x}{An 'sf' object with the urban model of your city and a 'Function' column with categories of
 urban features.}
 
-\item{green_df}{A dataframe of categories that are considered as urban green with two columns. 'functions'
-with the names of 'Function' in 'x' to be considered as green and a 'no2_seq' columns with NO2
-sequestration capacity of each function. If NULL, categories and values of 'city_functions' dataset are
-considered.}
+\item{green_df}{A dataframe of categories that are considered as urban green with four columns:
+\enumerate{
+  \item 'functions': Column with the function to be considered in the calculations corresponding
+  to 'Function' column in 'x'.
+  \item 'no2_seq1': The low range of NO2 sequestration of each function (in ug/s/m2).
+  \item 'no2_seq2': The high range of NO2 sequestration of each function (in ug/s/m2).
+  \item 'pGreen': The proportion of green surface in each function (0:1).
+}}
 }
 \value{
-If 'return_raster is TRUE, a 'stars' object is returned with NO2 sequestration as attribute. If 'verbose'
-is TRUE, a vector with the values of NO2 sequestration. If previous both are FALSE, the summary of values is returned.
+A numeric value with the total NO2 sequestration in the city (in grams/second).
 }
 \description{
 This indicator returns the amount of NO2 that is sequestered by urban green.
