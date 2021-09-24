@@ -10,6 +10,7 @@
 #'   \item 'no2_seq2': The high range of NO2 sequestration of each function (in ug/s/m2).
 #'   \item 'pGreen': The proportion of green surface in each function (0:1).
 #' }
+#' If NULL, the 'city_functions' dataset is used.
 #' @return A numeric value with the total NO2 sequestration in the city (in grams/second).
 #' @export
 #'
@@ -30,31 +31,30 @@ no2_seq <- function(x,
       select(functions, no2_seq1, no2_seq2, pGreen)
   }
 
-  x <- x %>% filter(Function %in% green_df$functions)
+  x_f <- x %>% filter(Function %in% green_df$functions)
 
 
-  x <- left_join(x,green_df, by=c("Function" = "functions"))
-  x$pGreen[is.na(x$pGreen)] <- 0
+  x_f <- left_join(x_f,green_df, by=c("Function" = "functions"))
+  x_f$pGreen[is.na(x_f$pGreen)] <- 0
 
-  x$green_area <- as.numeric(sf::st_area(x)) * x$pGreen
-  x$no2_seq <- 0
+  x_f$green_area <- as.numeric(sf::st_area(x_f)) * x_f$pGreen
 
   for (i in 1:nrow(green_df)){
     f <- green_df$functions[i]
 
     if (green_df$no2_seq1[i] != green_df$no2_seq2[i]){
-      x$no2_seq[x$Function == f] <-  x$green_area[x$Function == f] * runif(
-                                                                        length(x$green_area[x$Function == f]),
+      x_f$no2_seq[x_f$Function == f] <-  x_f$green_area[x_f$Function == f] * runif(
+                                                                        length(x_f$green_area[x_f$Function == f]),
                                                                         green_df$no2_seq1[i],
                                                                         green_df$no2_seq2[i])
 
       } else {
-      x$no2_seq[x$Function == f] <-  x$green_area[x$Function == f]
+      x_f$no2_seq[x_f$Function == f] <-  x_f$green_area[x_f$Function == f]
     }
   }
 
 
- return(c("grams/second" = sum(x$no2_seq)/1000))
+ return(c("gr/s" = sum(x_f$no2_seq)/1000))
 
 
 

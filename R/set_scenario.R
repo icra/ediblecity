@@ -69,7 +69,7 @@ set_scenario <- function(x,
       x$Function[gardens_index] <- city_functions$functions[city_functions$location == "garden"]
 
       if (nGardens*pGardens >= length(gardens_index)){
-        warning(paste("Only", length(gardens_index), "private gardens out of", nGardens*pGardens, "assumed satisfy the 'min_area_garden'"))
+        warning(paste("Only", length(gardens_index), "private gardens out of", nGardens*pGardens, "assumed satisfy the 'min_area_garden'\n"))
       }
 
     } else if (pGardens < 1){
@@ -101,7 +101,7 @@ set_scenario <- function(x,
 
 
     if (length(vacant_index) < nVacant*pVacant){
-      warning(paste("Only", length(vacant_index), "vacant plots out of", nVacant*pVacant, "assumed satisfy the 'min_area_vacant'"))
+      warning(paste("Only", length(vacant_index), "vacant plots out of", nVacant*pVacant, "assumed satisfy the 'min_area_vacant'\n"))
       nVacant <- length(vacant_index)
 
     } else {
