@@ -39,6 +39,8 @@ no2_seq <- function(x,
 
   x_f$green_area <- as.numeric(sf::st_area(x_f)) * x_f$pGreen
 
+  x_f$no2_seq <- 0
+
   for (i in 1:nrow(green_df)){
     f <- green_df$functions[i]
 

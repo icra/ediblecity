@@ -3,6 +3,7 @@
 export(UHI)
 export(edible_jobs)
 export(edible_volunteers)
+export(food_production)
 export(green_capita)
 export(green_distance)
 export(no2_seq)

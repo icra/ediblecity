@@ -88,7 +88,6 @@ set_scenario <- function(x,
 
     #locate and count vacant plots
     vacant_index <- which(x$Function %in% vacant_from & x$area >= min_area_vacant)
-    new_index <- vacant_index
     nVacant <- sum(x$Function %in% vacant_from)
 
     #set transformed vacants, commercial and community proportions to zero
@@ -105,28 +104,32 @@ set_scenario <- function(x,
       nVacant <- length(vacant_index)
 
     } else {
-      nVacant <- nVacant*pVacant
+      nVacant <- round(nVacant*pVacant,0)
     }
 
-    while (total_vacant < nVacant){
+    while (total_vacant < nVacant && commercial < pCommercial){
 
       larger <- which(x$area == max(x$area[vacant_index]) & x$Function %in% vacant_from)
       if (length(larger) > 1) larger <- larger[1]
       vacant_index <- vacant_index[vacant_index != larger]
 
-      if (commercial < pCommercial){
+      # if (commercial < pCommercial){
 
-        x$Function[larger] <- commercial_garden
-        commercial <- sum(x$Function == commercial_garden)/nVacant
+      x$Function[larger] <- commercial_garden
+      commercial <- sum(x$Function == commercial_garden)/nVacant
 
-      } else {
-
-        x$Function[larger] <- community_garden
-      }
+      # } else {
+      #
+      #   x$Function[larger] <- community_garden
+      # }
 
       total_vacant <- total_vacant + 1
     }
 
+    comm_index <- sample(vacant_index, nVacant - total_vacant)
+    x$Function[comm_index] <- community_garden
+
+    new_index <- x$Function %in% c(commercial_garden, community_garden)
     x$edible_area[new_index] <-
       x$area[new_index]*runif(length(new_index), perc_vacant[1], perc_vacant[2])
 
@@ -137,7 +140,6 @@ set_scenario <- function(x,
 
     #locate and count vacant plots
     rooftop_index <- which(x$Function %in% rooftop_from & x$area >= min_area_rooftop)
-    new_index <- rooftop_index
     nRooftop <- sum(x$Function %in% rooftop_from)
 
     #set transformed vacants, commercial and community proportions to zero
@@ -153,28 +155,32 @@ set_scenario <- function(x,
       nRooftop <- length(rooftop_index)
 
     } else {
-      nRooftop <- nRooftop*pRooftop
+      nRooftop <- round(nRooftop*pRooftop, 0)
     }
 
-    while (total_rooftop < nRooftop){
+    while (total_rooftop < nRooftop && commercial < pCommercial){
 
       larger <- which(x$area == max(x$area[rooftop_index]) & x$Function %in% rooftop_from)
       if (length(larger) > 1) larger <- larger[1]
       rooftop_index <- rooftop_index[rooftop_index != larger]
 
-      if (commercial < pCommercial){
+      #if (commercial < pCommercial){
 
-        x$Function[larger] <- hydroponic_rooftop
-        commercial <- sum(x$Function == hydroponic_rooftop)/nRooftop
+      x$Function[larger] <- hydroponic_rooftop
+      commercial <- sum(x$Function == hydroponic_rooftop)/nRooftop
 
-      } else {
-
-        x$Function[larger] <- rooftop_garden
-      }
+      # } else {
+      #
+      #   x$Function[larger] <- rooftop_garden
+      # }
 
       total_rooftop <- total_rooftop + 1
     }
 
+    comm_index <- sample(rooftop_index, nRooftop - total_rooftop)
+    x$Function[comm_index] <- rooftop_garden
+
+    new_index <- x$Function %in% c(rooftop_garden, hydroponic_rooftop)
     x$edible_area[new_index] <-
       x$area[new_index]*runif(length(new_index), perc_rooftop[1], perc_rooftop[2])
 

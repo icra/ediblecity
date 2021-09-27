@@ -12,6 +12,8 @@
 #' sf::st_area().
 #' @param interval A numeric value with the confidence interval returned by the function.
 #' @param verbose If TRUE, the indicators returns a vector (N=1000) with all simulated values.
+#' @return If verbose is FALSE, it returns a named vector with the median and the low and high confidence intervals.
+#' Otherwise, it returns a vector of length 1000 with all simulated values.
 #' @export
 
 
@@ -40,6 +42,8 @@ edible_volunteers <- function(x,
 
   #use the jobs range to create a random uniform distribution
   dist <- area * runif(1000, min = volunteers[1], max = volunteers[2])
+
+  if(verbose) return(dist)
 
   #return median and confidence interval of dist
   return(c(quantile(dist,1-interval), "50%" = median(dist), quantile(dist,interval)))

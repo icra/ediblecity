@@ -29,7 +29,8 @@ sf::st_area()}
 \item{verbose}{If TRUE, the indicators returns a vector (N=1000) with all simulated values.}
 }
 \value{
-It returns a named vector with the median and the low and high confidence intervals
+If verbose is FALSE, it returns a named vector with the median and the low and high confidence intervals.
+Otherwise, it returns a vector of length 1000 with all simulated values.
 }
 \description{
 This indicator estimates the number of full-time jobs created by commercial urban agriculture

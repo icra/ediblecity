@@ -17,7 +17,8 @@ urban features.}
   \item 'no2_seq1': The low range of NO2 sequestration of each function (in ug/s/m2).
   \item 'no2_seq2': The high range of NO2 sequestration of each function (in ug/s/m2).
   \item 'pGreen': The proportion of green surface in each function (0:1).
-}}
+}
+If NULL, the 'city_functions' dataset is used.}
 }
 \value{
 A numeric value with the total NO2 sequestration in the city (in grams/second).

@@ -28,6 +28,10 @@ sf::st_area().}
 
 \item{verbose}{If TRUE, the indicators returns a vector (N=1000) with all simulated values.}
 }
+\value{
+If verbose is FALSE, it returns a named vector with the median and the low and high confidence intervals.
+Otherwise, it returns a vector of length 1000 with all simulated values.
+}
 \description{
 This indicator estimates the number of volunteers potentially involved in community urban agriculture
 initiatives in your city. It uses a range of volunteers per square meter to create the median and the
