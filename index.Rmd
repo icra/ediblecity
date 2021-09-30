@@ -145,13 +145,13 @@ full_table
 ```{r green_capita_plot, echo=F}
 
 full_join(base_table, full_table, by='name') %>%
+  filter(inhabitants.x > 300) %>% 
   select(name, starts_with("green_capita")) %>% 
   pivot_longer(cols=starts_with("green"), names_to = "scenario") %>%
   mutate(scenario = ifelse(scenario=="green_capita.x", "Base scenario", "Full scenario")) %>% 
   ggplot(aes(name, value,fill=scenario))+
     geom_bar(stat="identity",position="dodge")+
-    theme(axis.text.x = element_text(angle=90, vjust = 0.5, hjust=1))+
-    scale_y_log10()
+    theme(axis.text.x = element_text(angle=90, vjust = 0.5, hjust=1))
 
 ```
 
@@ -214,10 +214,14 @@ full_summary
 base_percent
 full_percent
 
+colors <- c("Base scenario" = rgb(5,34,255,125, maxColorValue = 255), 
+            "Full scenario" = rgb(245,72,66, 125, maxColorValue = 255))
+
 data.frame(base = as.numeric(base_dist), full = as.numeric(full_dist)) %>% 
   ggplot()+
-    geom_histogram(aes(base), fill = 'blue', alpha = 0.5)+
-    geom_histogram(aes(full), fill = 'red', alpha = 0.5)
+    geom_histogram(aes(base, fill = "Base scenario"))+
+    geom_histogram(aes(full, fill = 'Full scenario'))+
+    scale_fill_manual(values = colors)
 ```
 
 ### URBAN HEAT ISLAND
