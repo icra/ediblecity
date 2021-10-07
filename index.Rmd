@@ -25,7 +25,7 @@ ggplot(city_example)+
   geom_sf(data= filter(city_example, Function %in% city_functions$functions[city_functions$edible]), aes(color=Function))
 ```
 
-### DEFINING FULL SCENARIO
+### DEFINING SCENARIO S3.50
 
 The function 'set_scenario' converts parts of the city in urban agriculture initiatives according to defined parameters in the the function.  
 

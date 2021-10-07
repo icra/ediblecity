@@ -19,7 +19,7 @@
 edible_jobs <- function(x,
                         jobs = c(0.000163, 0.022),
                         edible = NULL,
-                        area_col = 'flat_area',
+                        area_col = 'edible_area',
                         interval = 0.95,
                         verbose = F){
 

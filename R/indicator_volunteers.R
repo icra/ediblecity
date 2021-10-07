@@ -20,7 +20,7 @@
 edible_volunteers <- function(x,
                         volunteers = c(0.00163, 0.22),
                         edible = NULL,
-                        area_col = 'flat_area',
+                        area_col = 'edible_area',
                         interval = 0.95,
                         verbose = F){
 
