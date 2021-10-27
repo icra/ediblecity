@@ -1,5 +1,6 @@
 #' @title Sequestration of nitrogen dioxide
 #' @description This indicator returns the amount of NO2 that is sequestered by urban green.
+#' @author Josep Pueyo-Ros
 #' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories of
 #' urban features.
 #' @param green_df A dataframe of categories that are considered as urban green with four columns:

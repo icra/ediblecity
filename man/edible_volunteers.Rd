@@ -8,7 +8,7 @@ edible_volunteers(
   x,
   volunteers = c(0.00163, 0.22),
   edible = NULL,
-  area_col = "flat_area",
+  area_col = "edible_area",
   interval = 0.95,
   verbose = F
 )
@@ -38,4 +38,7 @@ initiatives in your city. It uses a range of volunteers per square meter to crea
 confidence interval of the number of volunteers by simulating a random uniform distribution of 1000 values
 within the provided range. The default range came from required work hours in urban agriculture assessed
 in scientific literature, assuming that a volunteers dedicates a 10% of a full-time job.
+}
+\author{
+Josep Pueyo-Ros
 }

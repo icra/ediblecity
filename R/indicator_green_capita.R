@@ -1,6 +1,7 @@
 #' @title Urban green per capita
 #' @description This indicators calculates the amount of green per capita in the city. This may include private green
 #' such as gardens and crops or exclude them.
+#' @author Josep Pueyo-Ros
 #' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.
 #' @param green_categories The categories that are considered as urban green. If NULL, categories of 'get_categories()'
 #' are considered.

@@ -1,6 +1,7 @@
 #' @title Set the scenario for your edible city
 #' @description You can adjust different parameters to define different city scenarios.
 #' The object must contain a field 'Function' which describes the function or type of each feature.
+#' @author Josep Pueyo-Ros
 #' @param x An 'sf' object with the urban model of your city and a 'Function' field with categories of urban features.
 #' @param pGardens The proportion of private gardens (Function == 'Gardens')
 #' that will become edible gardens [0-1].
@@ -38,7 +39,7 @@ set_scenario <- function(x,
                          perc_garden = c(0.02, 0.3),
                          perc_vacant = c(0.52, 0.75),
                          perc_rooftop = c(0.6,0.62),
-                         min_area_garden = 100,
+                         min_area_garden = 10,
                          min_area_vacant = 100,
                          min_area_rooftop = 100,
                          private_gardens_from = "Normal garden",

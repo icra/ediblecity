@@ -1,6 +1,7 @@
 #' @title Heat island effect
 #' @description The indicator calculates de urban heat island (UHI) using the DPRA guidelines of the Dutch
 #' government.
+#' @author Josep Pueyo-Ros
 #' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.
 #' @param green_df A dataframe of categories that are considered as urban green with two columns. 'functions'
 #' with the names of 'Function' in 'x' to be considered as green; a 'pGreen' column with the percentage of green

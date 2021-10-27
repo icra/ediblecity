@@ -41,3 +41,6 @@ initiatives in your city. It uses a range of production for each type of initiat
 confidence interval of the number of jobs by simulating a random uniform distribution of 1000 values
 within the provided range.
 }
+\author{
+Josep Pueyo-Ros
+}

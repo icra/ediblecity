@@ -4,6 +4,7 @@
 #' confidence interval of the number of volunteers by simulating a random uniform distribution of 1000 values
 #' within the provided range. The default range came from required work hours in urban agriculture assessed
 #' in scientific literature, assuming that a volunteers dedicates a 10% of a full-time job.
+#' @author Josep Pueyo-Ros
 #' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.
 #' @param volunteers A vector of length 2 with the range of volunteers involved by square meter of edible gardens.
 #' @param edible The categories in 'Functions' that represent community edible gardens. If NULL, functions

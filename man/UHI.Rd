@@ -53,3 +53,6 @@ government.
 \details{
 DEFAULT values are the values for 'city_example' dataset in August (averaged values from 2011-2020)
 }
+\author{
+Josep Pueyo-Ros
+}

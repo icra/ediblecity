@@ -45,3 +45,6 @@ Thisi indicator calculates the distance from each residence to its closest publi
 larger than 'min_area'. It can return the summary of distances or the percentage of residence buildings further
 than a defined distance.
 }
+\author{
+Josep Pueyo-Ros
+}

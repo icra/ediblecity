@@ -8,7 +8,7 @@ edible_jobs(
   x,
   jobs = c(0.000163, 0.022),
   edible = NULL,
-  area_col = "flat_area",
+  area_col = "edible_area",
   interval = 0.95,
   verbose = F
 )
@@ -37,4 +37,7 @@ This indicator estimates the number of full-time jobs created by commercial urba
 initiatives in your city. It uses a range of jobs per square meter to create the median and the
 confidence interval of the number of jobs by simulating a random uniform distribution of 1000 values
 within the provided range.
+}
+\author{
+Josep Pueyo-Ros
 }

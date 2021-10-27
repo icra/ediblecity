@@ -2,6 +2,7 @@
 #' @description Thisi indicator calculates the distance from each residence to its closest public green area
 #' larger than 'min_area'. It can return the summary of distances or the percentage of residence buildings further
 #' than a defined distance.
+#' @author Josep Pueyo-Ros
 #' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.
 #' @param green_cat A vector with the categories in 'Function' that must be considered in the calculations. If
 #' NULL (default), the 'city_functions' dataset is used where 'public' is TRUE.

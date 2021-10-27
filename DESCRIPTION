@@ -4,11 +4,11 @@ Title: Modellization of urban agriculture at city scale
 Version: 0.1.0
 Author: Josep Pueyo-Ros
 Maintainer: Josep Pueyo-Ros <jpueyo@icra.cat>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: MIT license
+Description: The purpose of ediblecity is to estimate the potential of UA to contribute to addressing several urban challenges at the city-scale. Within this aim, we followed the urban challenges defined by the Eklipse project that are followed for nearly all of the European projects focused on Nature-based Solutions. We selected 8 indicators directly related to one or several urban challenges.
+License: GPL-2
 Encoding: UTF-8
 LazyData: true
+LazyDataCompression: gzip
 RoxygenNote: 7.1.1
 Imports: 
   sf (>= 0.9),

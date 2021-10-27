@@ -26,3 +26,6 @@ A numeric value with the total NO2 sequestration in the city (in grams/second).
 \description{
 This indicator returns the amount of NO2 that is sequestered by urban green.
 }
+\author{
+Josep Pueyo-Ros
+}

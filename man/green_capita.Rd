@@ -51,3 +51,6 @@ If 'inh_col' and 'name_col' are defined and  'neighbourhoods' is NULL, the funct
 the columns in 'x'. If 'neighbourhoods' is defined along with previous both, the columns are searched in
 'neighbourhoods' and spatially joined with 'x'. In both cases, 'inhabitants' is ignored.
 }
+\author{
+Josep Pueyo-Ros
+}

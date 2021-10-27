@@ -3,6 +3,7 @@
 #' initiatives in your city. It uses a range of production for each type of initiative to create the median and the
 #' confidence interval of the number of jobs by simulating a random uniform distribution of 1000 values
 #' within the provided range.
+#' @author Josep Pueyo-Ros
 #' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories of
 #' urban features.
 #' @param edible_df A dataframe of categories that are considered as urban agriculture with three columns:
