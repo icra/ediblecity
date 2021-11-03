@@ -30,22 +30,7 @@ ggplot(city_example)+
 The function 'set_scenario' converts parts of the city in urban agriculture initiatives according to defined parameters in the the function.  
 
 ```{r scenario}
-full <- set_scenario(city_example,
-                     pGardens = 1,
-                     pVacant = 1,
-                     pRooftop = 1,
-                     perc_garden = c(0.02, 0.3),
-                     perc_vacant = c(0.52, 0.75),
-                     perc_rooftop = c(0.6, 0.62),
-                     min_area_garden = 10,
-                     min_area_vacant = 100,
-                     min_area_rooftop = 100,
-                     private_gardens_from = "Normal garden",
-                     vacant_from = "Vacant",
-                     rooftop_from = "Rooftop",
-                     pCommercial = 0.5,
-                     area_field = "flat_area"
-             )
+f
 for (f in city_functions$functions[city_functions$edible]){
   print(paste(f,"=", sum(full$Function == f)))
 }

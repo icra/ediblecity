@@ -52,7 +52,7 @@ no2_seq <- function(x,
                                                                         green_df$no2_seq2[i])
 
       } else {
-      x_f$no2_seq[x_f$Function == f] <-  x_f$green_area[x_f$Function == f]
+      x_f$no2_seq[x_f$Function == f] <-  x_f$green_area[x_f$Function == f] * green_df$no2_seq1[i]
     }
   }
 

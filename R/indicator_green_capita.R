@@ -38,10 +38,11 @@ green_capita <- function(
                         min_inh = 0
                         ){
   if (is.null(green_categories)){
+
+    green_categories <- city_functions$functions[city_functions$public]
+
     if (private){
-      green_categories <- city_functions$functions
-    } else {
-      green_categories <- city_functions$functions[city_functions$public]
+      green_categories <- c(green_categories, city_functions$functions[7])
     }
   }
 
