@@ -232,7 +232,7 @@ The indicator calculates de urban heat island (UHI) following Theeuwes, N. E., S
 
 ```{r UHI}
 
-SVF <- stars::read_stars("../data_preparation/SVF/SVF_3035.tif")
+SVF <- stars::read_stars("../ediblecity_sim/SVF_3035.tif")
 
 uhi <- UHI(city_example, SVF = SVF, return_raster = T)
 uhi2 <- UHI(full, SVF = SVF, return_raster = T)
@@ -297,5 +297,24 @@ cat("\nBase scenario\n")
 round(food_base / consumption, 3)
 cat("\nFull scenario\n")
 round(food_full / consumption, 3)
+
+```
+
+```{r runoff_prevention}
+
+#no està bé, el base dona millors valors que el full
+
+runoff_base <- runoff_prev(city_example)
+runoff_full <- runoff_prev(full)
+
+runoff_base[1]
+runoff_full[1]
+
+tibble(results = c("runoff_prev", names(runoff_full)[-1]),
+       runoff_base, runoff_full) %>% 
+  pivot_longer(cols=starts_with("runoff")) %>% 
+  ggplot(aes(x=results, y= value, fill=name))+
+    geom_bar(stat = "identity", position = position_dodge2())+
+    labs(y= "cubic metres")
 
 ```

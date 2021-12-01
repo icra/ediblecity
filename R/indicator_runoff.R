@@ -18,7 +18,8 @@
 #' @param harvest_dist Maximum distance (in meters) of buildings where to harvest rainwater
 #' @param tank_size A two-length vector with the range of tank size possibilities (in l/m2).
 #' @details
-#' @return
+#' @return It returns a named vector with values of percentage of rainfall infiltred or captured,
+#' total rainfall, total infiltration and total rainharvest (all of them in m3)
 #' @export
 
 
@@ -58,8 +59,6 @@ runoff_prev <- function(
   vacant_inf <- c(runoff_df$infiltration1[runoff_df$functions == "Vacant"],
                   runoff_df$infiltration2[runoff_df$functions == "Vacant"])
 
-
-
   infilt_func <- function(u){
     func <- x %>%
       dplyr::filter(Function == u[["functions"]])
@@ -78,12 +77,11 @@ runoff_prev <- function(
                       normal_inf = area * runif(1, infilt1, infilt2)
         )
     }
-
     return(min(sum(func$area) * rain, sum(func$edible_inf) + sum(func$normal_inf)))
 
   }
 
-  infiltration_apply <- sum(apply(runoff_df, 1, "infilt_func"))
+  infiltration <- sum(apply(runoff_df, 1, "infilt_func", simplify = T))
 
   ##calculate rainwater harvesting area and tank size
 
@@ -120,8 +118,13 @@ runoff_prev <- function(
   rainharvest <- sum(apply(buffer_harv, 1, "storage_func"))
 
 
-  runoff <- (rainfall - (rainharvest))
+  runoff <- (rainfall - (rainharvest + infiltration)) / rainfall
 
+
+  return(c(runoff = 1-runoff,
+           rainfall = rainfall/1000,
+           rainharvest = rainharvest/1000,
+           infiltration = infiltration/1000))
 
 }
 
