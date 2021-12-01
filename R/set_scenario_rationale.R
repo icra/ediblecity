@@ -31,8 +31,9 @@
 #' 'min_area_garden'. However, vacant plots and rooftops are selected from larger to smaller, assuming that the best
 #' spots (i.e. larger) are occupied first. Likewise, when pCommercial > 0, commercial gardens and hydroponic rooftops are
 #' settled in the larger features, assuming that commercial initiatives have the power to acquire the best spots.
+#' @export
 
-set_scenario <- function(x,
+set_scenario_rationale <- function(x,
                          pGardens = 1,
                          pVacant = 1,
                          pRooftop = 1,
@@ -175,11 +176,11 @@ set_scenario <- function(x,
       total_rooftop <- total_rooftop + 1
     }
 
-    x$edible_area[new_index] <-
-      x$area[new_index]*runif(length(new_index), perc_rooftop[1], perc_rooftop[2])
+    x$edible_area[new_index] <- x$area[new_index]*runif(length(new_index), perc_rooftop[1], perc_rooftop[2])
 
   }
 
 
   return(x)
+
 }
