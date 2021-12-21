@@ -43,7 +43,7 @@ full <- set_scenario(city_example,
                      private_gardens_from = "Normal garden",
                      vacant_from = "Vacant",
                      rooftop_from = "Rooftop",
-                     pCommercial = 0.5,
+                     pCommercial = 0.25,
                      area_field = "flat_area"
              )
 for (f in city_functions$functions[city_functions$edible]){
@@ -94,7 +94,7 @@ base_p <- green_capita(city_example,
              inh_col = 'inhabitants',
              verbose = F,
              min_inh = 300,
-             private = F)
+             private = T)
 #Values by neighbourhood
 base_table <- green_capita(city_example, 
              neighbourhoods = neighbourhoods, 

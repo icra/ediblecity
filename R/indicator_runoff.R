@@ -29,7 +29,7 @@ runoff_prev <- function(
                         rain = 100,
                         floors_field = 'floors',
                         harvest_dist = 10,
-                        tank_size = c(0,100)
+                        tank_size = c(0,45)
                         ){
 
   #if no runoff_df, use the city_functions values

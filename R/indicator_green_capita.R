@@ -73,16 +73,16 @@ green_capita <- function(
       dplyr::filter(!is.na(!!as.symbol(name_col)),
                     !!as.symbol(inh_col) > min_inh) %>%
       dplyr::mutate(area = ifelse(!is.na(pGreen),
-                           sf::st_area(.) * pGreen,
-                           ifelse(location == "rooftop",
+                              sf::st_area(.) * pGreen,
+                              ifelse(location == "rooftop",
                                   sf::st_area(.) * 0.61,
                                   sf::st_area(.)))) %>%
       sf::st_drop_geometry() %>%
       dplyr::select(Function,!!as.symbol(name_col), !!as.symbol(inh_col), area) %>%
       dplyr::group_by(!!as.symbol(name_col)) %>%
       dplyr::summarise(area = sum(as.numeric(area))) %>%
-      inner_join(neighbourhoods, by=name_col) %>%
-      select(!!as.symbol(name_col), area, !!as.symbol(inh_col)) %>%
+      dplyr::inner_join(neighbourhoods, by=name_col) %>%
+      dplyr::select(!!as.symbol(name_col), area, !!as.symbol(inh_col)) %>%
       dplyr::mutate(green_capita = area/!!as.symbol(inh_col))
 
     if(verbose){
@@ -90,7 +90,7 @@ green_capita <- function(
 
     } else {
 
-      result <- max(green_areas$green_capita) / min(green_areas$green_capita)
+      result <- min(green_areas$green_capita) / max(green_areas$green_capita)
     }
 
   } else {

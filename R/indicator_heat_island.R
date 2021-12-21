@@ -18,6 +18,7 @@
 #' @details DEFAULT values are the values for 'city_example' dataset in August (averaged values from 2011-2020)
 #' @return A 'stars' object with values of UHI. Or a numerical vector or summary statistic for UHI values.
 #' See params for more information on how to select each one.
+#' @import stars
 #' @export
 
 UHI <- function(
