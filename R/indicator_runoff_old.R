@@ -20,14 +20,12 @@
 #' @details
 #' @return It returns a named vector with values of percentage of rainfall infiltred or captured,
 #' total rainfall, total infiltration and total rainharvest (all of them in m3)
-#' @export
 
-#CN https://www.hec.usace.army.mil/confluence/hmsdocs/hmstrm/cn-tables
 
 runoff_prev <- function(
                         x,
                         runoff_df = NULL,
-                        rain = 85,
+                        rain = 85, #mm/hour
                         floors_field = 'floors',
                         harvest_dist = 10,
                         tank_size = c(0,45)
@@ -55,23 +53,34 @@ runoff_prev <- function(
   #rainfall volume in the city
   rainfall <- rain * sum(x$area)
 
-  #join runoff_df with x
 
-  x <- x %>%
-    dplyr::left_join(runoff_df, by = c("Function" = "functions")) %>%
-    dplyr::mutate(
-      CN1 = ifelse(is.na(CN1), 98, CN1),
-      CN2 = ifelse(is.na(CN2), 98, CN2)
-    )
+  #calculate infiltration
+  vacant_inf <- c(runoff_df$CN1[runoff_df$functions == "Vacant"],
+                  runoff_df$CN2[runoff_df$functions == "Vacant"])
 
-  areaCN <- x %>%
-    dplyr::rowwise() %>%
-    dplyr::mutate(
-      CN = runif(1, CN1, CN2),
-      areaCN = area * CN) %>%
-    dplyr::pull(areaCN)
+  infilt_func <- function(u){
+    func <- x %>%
+      dplyr::filter(Function == u[["functions"]])
 
-  weightedCN <- sum(areaCN)/sum(x$area)
+    infilt1 <- as.numeric(u[["CN1"]])
+    infilt2 <- as.numeric(u[["CN2"]])
+
+    if (sum(func$edible_area) > 0){
+      func <- func %>%
+        dplyr::mutate(edible_inf = edible_area * runif(1,infilt1, infilt2),
+                      normal_inf = ifelse(floors_ > 0, 98, (area - edible_area) * runif(1, vacant_inf[1], vacant_inf[2])
+                      ))
+    } else {
+      func <- func %>%
+        dplyr::mutate(edible_inf = 0,
+                      normal_inf = area * runif(1, infilt1, infilt2)
+        )
+    }
+    return(min(sum(func$area) * rain, sum(func$edible_inf) + sum(func$normal_inf)))
+
+  }
+
+  infiltration <- sum(apply(runoff_df, 1, "infilt_func", simplify = T))
 
   ##calculate rainwater harvesting area and tank size
 
@@ -105,25 +114,16 @@ runoff_prev <- function(
     return(min(collect,tank))
   }
 
-  #total rain harvested in litres
-  total_RH <- sum(apply(buffer_harv, 1, "storage_func"))
-
-  #rain harvested in mm
-  RH <- total_RH/sum(x$area)
-
-  #SCS model for runoff
-  S <- 25.4*((1000/weightedCN)-10) #mm
-  Ia <- (0.2 * S) + RH #mm
-  Q <- ((rain-Ia)^2)/(rain-Ia+S) #mm
+  rainharvest <- sum(apply(buffer_harv, 1, "storage_func"))
 
 
-  return(
-    c(
-      runoff = Q, #mm
-      rainfall = rainfall/1000, #cubic metres
-      rainharvest = total_RH/1000 #cubic metres
-      )
-    )
+  runoff <- (rainfall - (rainharvest + infiltration)) / rainfall
+
+
+  return(c(runoff = 1-runoff,
+           rainfall = rainfall/1000,
+           rainharvest = rainharvest/1000,
+           infiltration = infiltration/1000))
 
 }
 

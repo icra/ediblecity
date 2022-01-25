@@ -132,7 +132,7 @@ set_scenario <- function(x,
 
     new_index <- x$Function %in% c(commercial_garden, community_garden)
     x$edible_area[new_index] <-
-      x$area[new_index]*runif(length(new_index), perc_vacant[1], perc_vacant[2])
+      x$area[new_index]*runif(sum(new_index), perc_vacant[1], perc_vacant[2])
 
   }
 
@@ -183,7 +183,7 @@ set_scenario <- function(x,
 
     new_index <- x$Function %in% c(rooftop_garden, hydroponic_rooftop)
     x$edible_area[new_index] <-
-      x$area[new_index]*runif(length(new_index), perc_rooftop[1], perc_rooftop[2])
+      x$area[new_index]*runif(sum(new_index), perc_rooftop[1], perc_rooftop[2])
 
   }
 
