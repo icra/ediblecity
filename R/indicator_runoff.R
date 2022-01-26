@@ -68,7 +68,10 @@ runoff_prev <- function(
     dplyr::rowwise() %>%
     dplyr::mutate(
       CN = runif(1, CN1, CN2),
-      areaCN = area * CN) %>%
+      areaCN = case_when(
+        Function == "Rooftop garden" ~ CN * area * 0.60,
+        TRUE ~ CN * area)
+        ) %>%
     dplyr::pull(areaCN)
 
   weightedCN <- sum(areaCN)/sum(x$area)

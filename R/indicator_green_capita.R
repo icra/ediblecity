@@ -49,6 +49,9 @@ green_capita <- function(
   green_areas <- x %>%
     dplyr::filter(Function %in% green_categories)
 
+  if(is.null(green_areas$area))
+    green_areas$area <- sf::st_area()
+
   if (sum(green_areas$Function %in% city_functions$functions) == nrow(green_areas)){
     green_areas <- dplyr::left_join(green_areas, city_functions, by = c("Function" = "functions"))
   } else {
@@ -72,11 +75,11 @@ green_capita <- function(
      green_areas <- green_areas %>%
       dplyr::filter(!is.na(!!as.symbol(name_col)),
                     !!as.symbol(inh_col) > min_inh) %>%
-      dplyr::mutate(area = ifelse(!is.na(pGreen),
-                              sf::st_area(.) * pGreen,
+      dplyr::mutate(area_ = ifelse(!is.na(pGreen),
+                              area * pGreen,
                               ifelse(location == "rooftop",
-                                  sf::st_area(.) * 0.61,
-                                  sf::st_area(.)))) %>%
+                                  area * 0.61,
+                                  area))) %>%
       sf::st_drop_geometry() %>%
       dplyr::select(Function,!!as.symbol(name_col), !!as.symbol(inh_col), area) %>%
       dplyr::group_by(!!as.symbol(name_col)) %>%
@@ -97,11 +100,11 @@ green_capita <- function(
 
     area <-  green_areas %>%
       dplyr::mutate(area = ifelse(!is.na(pGreen),
-                          (sf::st_area(.) * pGreen),
+                          (area * pGreen),
                           (ifelse(location == "rooftop",
-                                 sf::st_area(.) * 0.61,
-                                 sf::st_area(.))))) %>%
-      .$area
+                                 area * 0.61,
+                                 area)))) %>%
+      pull(area)
 
     result <- sum(as.numeric(area))/inhabitants
 
