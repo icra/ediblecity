@@ -18,8 +18,8 @@
 #' @param harvest_dist Maximum distance (in meters) of buildings where to harvest rainwater
 #' @param tank_size A two-length vector with the range of tank size possibilities (in l/m2).
 #' @details
-#' @return It returns a named vector with values of percentage of rainfall infiltred or captured,
-#' total rainfall, total infiltration and total rainharvest (all of them in m3)
+#' @return It returns a named vector with values of runoff in mm, total rainfall
+#' and harvested rainwater in cubic metres.
 #' @export
 
 #CN https://www.hec.usace.army.mil/confluence/hmsdocs/hmstrm/cn-tables
@@ -50,7 +50,8 @@ runoff_prev <- function(
 
 
   #calculate area
-  x$area <- as.numeric(sf::st_area(x))
+  if (is.null(x$area))
+    x$area <- as.numeric(sf::st_area(x))
 
   #rainfall volume in the city
   rainfall <- rain * sum(x$area)

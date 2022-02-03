@@ -35,8 +35,8 @@ upper surface are considered. Missing values are considered as zero.}
 \item{tank_size}{A two-length vector with the range of tank size possibilities (in l/m2).}
 }
 \value{
-It returns a named vector with values of percentage of rainfall infiltred or captured,
-total rainfall, total infiltration and total rainharvest (all of them in m3)
+It returns a named vector with values of runoff in mm, total rainfall
+and harvested rainwater in cubic metres.
 }
 \description{
 The indicator calculates the runoff prevention considering a rain event, the infiltration

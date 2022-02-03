@@ -36,8 +36,12 @@ green_distance <- function(x,
 
   # get green areas layer
   green_areas <- x %>%
-    dplyr::filter(Function %in% green_cat) %>%
-    dplyr::mutate(area = as.numeric(sf::st_area(.))) %>%
+    dplyr::filter(Function %in% green_cat)
+
+  if(is.null(green_areas$area))
+      green_areas$area <- as.numeric(sf::st_area(green_areas))
+
+  green_areas <- green_areas %>%
     dplyr::filter(area > min_area)
 
   houses <- x %>%

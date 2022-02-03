@@ -50,7 +50,7 @@ green_capita <- function(
     dplyr::filter(Function %in% green_categories)
 
   if(is.null(green_areas$area))
-    green_areas$area <- sf::st_area()
+    green_areas$area <- as.numeric(sf::st_area(green_areas))
 
   if (sum(green_areas$Function %in% city_functions$functions) == nrow(green_areas)){
     green_areas <- dplyr::left_join(green_areas, city_functions, by = c("Function" = "functions"))

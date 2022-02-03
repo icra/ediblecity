@@ -3,8 +3,8 @@ ediblecity R package
 Josep Pueyo-Ros
 2022-01-25
 
-This package has not been released on CRAN. However, you can install it
-directly from Github:
+This package has not been released on CRAN yet. However, you can install
+it directly from Github:
 
 ``` r
 devtools::install_github("icra/edibleCity")
@@ -53,7 +53,7 @@ full <- set_scenario(city_example,
                      private_gardens_from = "Normal garden",
                      vacant_from = "Vacant",
                      rooftop_from = "Rooftop",
-                     pCommercial = 0.25,
+                     pCommercial = 0.5,
                      area_field = "flat_area"
              )
 ```
@@ -71,10 +71,10 @@ for (f in city_functions$functions[city_functions$edible]){
 ```
 
     ## [1] "Edible private garden = 182"
-    ## [1] "Commercial garden = 15"
-    ## [1] "Community garden = 42"
-    ## [1] "Hydroponic rooftop = 85"
-    ## [1] "Rooftop garden = 254"
+    ## [1] "Commercial garden = 29"
+    ## [1] "Community garden = 28"
+    ## [1] "Hydroponic rooftop = 170"
+    ## [1] "Rooftop garden = 169"
     ## [1] "Arable land = 3"
     ## [1] "Permanent crops = 2"
 
@@ -101,7 +101,7 @@ edible_jobs(
 ```
 
     ##        5%       50%       95% 
-    ##  432.1023 3932.0483 7750.8711
+    ##  521.7895 4712.1133 9240.4678
 
 ### ESTIMATION OF VOLUNTEERS INVOLVED IN URBAN AGRICULTURE
 
@@ -118,8 +118,8 @@ edible_volunteers(
   interval = 0.95)
 ```
 
-    ##        5%       50%       95% 
-    ##  1862.882 14615.849 27267.582
+    ##         5%        50%        95% 
+    ##   768.8009  6957.1509 12956.2617
 
 ### ESTIMATION OF GREEN PER CAPITA
 
@@ -161,7 +161,7 @@ base_m2
 base_p
 ```
 
-    ## [1] 0.02685679
+    ## [1] 0.0148372
 
 ``` r
 base_table
@@ -170,19 +170,19 @@ base_table
     ## # A tibble: 13 x 4
     ##    name                area inhabitants green_capita
     ##    <chr>              <dbl>       <int>        <dbl>
-    ##  1 Afores - est      46566.          17     2739.   
-    ##  2 Afores - oest     14468.          18      804.   
-    ##  3 Can Bertrand       1224.        1632        0.750
-    ##  4 Can Calders       15032.        6118        2.46 
+    ##  1 Afores - est      81994.          17     4823.   
+    ##  2 Afores - oest     18687.          18     1038.   
+    ##  3 Can Bertrand       3713.        1632        2.28 
+    ##  4 Can Calders       16029.        6118        2.62 
     ##  5 Can Llobera         579.        1319        0.439
     ##  6 Can Maginàs         567.         692        0.820
-    ##  7 Can Nadal         11123.        7050        1.58 
-    ##  8 El Pla            15413.           3     5138.   
-    ##  9 Falguera          10596.        7824        1.35 
+    ##  7 Can Nadal         13022.        7050        1.85 
+    ##  8 El Pla            16170.           3     5390.   
+    ##  9 Falguera          21781.        7824        2.78 
     ## 10 La Salut            988.        4423        0.223
-    ## 11 Les Grases        40702.        1373       29.6  
-    ## 12 Mas Lluí          43063.        5542        7.77 
-    ## 13 Roses-Castellbell  4613.        8874        0.520
+    ## 11 Les Grases        86726.        1373       63.2  
+    ## 12 Mas Lluí          43689.        5542        7.88 
+    ## 13 Roses-Castellbell  5634.        8874        0.635
 
 #### FULL SCENARIO
 
@@ -209,35 +209,35 @@ full_table <- green_capita(full,
 full_m2
 ```
 
-    ## [1] 9.419583
+    ## [1] 1.849405
 
 ``` r
 #Proportion between extreme values in neihbourhoods
 full_p
 ```
 
-    ## [1] 0.01399571
+    ## [1] 0.001603617
 
 ``` r
 full_table
 ```
 
     ## # A tibble: 13 x 4
-    ##    name                area inhabitants green_capita
-    ##    <chr>              <dbl>       <int>        <dbl>
-    ##  1 Afores - est      46566.          17     2739.   
-    ##  2 Afores - oest     14861.          18      826.   
-    ##  3 Can Bertrand      18669.        1632       11.4  
-    ##  4 Can Calders       70585.        6118       11.5  
-    ##  5 Can Llobera         579.        1319        0.439
-    ##  6 Can Maginàs        1926.         692        2.78 
-    ##  7 Can Nadal         31406.        7050        4.45 
-    ##  8 El Pla            66938.           3    22313.   
-    ##  9 Falguera          31567.        7824        4.03 
-    ## 10 La Salut           7595.        4423        1.72 
-    ## 11 Les Grases        43093.        1373       31.4  
-    ## 12 Mas Lluí          58082.        5542       10.5  
-    ## 13 Roses-Castellbell 22490.        8874        2.53
+    ##    name               area inhabitants green_capita
+    ##    <chr>             <dbl>       <int>        <dbl>
+    ##  1 Afores - est      16011          17     942.    
+    ##  2 Afores - oest      8353          18     464.    
+    ##  3 Can Bertrand       6666        1632       4.08  
+    ##  4 Can Calders        9063        6118       1.48  
+    ##  5 Can Llobera          25        1319       0.0190
+    ##  6 Can Maginàs          17         692       0.0246
+    ##  7 Can Nadal         10323        7050       1.46  
+    ##  8 El Pla            17596           3    5865.    
+    ##  9 Falguera          14013        7824       1.79  
+    ## 10 La Salut           1395        4423       0.315 
+    ## 11 Les Grases        16228        1373      11.8   
+    ## 12 Mas Lluí          14157        5542       2.55  
+    ## 13 Roses-Castellbell  5295        8874       0.597
 
 ![](README_files/figure-gfm/green_capita_plot-1.png)<!-- -->
 
@@ -306,8 +306,8 @@ base_summary
 full_summary
 ```
 
-    ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-    ##    0.0008  388.6373  522.0792  523.5677  677.2693 1000.2572
+    ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+    ##    2.662  848.735 1088.451 1018.526 1254.072 1601.737
 
 ``` r
 base_percent
@@ -319,7 +319,7 @@ base_percent
 full_percent
 ```
 
-    ## [1] 0.8516484
+    ## [1] 0.9755245
 
 ``` r
 colors <- c("Base scenario" = rgb(5,34,255,125, maxColorValue = 255), 
@@ -423,7 +423,7 @@ no2_base
 ```
 
     ##     gr/s 
-    ## 125.6669
+    ## 125.3732
 
 ``` r
 cat("NO2 sequestration in full scenario\n")
@@ -436,7 +436,7 @@ no2_full
 ```
 
     ##     gr/s 
-    ## 148.0751
+    ## 148.7643
 
 ### FOOD PRODUCTION
 
@@ -482,7 +482,7 @@ round(food_full / consumption, 3)
 ```
 
     ##    5%   50%   95% 
-    ## 0.301 0.402 0.508
+    ## 0.344 0.462 0.584
 
 ### RUNOFF PREVENTION
 
