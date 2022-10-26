@@ -57,8 +57,8 @@ set_scenario <- function(x,
     x$area <- x[[area_field]]
   }
 
-  #create edible area field
-  x$edible_area <- 0
+  #create edible area field if it does not exist
+  if (!("edible_area" %in% colnames(x))) x$edible_area <- 0
 
   #CONVERT PRIVATE GARDENS TO EDIBLE GARDENS
   if (pGardens > 0){

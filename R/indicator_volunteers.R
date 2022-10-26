@@ -37,9 +37,10 @@ edible_volunteers <- function(x,
   #calculates area of filtered based on st_area() or in area_col
   area <- ifelse(is.null(area_col),
                  sum(sf::st_area(filtered)),
-                 as.data.frame(filtered) %>%
+                 sf::st_drop_geometry(filtered) %>%
                    dplyr::select(matches(area_col)) %>%
-                   sum(.[area_col]))
+                   dplyr::summarise(sum(!!sym(area_col)))) |>
+    unlist()
 
   #use the jobs range to create a random uniform distribution
   dist <- area * runif(1000, min = volunteers[1], max = volunteers[2])
