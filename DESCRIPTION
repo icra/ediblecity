@@ -8,7 +8,7 @@ Description: The purpose of ediblecity is to estimate the potential of UA to con
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 Imports: 
   sf (>= 0.9),
   dplyr (>= 1.0.6),

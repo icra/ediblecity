@@ -13,7 +13,7 @@
 #' (default = FALSE)
 #' @param max_dist A numeric value representing the maximum distance that a residence should be from a
 #' public green area.
-#' @param If TRUE returns the vector of distances. Otherwise, it returns as specified in value section.
+#' @param verbose If TRUE returns the vector of distances. Otherwise, it returns as specified in value section.
 #' @return If 'percent_out' is FALSE, it returns a summary of statistics for distance. Otherwise, it
 #' returns a numeric value with the percentage of residences further than 'max_dist' from its closest
 #' public green area.
@@ -42,7 +42,7 @@ green_distance <- function(x,
       green_areas$area <- as.numeric(sf::st_area(green_areas))
 
   green_areas <- green_areas %>%
-    dplyr::filter(area > min_area)
+    dplyr::filter(area >= min_area)
 
   houses <- x %>%
     dplyr::filter(!!as.symbol(residence_col) %in% residences)

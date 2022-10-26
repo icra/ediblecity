@@ -33,7 +33,7 @@ NULL (default), the 'city_functions' dataset is used where 'public' is TRUE.}
 \item{max_dist}{A numeric value representing the maximum distance that a residence should be from a
 public green area.}
 
-\item{If}{TRUE returns the vector of distances. Otherwise, it returns as specified in value section.}
+\item{verbose}{If TRUE returns the vector of distances. Otherwise, it returns as specified in value section.}
 }
 \value{
 If 'percent_out' is FALSE, it returns a summary of statistics for distance. Otherwise, it
