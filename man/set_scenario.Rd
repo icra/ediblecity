@@ -70,10 +70,11 @@ You can adjust different parameters to define different city scenarios.
 The object must contain a field 'Function' which describes the function or type of each feature.
 }
 \details{
-When pGardens is lower than 1, the gardens are selected randomly among gardens with an area larger than
-'min_area_garden'. However, vacant plots and rooftops are selected from larger to smaller, assuming that the best
-spots (i.e. larger) are occupied first. Likewise, when pCommercial > 0, commercial gardens and hydroponic rooftops are
-settled in the larger features, assuming that commercial initiatives have the power to acquire the best spots.
+When pGardens, pVacant or pRooftop is lower than 1, the gardens are selected randomly among
+gardens with an area larger than 'min_area_*'.
+However, when pCommercial > 0, commercial gardens and hydroponic rooftops are
+settled in the larger features, assuming that commercial initiatives have the power to acquire
+the best spots.
 }
 \author{
 Josep Pueyo-Ros

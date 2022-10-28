@@ -28,11 +28,16 @@ food_production <- function(x,
                         interval = 0.95,
                         verbose = F){
 
+  check_sf(x)
+
   #get categories
   if(is.null(edible_df)){
     edible_df <- city_functions %>%
       dplyr::filter(edible == T) %>%
       dplyr::select(functions, food1, food2)
+  } else {
+    if (!all(c("functions", "food1", "food2") %in% colnames(edible_df)))
+      rlang::abort("edible_df must have the columns 'functions', 'food1' and 'food2'. See ?food_production for details.")
   }
 
   #filter x based on edible

@@ -27,10 +27,11 @@
 #' vacant plots ('Community plot garden', 'Commercial plot garden') and rooftop gardens ('Community rooftop garden',
 #' 'Commercial hydroponic rooftop')
 #' labelled as edible gardens.
-#' @details When pGardens is lower than 1, the gardens are selected randomly among gardens with an area larger than
-#' 'min_area_garden'. However, vacant plots and rooftops are selected from larger to smaller, assuming that the best
-#' spots (i.e. larger) are occupied first. Likewise, when pCommercial > 0, commercial gardens and hydroponic rooftops are
-#' settled in the larger features, assuming that commercial initiatives have the power to acquire the best spots.
+#' @details When pGardens, pVacant or pRooftop is lower than 1, the gardens are selected randomly among
+#' gardens with an area larger than 'min_area_*'.
+#' However, when pCommercial > 0, commercial gardens and hydroponic rooftops are
+#' settled in the larger features, assuming that commercial initiatives have the power to acquire
+#' the best spots.
 #' @export
 
 set_scenario <- function(x,
@@ -49,6 +50,11 @@ set_scenario <- function(x,
                          pCommercial = 0,
                          area_field = 'flat_area'
                          ){
+
+  check_sf(x)
+
+  #check if Function col exists
+  if (!("Function" %in% colnames(x))) rlang::abort("x needs a column called Function, see ?set_scenario for more detail")
 
   #if area_field is null, calculates de area of each feature
   if (is.null(area_field)) {
@@ -70,7 +76,7 @@ set_scenario <- function(x,
       x$Function[gardens_index] <- city_functions$functions[city_functions$location == "garden"]
 
       if (nGardens*pGardens >= length(gardens_index)){
-        warning(paste("Only", length(gardens_index), "private gardens out of", nGardens*pGardens, "assumed satisfy the 'min_area_garden'\n"))
+        rlang::warn(paste("Only", length(gardens_index), "private gardens out of", nGardens*pGardens, "assumed satisfy the 'min_area_garden'\n"))
       }
 
     } else if (pGardens < 1){
@@ -101,7 +107,7 @@ set_scenario <- function(x,
 
 
     if (length(vacant_index) < nVacant*pVacant){
-      warning(paste("Only", length(vacant_index), "vacant plots out of", nVacant*pVacant, "assumed satisfy the 'min_area_vacant'\n"))
+      rlang::warn(paste("Only", length(vacant_index), "vacant plots out of", nVacant*pVacant, "assumed satisfy the 'min_area_vacant'\n"))
       nVacant <- length(vacant_index)
 
     } else {

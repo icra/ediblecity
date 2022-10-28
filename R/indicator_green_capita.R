@@ -3,7 +3,7 @@
 #' such as gardens and crops or exclude them.
 #' @author Josep Pueyo-Ros
 #' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.
-#' @param green_categories The categories that are considered as urban green. If NULL, categories of 'get_categories()'
+#' @param green_categories The categories that are considered as urban green. If NULL, categories of 'city_functions'
 #' are considered.
 #' @param inhabitants A value representing the inhabitants in the city.
 #' @param neighbourboods (optional) An 'sf' object with polygons representing the neighbourhoods in the city.
@@ -11,7 +11,8 @@
 #' @param name_col (optional) The col in 'x' or in 'neighbourhoods' indicating the name of each neighbourhood
 #' @param private If FALSE (default), only public areas are considered in the indicator.
 #' @param verbose If FALSE (default), the indicator returns the proportion between the most and the least green neighbourhoods.
-#' Otherwise, it will return a tibble with the green per capita in each neigbourhood.
+#' Otherwise, it will return a tibble with the green per capita in each neigbourhood, provided that 'inh_col'
+#' and 'name_col' are provided.
 #' @param min_inh If neighbourhoods are used, those with less inhabitants than 'min-inh' will be discarded.
 #' @details If 'inh_col' and 'name_col' are defined and  'neighbourhoods' is NULL, the function searches
 #' the columns in 'x'. If 'neighbourhoods' is defined along with previous both, the columns are searched in
@@ -37,6 +38,11 @@ green_capita <- function(
                         verbose = FALSE,
                         min_inh = 0
                         ){
+  check_sf(x)
+
+  if(all(is.null(inh_col), is.null(inhabitants))) rlang::abort("'inhabitants' or 'inh_col' must be provided.")
+  if(!is.null(inh_col) && is.null(name_col)) rlang::abort("'name_col' must be provided along with 'inh_col'")
+
   if (is.null(green_categories)){
 
     green_categories <- city_functions$functions[city_functions$public]
@@ -64,6 +70,9 @@ green_capita <- function(
   if(!is.null(inh_col) && !is.null(name_col)){
 
     if(!is.null(neighbourhoods)){
+
+      check_sf(neighbourhoods)
+
       if (sf::st_crs(green_areas) != sf::st_crs(neighbourhoods)){
         neighbourhoods <- sf::st_transform(neighbourhoods, sf::st_crs(green_areas))
       }

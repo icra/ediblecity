@@ -19,7 +19,7 @@ green_capita(
 \arguments{
 \item{x}{An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.}
 
-\item{green_categories}{The categories that are considered as urban green. If NULL, categories of 'get_categories()'
+\item{green_categories}{The categories that are considered as urban green. If NULL, categories of 'city_functions'
 are considered.}
 
 \item{inhabitants}{A value representing the inhabitants in the city.}
@@ -31,7 +31,8 @@ are considered.}
 \item{private}{If FALSE (default), only public areas are considered in the indicator.}
 
 \item{verbose}{If FALSE (default), the indicator returns the proportion between the most and the least green neighbourhoods.
-Otherwise, it will return a tibble with the green per capita in each neigbourhood.}
+Otherwise, it will return a tibble with the green per capita in each neigbourhood, provided that 'inh_col'
+and 'name_col' are provided.}
 
 \item{min_inh}{If neighbourhoods are used, those with less inhabitants than 'min-inh' will be discarded.}
 

@@ -29,6 +29,8 @@ green_distance <- function(x,
                            verbose = F
                           ){
 
+  check_sf(x)
+
   #get categories
   if (is.null(green_cat)){
     green_cat <- city_functions$functions[city_functions$public]
@@ -44,8 +46,12 @@ green_distance <- function(x,
   green_areas <- green_areas %>%
     dplyr::filter(area >= min_area)
 
+  if(nrow(green_areas) == 0) rlang::warn("No public green areas larger than 'min_area' in 'x'. Returning 'NAs'")
+
   houses <- x %>%
     dplyr::filter(!!as.symbol(residence_col) %in% residences)
+
+  if(nrow(houses) == 0) rlang::abort("No residences found in 'x'")
 
   nearest <- sf::st_nearest_feature(houses,green_areas)
   distance <- sf::st_distance(houses, green_areas[nearest,], by_element = T)
@@ -53,7 +59,7 @@ green_distance <- function(x,
   if (verbose) return(distance)
 
   if (percent_out){
-    return(sum(as.numeric(distance) > max_dist) / length(distance))
+    return(sum(as.numeric(distance) > max_dist) / length(distance) * 100)
   } else {
     return(summary(distance))
   }
