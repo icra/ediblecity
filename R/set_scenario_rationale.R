@@ -49,6 +49,11 @@ set_scenario_rationale <- function(x,
                          area_field = 'flat_area'
                          ){
 
+  #to avoid notes on R CMD check
+  city_functions <- ediblecity::city_functions
+
+  check_sf(x)
+
   #if area_field is null, calculates de area of each feature
   if (is.null(area_field)) {
     x$area <- as.numeric(sf::st_area(x))

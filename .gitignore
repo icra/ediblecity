@@ -3,7 +3,6 @@
 .RData
 .Ruserdata
 data-raw/
-README.Rmd
 SVF.tif
 todo.txt
 unit_test.R

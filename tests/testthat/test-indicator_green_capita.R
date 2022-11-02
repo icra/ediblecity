@@ -7,7 +7,7 @@ test_that("Green per capita is lower when private is FALSE", {
 
 test_that("Verbose and neighbourhoods return a tibble", {
   green_capita(city_example,
-               neighbourhoods = neighbourhoods,
+               neighbourhoods = neighbourhoods_example,
                inh_col = "inhabitants",
                name_col = "name",
                verbose = TRUE) %>%
@@ -16,12 +16,12 @@ test_that("Verbose and neighbourhoods return a tibble", {
 
 test_that("min_inh is working", {
     green_capita(city_example,
-                 neighbourhoods = neighbourhoods,
+                 neighbourhoods = neighbourhoods_example,
                  inh_col = "inhabitants",
                  name_col = "name",
-                 min_inh = min(neighbourhoods$inhabitants),
+                 min_inh = min(neighbourhoods_example$inhabitants),
                  verbose = TRUE) %>%
       nrow() %>%
-      expect_equal(nrow(neighbourhoods)-1)
+      expect_equal(nrow(neighbourhoods_example)-1)
 })
 

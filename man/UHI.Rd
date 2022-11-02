@@ -6,8 +6,8 @@
 \usage{
 UHI(
   x,
-  green_df = NULL,
   SVF,
+  green_df = NULL,
   Qql = 6.11,
   Cair = 1007,
   Pair = 1.14,
@@ -21,12 +21,12 @@ UHI(
 \arguments{
 \item{x}{An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.}
 
+\item{SVF}{A 'stars' object representing sky view factor. It can be computed, e.g. with SAGA's
+Sky View Factor algorithm and then loaded with stars::read_stars().}
+
 \item{green_df}{A dataframe of categories that are considered as urban green with two columns. 'functions'
 with the names of 'Function' in 'x' to be considered as green; a 'pGreen' column with the percentage of green
 of that function. If NULL, categories and values of 'city_functions' dataset are considered.}
-
-\item{SVF}{A 'stars' object representing sky view factor. It can be computed, e.g. with SAGA's
-Sky View Factor algorithm and then loaded with stars::read_stars().}
 
 \item{Qql}{A numerical value representing the average solar radiation in W/m2/hour.}
 
@@ -37,6 +37,8 @@ Sky View Factor algorithm and then loaded with stars::read_stars().}
 \item{Tmax}{Averaged maximum temperature in ºC.}
 
 \item{Tmin}{Averaged minimum temperature in ºC.}
+
+\item{windspeed}{Averaged wind speed in m/s.}
 
 \item{return_raster}{If TRUE, the raster of UHI values is returned. Otherwise, a summary of raster values is returned.}
 

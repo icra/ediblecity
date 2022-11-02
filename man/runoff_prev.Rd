@@ -17,12 +17,14 @@ runoff_prev(
 \item{x}{An 'sf' object with the urban model of your city and a 'Function' column with categories
 of urban features.}
 
-\item{runoff_df}{A dataframe of categories that are considered impervious area with five columns. 'functions'
-with the names of 'Function' in 'x' to be considered as impervious; two infiltration columns 'infiltration1'
-and 'infiltration2 with the range of infiltration capacity (mm in 24 hours) of that function;
-and two water storage capacity columns 'water_storage1' and 'water_storage2' with the range of water
-storage capacity of that function. If NULL, categories and values of 'city_functions' dataset
-are considered.}
+\item{runoff_df}{A dataframe of categories that are considered impervious area with three columns.
+\enumerate{
+    \item 'functions' with the names of 'Function' in 'x' to be considered as impervious.
+    \item Curve numbers columns 'CN1' and 'CN2' the range of curve number of that function.
+    \item 'water_storage', a boolean column indicating whether the functions is potentially harvesting
+    and storing rainwater using a tank.
+}
+If NULL, categories and values of 'city_functions' dataset are considered.}
 
 \item{rain}{The amount of 24h-rain to be simulated, default is 100 mm.}
 

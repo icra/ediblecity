@@ -21,6 +21,15 @@ no2_seq <- function(x,
                     green_df = NULL
                     ){
 
+  #to avoid notes in R CMD check
+  city_functions <- ediblecity::city_functions
+  pGreen <- NULL
+  functions <- NULL
+  no2_seq1 <- NULL
+  no2_seq2 <- NULL
+  Function <- NULL
+
+  check_sf(x)
 
   if(is.null(green_df)){
     green_df <- city_functions %>%
@@ -31,6 +40,9 @@ no2_seq <- function(x,
                                     1))) %>%
       select(functions, no2_seq1, no2_seq2, pGreen)
   }
+
+  if(!(all(c("functions", "no2_seq1", "no2_seq2") %in% colnames(green_df))))
+    rlang::abort("green_df must contain the columns 'functions', 'no2_seq1' & 'no2_seq2'. See ?no2_seq for details")
 
   x_f <- x %>% filter(Function %in% green_df$functions)
 

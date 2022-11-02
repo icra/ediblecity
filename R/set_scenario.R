@@ -48,8 +48,12 @@ set_scenario <- function(x,
                          vacant_from = "Vacant",
                          rooftop_from = "Rooftop",
                          pCommercial = 0,
-                         area_field = 'flat_area'
+                         area_field = 'flat_area',
+                         quiet = FALSE
                          ){
+
+  #to avoid notes on R CMD check
+  city_functions <- ediblecity::city_functions
 
   check_sf(x)
 
@@ -75,7 +79,7 @@ set_scenario <- function(x,
 
       x$Function[gardens_index] <- city_functions$functions[city_functions$location == "garden"]
 
-      if (nGardens*pGardens >= length(gardens_index)){
+      if (!quiet && nGardens*pGardens >= length(gardens_index)){
         rlang::warn(paste("Only", length(gardens_index), "private gardens out of", nGardens*pGardens, "assumed satisfy the 'min_area_garden'\n"))
       }
 
@@ -107,7 +111,7 @@ set_scenario <- function(x,
 
 
     if (length(vacant_index) < nVacant*pVacant){
-      rlang::warn(paste("Only", length(vacant_index), "vacant plots out of", nVacant*pVacant, "assumed satisfy the 'min_area_vacant'\n"))
+      if (!quiet) rlang::warn(paste("Only", length(vacant_index), "vacant plots out of", nVacant*pVacant, "assumed satisfy the 'min_area_vacant'\n"))
       nVacant <- length(vacant_index)
 
     } else {
@@ -158,7 +162,7 @@ set_scenario <- function(x,
     hydroponic_rooftop <- city_functions$functions[city_functions$jobs & city_functions$location == 'rooftop']
 
     if (length(rooftop_index) < nRooftop*pRooftop){
-      warning(paste("Only", length(rooftop_index), "rooftops out of", nRooftop*pRooftop, "assumed satisfy the 'min_area_rooftop'\n"))
+      if (!quiet) rlang::warn(paste("Only", length(rooftop_index), "rooftops out of", nRooftop*pRooftop, "assumed satisfy the 'min_area_rooftop'\n"))
       nRooftop <- length(rooftop_index)
 
     } else {

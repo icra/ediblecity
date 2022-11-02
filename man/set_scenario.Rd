@@ -19,7 +19,8 @@ set_scenario(
   vacant_from = "Vacant",
   rooftop_from = "Rooftop",
   pCommercial = 0,
-  area_field = "flat_area"
+  area_field = "flat_area",
+  quiet = FALSE
 )
 }
 \arguments{

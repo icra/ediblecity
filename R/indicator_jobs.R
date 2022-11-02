@@ -24,6 +24,12 @@ edible_jobs <- function(x,
                         interval = 0.95,
                         verbose = F){
 
+    #top avoid notes on R CMD Check
+    city_functions <- ediblecity::city_functions
+    Function <- NULL
+    . <- NULL
+
+
     #get categories
     if (is.null(edible)){
       edible <- city_functions$functions[city_functions$jobs]

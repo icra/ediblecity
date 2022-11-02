@@ -28,6 +28,15 @@ food_production <- function(x,
                         interval = 0.95,
                         verbose = F){
 
+  #to avoid notes on R CMD check
+  city_functions <- ediblecity::city_functions
+  edible <- NULL
+  functions <- NULL
+  food1 <- NULL
+  food2 <- NULL
+  Function <- NULL
+  . <- NULL
+
   check_sf(x)
 
   #get categories

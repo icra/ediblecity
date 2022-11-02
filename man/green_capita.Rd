@@ -24,6 +24,8 @@ are considered.}
 
 \item{inhabitants}{A value representing the inhabitants in the city.}
 
+\item{neighbourhoods}{(optional) An 'sf' object with polygons representing the neighbourhoods in the city.}
+
 \item{inh_col}{(optional) The col in 'x' or in 'neighbourhoods' indicating the inhabitants in each neighbourhood.}
 
 \item{name_col}{(optional) The col in 'x' or in 'neighbourhoods' indicating the name of each neighbourhood}
@@ -35,8 +37,6 @@ Otherwise, it will return a tibble with the green per capita in each neigbourhoo
 and 'name_col' are provided.}
 
 \item{min_inh}{If neighbourhoods are used, those with less inhabitants than 'min-inh' will be discarded.}
-
-\item{neighbourboods}{(optional) An 'sf' object with polygons representing the neighbourhoods in the city.}
 }
 \value{
 A numeric value expressing the square meters of green per capita. Or a numeric value expressing

@@ -5,12 +5,14 @@
 #' @author Josep Pueyo-Ros
 #' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories
 #' of urban features.
-#' @param runoff_df A dataframe of categories that are considered impervious area with five columns. 'functions'
-#' with the names of 'Function' in 'x' to be considered as impervious; two infiltration columns 'infiltration1'
-#' and 'infiltration2 with the range of infiltration capacity (mm in 24 hours) of that function;
-#' and two water storage capacity columns 'water_storage1' and 'water_storage2' with the range of water
-#' storage capacity of that function. If NULL, categories and values of 'city_functions' dataset
-#' are considered.
+#' @param runoff_df A dataframe of categories that are considered impervious area with three columns.
+#' \enumerate{
+#'     \item 'functions' with the names of 'Function' in 'x' to be considered as impervious.
+#'     \item Curve numbers columns 'CN1' and 'CN2' the range of curve number of that function.
+#'     \item 'water_storage', a boolean column indicating whether the functions is potentially harvesting
+#'     and storing rainwater using a tank.
+#' }
+#' If NULL, categories and values of 'city_functions' dataset are considered.
 #' @param rain The amount of 24h-rain to be simulated, default is 100 mm.
 #' @param floors_field The column in 'x' containing the number of floors of each building. Zero is considered
 #' unbuilt areas like gardens or streets. It is used to calculate rainwater haversting area, since only
@@ -31,6 +33,23 @@ runoff_prev <- function(
                         harvest_dist = 10,
                         tank_size = c(0,45)
                         ){
+
+  #to avoid notes in R CMD check
+  city_functions <- ediblecity::city_functions
+  functions <- NULL
+  water_storage <- NULL
+  floors_ <- NULL
+  CN1 <- NULL
+  CN2 <- NULL
+  Function <- NULL
+  area <- NULL
+  id.x <- NULL
+  id.y <- NULL
+  floors_.x <- NULL
+  area.x <- NULL
+  . <- NULL
+
+  check_sf(x)
 
   #if no runoff_df, use the city_functions values
   if(is.null(runoff_df)){
@@ -95,7 +114,7 @@ runoff_prev <- function(
     dplyr::filter(floors_ > 0,
                   !(Function %in% harvest_functions))
 
-  rooftops <- suppressWarnings(sf::st_join(rooftops, buffer_harv, largest = T)) %>%
+  rooftops <- suppressWarnings(sf::st_join(rooftops, buffer_harv, largest = F)) %>%
     dplyr::select(id.x, id.y, floors_.x, area.x) %>%
     sf::st_drop_geometry() %>%
     dplyr::filter(!is.na(id.y))

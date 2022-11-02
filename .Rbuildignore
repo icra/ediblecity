@@ -1,3 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^data-raw$
+^todo.txt
+^README\.Rmd$
+^LICENSE\.md$
+^\.github$

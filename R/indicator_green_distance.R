@@ -29,6 +29,11 @@ green_distance <- function(x,
                            verbose = F
                           ){
 
+  #to avoid notes on R CMD check
+  city_functions <- ediblecity::city_functions
+  Function <- NULL
+  area <- NULL
+
   check_sf(x)
 
   #get categories

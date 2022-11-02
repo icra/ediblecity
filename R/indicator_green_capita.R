@@ -6,7 +6,7 @@
 #' @param green_categories The categories that are considered as urban green. If NULL, categories of 'city_functions'
 #' are considered.
 #' @param inhabitants A value representing the inhabitants in the city.
-#' @param neighbourboods (optional) An 'sf' object with polygons representing the neighbourhoods in the city.
+#' @param neighbourhoods (optional) An 'sf' object with polygons representing the neighbourhoods in the city.
 #' @param inh_col (optional) The col in 'x' or in 'neighbourhoods' indicating the inhabitants in each neighbourhood.
 #' @param name_col (optional) The col in 'x' or in 'neighbourhoods' indicating the name of each neighbourhood
 #' @param private If FALSE (default), only public areas are considered in the indicator.
@@ -20,7 +20,10 @@
 #' @return A numeric value expressing the square meters of green per capita. Or a numeric value expressing
 #' the proportion between the greenest and the least green neighbourhood. Or a tibble with the green area,
 #' inhabitants and green per capita in each neighbourhood.
-#' @importFrom magrittr "%>%"
+#' @importFrom magrittr %>%
+#' @importFrom stats median
+#' @importFrom stats runif
+#' @importFrom stats quantile
 #' @import dplyr
 #' @import sf
 #' @export
@@ -38,6 +41,12 @@ green_capita <- function(
                         verbose = FALSE,
                         min_inh = 0
                         ){
+
+  #to avoid notes on R CMD check
+  city_functions <- ediblecity::city_functions
+  Function <- NULL
+  pGreen <- NULL
+
   check_sf(x)
 
   if(all(is.null(inh_col), is.null(inhabitants))) rlang::abort("'inhabitants' or 'inh_col' must be provided.")
