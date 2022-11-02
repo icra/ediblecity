@@ -32,6 +32,20 @@ You can install the development version of ediblecity from [GitHub](https://gith
 devtools::install_github("icra/edibleCity")
 ```
 
+## Indicators estimated
+
+The package provides eight indicators that estimate different benefits of urban agriculture:
+
+- `food_production()`: Amount of food produced in the city.
+- `green_capita()`: Green per capita can be computed as raw or as the difference among neighbourhoods.
+- `green_distance()`: Distance to closest public green area larger than certain surface. It computes also the proportion of homes that are further than a specific threshold.
+- `UHI()`: Urban heat island as a rasters (`stars` object) or as numeric values.
+- `edible_jobs()`: Number of jobs created by commercial urban agriculture.
+- `edible_volunteers()`: Number of volunteers involved in community urban agriculture.
+- `no2_seq()`: Amount of NO<sub>2</sub> sequestered by urban green (in gr/s).
+- `runoff_prev()`: Runoff in the city after a specific rain event. It also computes the amount of rainwater harvested by urban agriculture initiatives.
+
+
 ## Set a scenario
 
 Although `ediblecity` can also esimate indicators directly from an `sf` object, the function `set_scenario` provides a basic tool to create an scenario combining different proportions of elements of urban agriculture. Some warnings are triggered when the function can't satisfy the parametres passed by the user.
@@ -45,11 +59,11 @@ scenario <- set_scenario(city_example,
                          pRooftop = 0.6,
                          pCommercial = 0.5)
 ```
-All attributes of urban agriculture elements are included in `city_functions` dataframe. This can be used as default or a customized dataframe can be provided to each indicator.
+All attributes of urban agriculture elements are included in `city_functions` dataframe. This can be used as default. Otherwise, a customized dataframe can be provided to compute each indicator.
 
 ```{r city_functions}
 
-datatable(city_functions)
+knitr::kable(city_functions)
 
 ```
 
