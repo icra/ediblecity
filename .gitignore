@@ -6,3 +6,6 @@ data-raw/
 SVF.tif
 todo.txt
 unit_test.R
+inst/doc
+/doc/
+/Meta/
