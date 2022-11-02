@@ -59,6 +59,8 @@ In rooftops it is equivalent to raised beds and hydroponic system respectively.}
 
 \item{area_field}{The field to be used as the area of each feature. If NULL, the area is calculated with
 sf::st_area()}
+
+\item{quiet}{If 'TRUE', warnings about proportions not satisfied are not triggered.}
 }
 \value{
 An 'sf' object as 'x' with the respective proportion of gardens ('Edible private garden'),

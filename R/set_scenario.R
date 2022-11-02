@@ -23,6 +23,7 @@
 #' In rooftops it is equivalent to raised beds and hydroponic system respectively.
 #' @param area_field The field to be used as the area of each feature. If NULL, the area is calculated with
 #' sf::st_area()
+#' @param quiet If 'TRUE', warnings about proportions not satisfied are not triggered.
 #' @return An 'sf' object as 'x' with the respective proportion of gardens ('Edible private garden'),
 #' vacant plots ('Community plot garden', 'Commercial plot garden') and rooftop gardens ('Community rooftop garden',
 #' 'Commercial hydroponic rooftop')
