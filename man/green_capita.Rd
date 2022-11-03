@@ -24,16 +24,16 @@ are considered.}
 
 \item{inhabitants}{A value representing the inhabitants in the city.}
 
-\item{neighbourhoods}{(optional) An 'sf' object with polygons representing the neighbourhoods in the city.}
+\item{neighbourhoods}{(optional) An 'sf' object with polygons representing the neighborhoods in the city.}
 
-\item{inh_col}{(optional) The col in 'x' or in 'neighbourhoods' indicating the inhabitants in each neighbourhood.}
+\item{inh_col}{(optional) The col in 'x' or in 'neighborhoods' indicating the inhabitants in each neighborhood.}
 
-\item{name_col}{(optional) The col in 'x' or in 'neighbourhoods' indicating the name of each neighbourhood}
+\item{name_col}{(optional) The col in 'x' or in 'neighborhoods' indicating the name of each neighborhood}
 
 \item{private}{If FALSE (default), only public areas are considered in the indicator.}
 
 \item{verbose}{If FALSE (default), the indicator returns the proportion between the most and the least green neighbourhoods.
-Otherwise, it will return a tibble with the green per capita in each neigbourhood, provided that 'inh_col'
+Otherwise, it will return a tibble with the green per capita in each neighborhood, provided that 'inh_col'
 and 'name_col' are provided.}
 
 \item{min_inh}{If neighbourhoods are used, those with less inhabitants than 'min-inh' will be discarded.}

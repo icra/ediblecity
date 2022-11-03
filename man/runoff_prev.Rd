@@ -29,7 +29,7 @@ If NULL, categories and values of 'city_functions' dataset are considered.}
 \item{rain}{The amount of 24h-rain to be simulated, default is 100 mm.}
 
 \item{floors_field}{The column in 'x' containing the number of floors of each building. Zero is considered
-unbuilt areas like gardens or streets. It is used to calculate rainwater haversting area, since only
+unbuilt areas like gardens or streets. It is used to calculate rainwater harvesting area, since only
 upper surface are considered. Missing values are considered as zero.}
 
 \item{harvest_dist}{Maximum distance (in meters) of buildings where to harvest rainwater}

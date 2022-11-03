@@ -15,7 +15,7 @@
 #' If NULL, categories and values of 'city_functions' dataset are considered.
 #' @param rain The amount of 24h-rain to be simulated, default is 100 mm.
 #' @param floors_field The column in 'x' containing the number of floors of each building. Zero is considered
-#' unbuilt areas like gardens or streets. It is used to calculate rainwater haversting area, since only
+#' unbuilt areas like gardens or streets. It is used to calculate rainwater harvesting area, since only
 #' upper surface are considered. Missing values are considered as zero.
 #' @param harvest_dist Maximum distance (in meters) of buildings where to harvest rainwater
 #' @param tank_size A two-length vector with the range of tank size possibilities (in l/m2).

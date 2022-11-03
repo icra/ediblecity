@@ -6,12 +6,12 @@
 #' @param green_categories The categories that are considered as urban green. If NULL, categories of 'city_functions'
 #' are considered.
 #' @param inhabitants A value representing the inhabitants in the city.
-#' @param neighbourhoods (optional) An 'sf' object with polygons representing the neighbourhoods in the city.
-#' @param inh_col (optional) The col in 'x' or in 'neighbourhoods' indicating the inhabitants in each neighbourhood.
-#' @param name_col (optional) The col in 'x' or in 'neighbourhoods' indicating the name of each neighbourhood
+#' @param neighbourhoods (optional) An 'sf' object with polygons representing the neighborhoods in the city.
+#' @param inh_col (optional) The col in 'x' or in 'neighborhoods' indicating the inhabitants in each neighborhood.
+#' @param name_col (optional) The col in 'x' or in 'neighborhoods' indicating the name of each neighborhood
 #' @param private If FALSE (default), only public areas are considered in the indicator.
 #' @param verbose If FALSE (default), the indicator returns the proportion between the most and the least green neighbourhoods.
-#' Otherwise, it will return a tibble with the green per capita in each neigbourhood, provided that 'inh_col'
+#' Otherwise, it will return a tibble with the green per capita in each neighborhood, provided that 'inh_col'
 #' and 'name_col' are provided.
 #' @param min_inh If neighbourhoods are used, those with less inhabitants than 'min-inh' will be discarded.
 #' @details If 'inh_col' and 'name_col' are defined and  'neighbourhoods' is NULL, the function searches

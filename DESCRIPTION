@@ -1,10 +1,10 @@
 Package: ediblecity
 Type: Package
-Title: Modellization of urban agriculture at city scale
+Title: Modeling Urban Agriculture at City Scale
 Version: 0.1.0
 Author: Josep Pueyo-Ros
-Maintainer: Josep Pueyo-Ros <jpueyo@icra.cat>
-Description: The purpose of ediblecity is to estimate the potential of UA to contribute to addressing several urban challenges at the city-scale. Within this aim, we followed the urban challenges defined by the Eklipse project that are followed for nearly all of the European projects focused on Nature-based Solutions. We selected 8 indicators directly related to one or several urban challenges.
+Maintainer: Josep Pueyo-Ros <jospueyo@gmail.com>
+Description: The purpose of this package is to estimate the potential of urban agriculture to contribute to addressing several urban challenges at the city-scale. Within this aim, we selected 8 indicators directly related to one or several urban challenges. Also, a function is provided to compute new scenarios of urban agriculture.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

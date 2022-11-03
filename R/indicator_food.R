@@ -1,4 +1,4 @@
-#' @title The food producted by urban agriculture in your city
+#' @title The food produced by urban agriculture in your city
 #' @description This indicator estimates the food (in kg/year) produced by urban agriculture
 #' initiatives in your city. It uses a range of production for each type of initiative to create the median and the
 #' confidence interval of the number of jobs by simulating a random uniform distribution of 1000 values
@@ -23,10 +23,10 @@
 
 
 food_production <- function(x,
-                        edible_df = NULL,
-                        area_col = 'edible_area',
-                        interval = 0.95,
-                        verbose = F){
+                            edible_df = NULL,
+                            area_col = 'edible_area',
+                            interval = 0.95,
+                            verbose = F){
 
   #to avoid notes on R CMD check
   city_functions <- ediblecity::city_functions
@@ -46,7 +46,7 @@ food_production <- function(x,
       dplyr::select(functions, food1, food2)
   } else {
     if (!all(c("functions", "food1", "food2") %in% colnames(edible_df)))
-      rlang::abort("edible_df must have the columns 'functions', 'food1' and 'food2'. See ?food_production for details.")
+      rlang::abort("edible_df must have the columns 'functions', 'food1' and 'food2'. See `?food_production` for details.")
   }
 
   #filter x based on edible

@@ -27,7 +27,7 @@
 #' @return An 'sf' object as 'x' with the respective proportion of gardens ('Edible private garden'),
 #' vacant plots ('Community plot garden', 'Commercial plot garden') and rooftop gardens ('Community rooftop garden',
 #' 'Commercial hydroponic rooftop')
-#' labelled as edible gardens.
+#' labeled as edible gardens.
 #' @details When pGardens, pVacant or pRooftop is lower than 1, the gardens are selected randomly among
 #' gardens with an area larger than 'min_area_*'.
 #' However, when pCommercial > 0, commercial gardens and hydroponic rooftops are

@@ -1,5 +1,5 @@
 #' @title Distance to closest public green area
-#' @description Thisi indicator calculates the distance from each residence to its closest public green area
+#' @description This indicator calculates the distance from each residence to its closest public green area
 #' larger than 'min_area'. It can return the summary of distances or the percentage of residence buildings further
 #' than a defined distance.
 #' @author Josep Pueyo-Ros

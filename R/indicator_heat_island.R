@@ -1,5 +1,5 @@
 #' @title Heat island effect
-#' @description The indicator calculates de urban heat island (UHI) using the DPRA guidelines of the Dutch
+#' @description The indicator calculates the urban heat island (UHI) using the DPRA guidelines of the Dutch
 #' government.
 #' @author Josep Pueyo-Ros
 #' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.
@@ -76,12 +76,13 @@ UHI <- function(
 
   if(return_raster) return(result)
 
-  if (verbose) return(dplyr::as_tibble(result) %>%
-                        dplyr::filter(!is.na(.[[3]])) %>%
-                                 .[[3]]
-                      )
+  result_numeric <- dplyr::as_tibble(result) %>%
+    dplyr::filter(!is.na(.[[3]])) %>%
+    .[[3]]
 
-  return(summary(dplyr::as_tibble(result)[[3]]))
+  if (verbose) return(result_numeric)
+
+  return(summary(result_numeric))
 
 
 

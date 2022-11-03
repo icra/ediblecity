@@ -63,7 +63,7 @@ sf::st_area()}
 An 'sf' object as 'x' with the respective proportion of gardens ('Edible private garden'),
 vacant plots ('Community plot garden', 'Commercial plot garden') and rooftop gardens ('Community rooftop garden',
 'Commercial hydroponic rooftop')
-labelled as edible gardens.
+labeled as edible gardens.
 }
 \description{
 You can adjust different parameters to define different city scenarios.

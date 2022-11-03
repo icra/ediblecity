@@ -49,7 +49,7 @@ A 'stars' object with values of UHI. Or a numerical vector or summary statistic 
 See params for more information on how to select each one.
 }
 \description{
-The indicator calculates de urban heat island (UHI) using the DPRA guidelines of the Dutch
+The indicator calculates the urban heat island (UHI) using the DPRA guidelines of the Dutch
 government.
 }
 \details{

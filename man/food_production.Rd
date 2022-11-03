@@ -2,7 +2,7 @@
 % Please edit documentation in R/indicator_food.R
 \name{food_production}
 \alias{food_production}
-\title{The food producted by urban agriculture in your city}
+\title{The food produced by urban agriculture in your city}
 \usage{
 food_production(
   x,

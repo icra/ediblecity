@@ -50,11 +50,11 @@ of urban agriculture:
 
 ## Set a scenario
 
-Although `ediblecity` can also esimate indicators directly from an `sf`
+Although `ediblecity` can also estimate indicators directly from an `sf`
 object, the function `set_scenario` provides a basic tool to create an
 scenario combining different proportions of elements of urban
 agriculture. Some warnings are triggered when the function can’t satisfy
-the parametres passed by the user.
+the parameters passed by the user.
 
 ``` r
 library(ediblecity)
