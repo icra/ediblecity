@@ -92,3 +92,14 @@ knitr::kable(city_functions)
 | Raised bed            | FALSE  | TRUE   |    1.0 | FALSE | FALSE      |          |     0.07 |     0.07 |    NA |    NA |  67 |  88 |              0 |              0 | FALSE         | NA  |  67 |  81 |
 | Trees                 | FALSE  | FALSE  |    1.0 | FALSE | FALSE      |          |     0.11 |     0.11 |    NA |    NA |  70 |  77 |              0 |              0 | FALSE         | NA  |  30 |  77 |
 | Vegetated pergola     | FALSE  | TRUE   |    1.0 | FALSE | FALSE      |          |     0.07 |     0.07 |    NA |    NA |  98 |  98 |              0 |              0 | FALSE         | NA  |  98 |  98 |
+
+## Contributors
+
+Contributions are welcome! Some of the existing indicators can be
+improved as well as new indicators can be created. Likewise, the
+creation of new scenarios can includes new elements of urban agriculture
+or provide further customization.
+
+Scientific collaborations are also welcome! Check my research profile at
+[Google
+scholar](https://scholar.google.com/citations?user=zP9DBLMAAAAJ&hl=ca).
