@@ -101,7 +101,7 @@ knitr::kable(city_functions)
 
 Contributions are welcome! Some of the existing indicators can be
 improved as well as new indicators can be created. Likewise, the
-creation of new scenarios can includes new elements of urban agriculture
+creation of new scenarios can include new elements of urban agriculture
 or provide further customization.
 
 Scientific collaborations are also welcome! Check my research profile at

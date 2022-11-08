@@ -20,9 +20,9 @@
 #' @param harvest_dist Maximum distance (in meters) of buildings where to harvest rainwater
 #' @param tank_size A two-length vector with the range of tank size possibilities (in l/m2).
 #' @return It returns a named vector with values of runoff in mm, total rainfall
-#' and harvested rainwater in cubic metres.
+#' and harvested rainwater in cubic meters.
 #' @examples
-#' # Get the total values of runoff, rainfall and rainharvest
+#' # Get the total values of runoff, rainfall and rain harvested
 #' runoff_prev(city_example)
 #'
 #' # Adjust the parameters for rain, maximum distance to harvest rainwater and tank size

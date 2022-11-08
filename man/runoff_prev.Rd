@@ -38,7 +38,7 @@ upper surface are considered. Missing values are considered as zero.}
 }
 \value{
 It returns a named vector with values of runoff in mm, total rainfall
-and harvested rainwater in cubic metres.
+and harvested rainwater in cubic meters.
 }
 \description{
 The indicator calculates the runoff prevention considering a rain event, the infiltration
@@ -46,7 +46,7 @@ capacity and the rain harvesting and storage capacity.
 government.
 }
 \examples{
-# Get the total values of runoff, rainfall and rainharvest
+# Get the total values of runoff, rainfall and rain harvested
 runoff_prev(city_example)
 
 # Adjust the parameters for rain, maximum distance to harvest rainwater and tank size
