@@ -19,6 +19,8 @@ library(DT)
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/icra/edibleCity/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/icra/edibleCity/actions/workflows/R-CMD-check.yaml)
+[![CRAN status](https://www.r-pkg.org/badges/version/ediblecity)](https://CRAN.R-project.org/package=ediblecity)
+[![Codecov test coverage](https://codecov.io/gh/icra/edibleCity/branch/master/graph/badge.svg)](https://app.codecov.io/gh/icra/edibleCity?branch=master)
 <!-- badges: end -->
 
 The goal of ediblecity is to is to estimate the potential of UA to contribute to addressing several urban challenges at the city-scale. Within this aim, we followed the urban challenges defined by the Eklipse project that are followed for nearly all of the European projects focused on Nature-based Solutions. We selected 8 indicators directly related to one or several urban challenges.
