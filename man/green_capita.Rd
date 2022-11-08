@@ -52,6 +52,18 @@ If 'inh_col' and 'name_col' are defined and  'neighbourhoods' is NULL, the funct
 the columns in 'x'. If 'neighbourhoods' is defined along with previous both, the columns are searched in
 'neighbourhoods' and spatially joined with 'x'. In both cases, 'inhabitants' is ignored.
 }
+\examples{
+# Calculate total green per capita in the city
+green_capita(city_example, inhabitants = 6000)
+
+# Calculate the differences between the greenest and the least green neighbourhoods
+green_capita(city_example, neighbourhoods = neighbourhoods_example,
+             inh_col = "inhabitants", name_col = "name")
+
+# Get the green per capita in each neighbourhood
+green_capita(city_example, neighbourhoods = neighbourhoods_example,
+             inh_col = "inhabitants", name_col = "name", verbose = TRUE)
+}
 \author{
 Josep Pueyo-Ros
 }

@@ -14,8 +14,8 @@ UHI(
   Tmax = 30.8,
   Tmin = 20,
   windspeed = 2.77,
-  return_raster = F,
-  verbose = F
+  return_raster = FALSE,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -54,6 +54,14 @@ government.
 }
 \details{
 DEFAULT values are the values for 'city_example' dataset in August (averaged values from 2011-2020)
+}
+\examples{
+# Get a summary of the UHI
+UHI(city_example, SVF)
+
+# Get a 'stars' object representing UHI
+uhi <- UHI(city_example, SVF, return_raster = TRUE)
+plot(uhi)
 }
 \author{
 Josep Pueyo-Ros

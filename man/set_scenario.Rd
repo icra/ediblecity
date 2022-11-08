@@ -79,6 +79,17 @@ However, when pCommercial > 0, commercial gardens and hydroponic rooftops are
 settled in the larger features, assuming that commercial initiatives have the power to acquire
 the best spots.
 }
+\examples{
+# Set scenario with 50\% of streets converted to community gardens
+# randomly occupying between 40 and 60\% of street's area.
+scenario <- set_scenario(city_example, pGardens = 0, pVacant = 0.5, pRooftop = 0,
+                         perc_vacant = c(0.4, 0.6), vacant_from = "Streets")
+table(scenario$Function)
+
+# Set scenario with 60\% of rooftops converted to gardens, and 30\% of those with commercial purpose.
+scenario <- set_scenario(city_example, pGardens = 0, pVacant = 0, pRooftop = 0.6, pCommercial = 0.3)
+table(scenario$Function)
+}
 \author{
 Josep Pueyo-Ros
 }

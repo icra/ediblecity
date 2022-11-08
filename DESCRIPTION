@@ -2,8 +2,13 @@ Package: ediblecity
 Type: Package
 Title: Modeling Urban Agriculture at City Scale
 Version: 0.1.0
-Author: Josep Pueyo-Ros
-Maintainer: Josep Pueyo-Ros <jospueyo@gmail.com>
+Authors@R: 
+    c(
+      person(given = "Josep", family = "Pueyo-Ros", email = "josep.pueyo@udg.edu", 
+      role = c("aut", "cre"), comment = c(ORCID = "0000-0002-1236-5651")),
+      person(given = "ICRA - Catalan Institute for Water Research", 
+        role = "fnd", comment = c(project = "Edicitnet", grant_agreement = 776665))
+      )
 Description: The purpose of this package is to estimate the potential of urban agriculture to contribute to addressing several urban challenges at the city-scale. Within this aim, we selected 8 indicators directly related to one or several urban challenges. Also, a function is provided to compute new scenarios of urban agriculture.
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -23,3 +28,5 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
+URL: https://github.com/icra/ediblecity
+BugReports: https://github.com/icra/ediblecity/issues

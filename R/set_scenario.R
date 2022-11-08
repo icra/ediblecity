@@ -33,6 +33,16 @@
 #' However, when pCommercial > 0, commercial gardens and hydroponic rooftops are
 #' settled in the larger features, assuming that commercial initiatives have the power to acquire
 #' the best spots.
+#' @examples
+#' # Set scenario with 50% of streets converted to community gardens
+#' # randomly occupying between 40 and 60% of street's area.
+#' scenario <- set_scenario(city_example, pGardens = 0, pVacant = 0.5, pRooftop = 0,
+#'                          perc_vacant = c(0.4, 0.6), vacant_from = "Streets")
+#' table(scenario$Function)
+#'
+#' # Set scenario with 60% of rooftops converted to gardens, and 30% of those with commercial purpose.
+#' scenario <- set_scenario(city_example, pGardens = 0, pVacant = 0, pRooftop = 0.6, pCommercial = 0.3)
+#' table(scenario$Function)
 #' @export
 
 set_scenario <- function(x,
@@ -81,7 +91,7 @@ set_scenario <- function(x,
       x$Function[gardens_index] <- city_functions$functions[city_functions$location == "garden"]
 
       if (!quiet && nGardens*pGardens >= length(gardens_index)){
-        rlang::warn(paste("Only", length(gardens_index), "private gardens out of", nGardens*pGardens, "assumed satisfy the 'min_area_garden'\n"))
+        rlang::inform(paste("Only", length(gardens_index), "private gardens out of", nGardens*pGardens, "assumed satisfy the 'min_area_garden'\n"))
       }
 
     } else if (pGardens < 1){
@@ -112,7 +122,7 @@ set_scenario <- function(x,
 
 
     if (length(vacant_index) < nVacant*pVacant){
-      if (!quiet) rlang::warn(paste("Only", length(vacant_index), "vacant plots out of", nVacant*pVacant, "assumed satisfy the 'min_area_vacant'\n"))
+      if (!quiet) rlang::inform(paste("Only", length(vacant_index), "vacant plots out of", nVacant*pVacant, "assumed satisfy the 'min_area_vacant'\n"))
       nVacant <- length(vacant_index)
 
     } else {
@@ -163,7 +173,7 @@ set_scenario <- function(x,
     hydroponic_rooftop <- city_functions$functions[city_functions$jobs & city_functions$location == 'rooftop']
 
     if (length(rooftop_index) < nRooftop*pRooftop){
-      if (!quiet) rlang::warn(paste("Only", length(rooftop_index), "rooftops out of", nRooftop*pRooftop, "assumed satisfy the 'min_area_rooftop'\n"))
+      if (!quiet) rlang::inform(paste("Only", length(rooftop_index), "rooftops out of", nRooftop*pRooftop, "assumed satisfy the 'min_area_rooftop'\n"))
       nRooftop <- length(rooftop_index)
 
     } else {

@@ -14,6 +14,15 @@
 #' @param verbose If TRUE, the indicators returns a vector (N=1000) with all simulated values.
 #' @return If verbose is FALSE, it returns a named vector with the median and the low and high confidence intervals.
 #' Otherwise, it returns a vector of length 1000 with all simulated values.
+#' @examples
+#' # First, we set a scenario with commercial gardens that create jobs
+#' scenario <- set_scenario(city_example, pCommercial = 1, quiet = TRUE)
+#' # Get the 95% confidence interval
+#' edible_jobs(scenario, interval = 0.95)
+#'
+#' # Get the raw values from the Monte Carlo simulation and adjust the number of jobs by square meter.
+#' result <- edible_jobs(scenario, jobs = c(0.02, 0.03), verbose = TRUE)
+#' result[1:10]
 #' @export
 
 
@@ -22,7 +31,7 @@ edible_jobs <- function(x,
                         edible = NULL,
                         area_col = 'edible_area',
                         interval = 0.95,
-                        verbose = F){
+                        verbose = FALSE){
 
     #top avoid notes on R CMD Check
     city_functions <- ediblecity::city_functions

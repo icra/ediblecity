@@ -20,6 +20,17 @@
 #' @return A numeric value expressing the square meters of green per capita. Or a numeric value expressing
 #' the proportion between the greenest and the least green neighbourhood. Or a tibble with the green area,
 #' inhabitants and green per capita in each neighbourhood.
+#' @examples
+#' # Calculate total green per capita in the city
+#' green_capita(city_example, inhabitants = 6000)
+#'
+#' # Calculate the differences between the greenest and the least green neighbourhoods
+#' green_capita(city_example, neighbourhoods = neighbourhoods_example,
+#'              inh_col = "inhabitants", name_col = "name")
+#'
+#' # Get the green per capita in each neighbourhood
+#' green_capita(city_example, neighbourhoods = neighbourhoods_example,
+#'              inh_col = "inhabitants", name_col = "name", verbose = TRUE)
 #' @importFrom magrittr %>%
 #' @importFrom stats median
 #' @importFrom stats runif

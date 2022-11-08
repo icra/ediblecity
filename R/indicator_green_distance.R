@@ -17,6 +17,16 @@
 #' @return If 'percent_out' is FALSE, it returns a summary of statistics for distance. Otherwise, it
 #' returns a numeric value with the percentage of residences further than 'max_dist' from its closest
 #' public green area.
+#' @examples
+#' # Calculate a summary of the distances to closest public green area larger than 0.5 ha.
+#' green_distance(city_example, min_area = 5000)
+#'
+#' # Get the distances from each residence to its closest public green area.
+#' result <- green_distance(city_example, min_area = 0, verbose = TRUE)
+#' result[1:10]
+#'
+#' # Get the percentage of residences further than 300 m. from a green area larger than 0.5 ha.
+#' green_distance(city_example, percent_out = TRUE, max_dist = 300)
 #' @export
 
 green_distance <- function(x,
@@ -26,7 +36,7 @@ green_distance <- function(x,
                            residences = 'Residence',
                            percent_out = FALSE,
                            max_dist = 300,
-                           verbose = F
+                           verbose = FALSE
                           ){
 
   #to avoid notes on R CMD check
@@ -59,7 +69,7 @@ green_distance <- function(x,
   if(nrow(houses) == 0) rlang::abort("No residences found in 'x'")
 
   nearest <- sf::st_nearest_feature(houses,green_areas)
-  distance <- sf::st_distance(houses, green_areas[nearest,], by_element = T)
+  distance <- sf::st_distance(houses, green_areas[nearest,], by_element = TRUE)
 
   if (verbose) return(distance)
 

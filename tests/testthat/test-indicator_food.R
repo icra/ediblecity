@@ -12,33 +12,33 @@ test_that("verbose true returns 1000 values", {
 bau <- food_production(city_example)
 
 test_that("private gardens produce food", {
-  result <- suppressWarnings(set_scenario(city_example, pGardens = 1, pVacant = 0, pRooftop = 0)) %>%
+  result <- set_scenario(city_example, pGardens = 1, pVacant = 0, pRooftop = 0, quiet = TRUE) %>%
     food_production()
   expect_gt(result[[2]], bau[[2]])
 })
 
 test_that("community gardens produce food", {
-  result <- suppressWarnings(set_scenario(city_example, pGardens = 0, pVacant = 1, pRooftop = 0)) %>%
+  result <- set_scenario(city_example, pGardens = 0, pVacant = 1, pRooftop = 0, quiet = TRUE) %>%
     food_production()
   expect_gt(result[[2]], bau[[2]])
 })
 
 test_that("rooftop gardens produce food", {
-  result <- suppressWarnings(set_scenario(city_example, pGardens = 0, pVacant = 0, pRooftop = 1)) %>%
+  result <- set_scenario(city_example, pGardens = 0, pVacant = 0, pRooftop = 1, quiet = TRUE) %>%
     food_production()
   expect_gt(result[[2]], bau[[2]])
 })
 
 test_that("commercial gardens produce food", {
-  result <- suppressWarnings(set_scenario(city_example, pGardens = 0, pVacant = 1, pRooftop = 0,
-                                          pCommercial = 1)) %>%
+  result <- set_scenario(city_example, pGardens = 0, pVacant = 1, pRooftop = 0,
+                                          pCommercial = 1, quiet = TRUE) %>%
     food_production()
   expect_gt(result[[2]], bau[[2]])
 })
 
 test_that("hydroponic rooftop produce food", {
-  result <- suppressWarnings(set_scenario(city_example, pGardens = 0, pVacant = 0, pRooftop = 1,
-                                          pCommercial = 1)) %>%
+  result <- set_scenario(city_example, pGardens = 0, pVacant = 0, pRooftop = 1,
+                                          pCommercial = 1, quiet = TRUE) %>%
     food_production()
   expect_gt(result[[2]], bau[[2]])
 })

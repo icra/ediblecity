@@ -21,6 +21,12 @@
 #' @param tank_size A two-length vector with the range of tank size possibilities (in l/m2).
 #' @return It returns a named vector with values of runoff in mm, total rainfall
 #' and harvested rainwater in cubic metres.
+#' @examples
+#' # Get the total values of runoff, rainfall and rainharvest
+#' runoff_prev(city_example)
+#'
+#' # Adjust the parameters for rain, maximum distance to harvest rainwater and tank size
+#' runoff_prev(city_example, rain = 160, harvest_dist = 5, tank_size = c(20,30))
 #' @export
 
 #CN https://www.hec.usace.army.mil/confluence/hmsdocs/hmstrm/cn-tables
@@ -114,7 +120,7 @@ runoff_prev <- function(
     dplyr::filter(floors_ > 0,
                   !(Function %in% harvest_functions))
 
-  rooftops <- suppressWarnings(sf::st_join(rooftops, buffer_harv, largest = F)) %>%
+  rooftops <- suppressWarnings(sf::st_join(rooftops, buffer_harv, largest = FALSE)) %>%
     dplyr::select(id.x, id.y, floors_.x, area.x) %>%
     sf::st_drop_geometry() %>%
     dplyr::filter(!is.na(id.y))
@@ -122,7 +128,7 @@ runoff_prev <- function(
   buffer_harv <- sf::st_drop_geometry(buffer_harv)
 
   storage_func <- function(u){
-    collect <- rainfall * sum(rooftops$area.x[rooftops$id.y == u[[1]] & rooftops$floors_.x > u[[2]]], na.rm = T)
+    collect <- rainfall * sum(rooftops$area.x[rooftops$id.y == u[[1]] & rooftops$floors_.x > u[[2]]], na.rm = TRUE)
     tank <-  as.numeric(u[[3]]) * runif(1, tank_size[1], tank_size[2])
     return(min(collect,tank))
   }

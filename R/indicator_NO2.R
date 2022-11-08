@@ -13,6 +13,9 @@
 #' }
 #' If NULL, the 'city_functions' dataset is used.
 #' @return A numeric value with the total NO2 sequestration in the city (in grams/second).
+#' @examples
+#' # Get the total nitrogen dioxide sequestered by urban green
+#' no2_seq(city_example)
 #' @export
 #'
 

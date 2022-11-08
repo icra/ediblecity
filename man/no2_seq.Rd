@@ -26,6 +26,10 @@ A numeric value with the total NO2 sequestration in the city (in grams/second).
 \description{
 This indicator returns the amount of NO2 that is sequestered by urban green.
 }
+\examples{
+# Get the total nitrogen dioxide sequestered by urban green
+no2_seq(city_example)
+}
 \author{
 Josep Pueyo-Ros
 }

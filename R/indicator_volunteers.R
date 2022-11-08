@@ -15,6 +15,14 @@
 #' @param verbose If TRUE, the indicators returns a vector (N=1000) with all simulated values.
 #' @return If verbose is FALSE, it returns a named vector with the median and the low and high confidence intervals.
 #' Otherwise, it returns a vector of length 1000 with all simulated values.
+#' @examples
+#' # Get the 95% confidence interval
+#' edible_volunteers(city_example, interval = 0.95)
+#'
+#' # Get the raw values from the Monte Carlo simulation
+#' # and adjust the number of volunteers by squared meter.
+#' result <- edible_volunteers(city_example, volunteers = c(0.1, 0.2), verbose = TRUE)
+#' result[1:10]
 #' @export
 
 
@@ -23,7 +31,7 @@ edible_volunteers <- function(x,
                         edible = NULL,
                         area_col = 'edible_area',
                         interval = 0.95,
-                        verbose = F){
+                        verbose = FALSE){
 
   #to avoid notes in R CMD check
   city_functions <- ediblecity::city_functions

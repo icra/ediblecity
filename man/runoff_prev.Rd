@@ -45,6 +45,13 @@ The indicator calculates the runoff prevention considering a rain event, the inf
 capacity and the rain harvesting and storage capacity.
 government.
 }
+\examples{
+# Get the total values of runoff, rainfall and rainharvest
+runoff_prev(city_example)
+
+# Adjust the parameters for rain, maximum distance to harvest rainwater and tank size
+runoff_prev(city_example, rain = 160, harvest_dist = 5, tank_size = c(20,30))
+}
 \author{
 Josep Pueyo-Ros
 }

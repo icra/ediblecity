@@ -9,7 +9,7 @@ food_production(
   edible_df = NULL,
   area_col = "edible_area",
   interval = 0.95,
-  verbose = F
+  verbose = FALSE
 )
 }
 \arguments{
@@ -40,6 +40,14 @@ This indicator estimates the food (in kg/year) produced by urban agriculture
 initiatives in your city. It uses a range of production for each type of initiative to create the median and the
 confidence interval of the number of jobs by simulating a random uniform distribution of 1000 values
 within the provided range.
+}
+\examples{
+# Estimate the food production within 95\% confidence interval
+food_production(city_example, interval = 0.95, verbose = FALSE)
+
+# Get the raw values instead of the confidence interval
+result <- food_production(city_example, verbose = TRUE)
+result[1:10]
 }
 \author{
 Josep Pueyo-Ros

@@ -19,6 +19,13 @@
 #' @param verbose If TRUE, the indicators returns a vector (N=1000) with all simulated values.
 #' @return If verbose is FALSE, it returns a named vector with the median and the low and high confidence intervals
 #' (in kg/year). Otherwise, it returns a vector of length 1000 with all simulated values (in kg/year)
+#' @examples
+#' # Estimate the food production within 95% confidence interval
+#' food_production(city_example, interval = 0.95, verbose = FALSE)
+#'
+#' # Get the raw values instead of the confidence interval
+#' result <- food_production(city_example, verbose = TRUE)
+#' result[1:10]
 #' @export
 
 
@@ -26,7 +33,7 @@ food_production <- function(x,
                             edible_df = NULL,
                             area_col = 'edible_area',
                             interval = 0.95,
-                            verbose = F){
+                            verbose = FALSE){
 
   #to avoid notes on R CMD check
   city_functions <- ediblecity::city_functions
@@ -42,7 +49,7 @@ food_production <- function(x,
   #get categories
   if(is.null(edible_df)){
     edible_df <- city_functions %>%
-      dplyr::filter(edible == T) %>%
+      dplyr::filter(edible == TRUE) %>%
       dplyr::select(functions, food1, food2)
   } else {
     if (!all(c("functions", "food1", "food2") %in% colnames(edible_df)))

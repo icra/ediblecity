@@ -10,7 +10,7 @@ edible_volunteers(
   edible = NULL,
   area_col = "edible_area",
   interval = 0.95,
-  verbose = F
+  verbose = FALSE
 )
 }
 \arguments{
@@ -38,6 +38,15 @@ initiatives in your city. It uses a range of volunteers per square meter to crea
 confidence interval of the number of volunteers by simulating a random uniform distribution of 1000 values
 within the provided range. The default range came from required work hours in urban agriculture assessed
 in scientific literature, assuming that a volunteers dedicates a 10% of a full-time job.
+}
+\examples{
+# Get the 95\% confidence interval
+edible_volunteers(city_example, interval = 0.95)
+
+# Get the raw values from the Monte Carlo simulation
+# and adjust the number of volunteers by squared meter.
+result <- edible_volunteers(city_example, volunteers = c(0.1, 0.2), verbose = TRUE)
+result[1:10]
 }
 \author{
 Josep Pueyo-Ros

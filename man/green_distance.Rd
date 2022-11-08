@@ -12,7 +12,7 @@ green_distance(
   residences = "Residence",
   percent_out = FALSE,
   max_dist = 300,
-  verbose = F
+  verbose = FALSE
 )
 }
 \arguments{
@@ -44,6 +44,17 @@ public green area.
 This indicator calculates the distance from each residence to its closest public green area
 larger than 'min_area'. It can return the summary of distances or the percentage of residence buildings further
 than a defined distance.
+}
+\examples{
+# Calculate a summary of the distances to closest public green area larger than 0.5 ha.
+green_distance(city_example, min_area = 5000)
+
+# Get the distances from each residence to its closest public green area.
+result <- green_distance(city_example, min_area = 0, verbose = TRUE)
+result[1:10]
+
+# Get the percentage of residences further than 300 m. from a green area larger than 0.5 ha.
+green_distance(city_example, percent_out = TRUE, max_dist = 300)
 }
 \author{
 Josep Pueyo-Ros
