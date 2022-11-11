@@ -53,7 +53,10 @@ no2_seq <- function(x,
   x_f <- left_join(x_f,green_df, by=c("Function" = "functions"))
   x_f$pGreen[is.na(x_f$pGreen)] <- 0
 
-  x_f$green_area <- as.numeric(sf::st_area(x_f)) * x_f$pGreen
+  x_f$green_area <- x_f$edible_area
+  green_area_na <- is.na(x_f$green_area)
+
+  x_f$green_area[green_area_na] <- as.numeric(sf::st_area(x_f[green_area_na,])) * x_f$pGreen[green_area_na]
 
   x_f$no2_seq <- 0
 

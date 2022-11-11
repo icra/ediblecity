@@ -18,7 +18,7 @@
 #' unbuilt areas like gardens or streets. It is used to calculate rainwater harvesting area, since only
 #' upper surface are considered. Missing values are considered as zero.
 #' @param harvest_dist Maximum distance (in meters) of buildings where to harvest rainwater
-#' @param tank_size A two-length vector with the range of tank size possibilities (in l/m2).
+#' @param tank_size A two-length vector with the range of tank size possibilities (in m3).
 #' @return It returns a named vector with values of runoff in mm, total rainfall
 #' and harvested rainwater in cubic meters.
 #' @examples
