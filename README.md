@@ -80,22 +80,22 @@ customized dataframe can be provided to compute each indicator.
 knitr::kable(city_functions)
 ```
 
-| functions             | edible | public | pGreen | jobs  | volunteers | location | no2_seq1 | no2_seq2 | food1 | food2 | CN1 | CN2 | water_storage1 | water_storage2 | water_storage | …17 | …18 | …19 |
-|:----------------------|:-------|:-------|-------:|:------|:-----------|:---------|---------:|---------:|------:|------:|----:|----:|---------------:|---------------:|:--------------|:----|----:|----:|
-| Edible private garden | TRUE   | FALSE  |    1.0 | FALSE | FALSE      | garden   |     0.07 |     0.09 |   0.2 |   6.6 |  85 |  88 |              0 |             10 | TRUE          | NA  |  67 |  81 |
-| Community garden      | TRUE   | TRUE   |    1.0 | FALSE | TRUE       | vacant   |     0.07 |     0.09 |   0.2 |   2.2 |  85 |  88 |              0 |             10 | TRUE          | NA  |  67 |  81 |
-| Commercial garden     | TRUE   | FALSE  |    1.0 | TRUE  | FALSE      | vacant   |     0.07 |     0.09 |   4.0 |   6.6 |  85 |  85 |              0 |             10 | TRUE          | NA  |  67 |  78 |
-| Rooftop garden        | TRUE   | TRUE   |    1.0 | FALSE | TRUE       | rooftop  |     0.07 |     0.07 |   0.2 |   2.2 |  67 |  88 |              0 |             10 | TRUE          | NA  |  67 |  81 |
-| Hydroponic rooftop    | TRUE   | FALSE  |    1.0 | TRUE  | FALSE      | rooftop  |     0.07 |     0.07 |   9.0 |  19.0 |  98 |  98 |              0 |             10 | TRUE          | NA  |  98 |  98 |
-| Arable land           | TRUE   | FALSE  |    0.7 | FALSE | FALSE      | no       |     0.00 |     0.07 |   4.0 |   6.6 |  85 |  88 |              0 |              0 | FALSE         | NA  |  67 |  81 |
-| Normal garden         | FALSE  | FALSE  |    1.0 | FALSE | FALSE      | no       |     0.07 |     0.07 |   1.0 |   1.0 |  74 |  86 |              0 |             10 | TRUE          | NA  |  39 |  89 |
-| Permanent crops       | TRUE   | FALSE  |    0.7 | FALSE | FALSE      | no       |     0.09 |     0.09 |   4.0 |   6.6 |  65 |  77 |              0 |              0 | FALSE         | NA  |  48 |  67 |
-| Vacant                | FALSE  | FALSE  |    1.0 | FALSE | FALSE      | no       |     0.07 |     0.09 |   1.0 |   1.0 |  74 |  87 |              0 |              0 | FALSE         | NA  |  62 |  80 |
-| Grass                 | FALSE  | TRUE   |    1.0 | FALSE | FALSE      | no       |     0.07 |     0.07 |   1.0 |   1.0 |  74 |  86 |              0 |              0 | FALSE         | NA  |  39 |  79 |
-| Mulcher               | FALSE  | TRUE   |    1.0 | FALSE | FALSE      | no       |     0.00 |     0.00 |   1.0 |   1.0 |  88 |  88 |              0 |              0 | FALSE         | NA  |  88 |  88 |
-| Raised bed            | FALSE  | TRUE   |    1.0 | FALSE | FALSE      | no       |     0.07 |     0.07 |   1.0 |   1.0 |  67 |  88 |              0 |              0 | FALSE         | NA  |  67 |  81 |
-| Trees                 | FALSE  | FALSE  |    1.0 | FALSE | FALSE      | no       |     0.11 |     0.11 |   1.0 |   1.0 |  70 |  77 |              0 |              0 | FALSE         | NA  |  30 |  77 |
-| Vegetated pergola     | FALSE  | TRUE   |    1.0 | FALSE | FALSE      | no       |     0.07 |     0.07 |   1.0 |   1.0 |  98 |  98 |              0 |              0 | FALSE         | NA  |  98 |  98 |
+| functions             | edible | public | pGreen | jobs  | volunteers | location | no2_seq1 | no2_seq2 | food1 | food2 | CN1 | CN2 | water_storage1 | water_storage2 | water_storage |
+|:----------------------|:-------|:-------|-------:|:------|:-----------|:---------|---------:|---------:|------:|------:|----:|----:|---------------:|---------------:|:--------------|
+| Edible private garden | TRUE   | FALSE  |    1.0 | FALSE | FALSE      | garden   |     0.07 |     0.09 |   0.2 |   6.6 |  85 |  88 |              0 |             10 | TRUE          |
+| Community garden      | TRUE   | TRUE   |    1.0 | FALSE | TRUE       | vacant   |     0.07 |     0.09 |   0.2 |   2.2 |  85 |  88 |              0 |             10 | TRUE          |
+| Commercial garden     | TRUE   | FALSE  |    1.0 | TRUE  | FALSE      | vacant   |     0.07 |     0.09 |   4.0 |   6.6 |  85 |  85 |              0 |             10 | TRUE          |
+| Rooftop garden        | TRUE   | TRUE   |    1.0 | FALSE | TRUE       | rooftop  |     0.07 |     0.07 |   0.2 |   2.2 |  67 |  88 |              0 |             10 | TRUE          |
+| Hydroponic rooftop    | TRUE   | FALSE  |    1.0 | TRUE  | FALSE      | rooftop  |     0.07 |     0.07 |   9.0 |  19.0 |  98 |  98 |              0 |             10 | TRUE          |
+| Arable land           | TRUE   | FALSE  |    0.7 | FALSE | FALSE      | no       |     0.00 |     0.07 |   4.0 |   6.6 |  85 |  88 |              0 |              0 | FALSE         |
+| Normal garden         | FALSE  | FALSE  |    1.0 | FALSE | FALSE      | no       |     0.07 |     0.07 |   1.0 |   1.0 |  74 |  86 |              0 |             10 | TRUE          |
+| Permanent crops       | TRUE   | FALSE  |    0.7 | FALSE | FALSE      | no       |     0.09 |     0.09 |   4.0 |   6.6 |  65 |  77 |              0 |              0 | FALSE         |
+| Vacant                | FALSE  | FALSE  |    1.0 | FALSE | FALSE      | no       |     0.07 |     0.09 |   1.0 |   1.0 |  74 |  87 |              0 |              0 | FALSE         |
+| Grass                 | FALSE  | TRUE   |    1.0 | FALSE | FALSE      | no       |     0.07 |     0.07 |   1.0 |   1.0 |  74 |  86 |              0 |              0 | FALSE         |
+| Mulcher               | FALSE  | TRUE   |    1.0 | FALSE | FALSE      | no       |     0.00 |     0.00 |   1.0 |   1.0 |  88 |  88 |              0 |              0 | FALSE         |
+| Raised bed            | FALSE  | TRUE   |    1.0 | FALSE | FALSE      | no       |     0.07 |     0.07 |   1.0 |   1.0 |  67 |  88 |              0 |              0 | FALSE         |
+| Trees                 | FALSE  | FALSE  |    1.0 | FALSE | FALSE      | no       |     0.11 |     0.11 |   1.0 |   1.0 |  70 |  77 |              0 |              0 | FALSE         |
+| Vegetated pergola     | FALSE  | TRUE   |    1.0 | FALSE | FALSE      | no       |     0.07 |     0.07 |   1.0 |   1.0 |  98 |  98 |              0 |              0 | FALSE         |
 
 ## Contributors
 
@@ -107,3 +107,14 @@ or provide further customization.
 Scientific collaborations are also welcome! Check my research profile at
 [Google
 scholar](https://scholar.google.com/citations?user=zP9DBLMAAAAJ&hl=ca).
+
+## Acknowledgements
+
+<p align="center">
+
+<img src="man/figures/README-edicitnet_logo.jpg" style="width:150px"/>
+
+</p>
+
+<img src="man/figures/README-EC_logo.png" style="width:40px"/> This
+research was funded by Edicitnet project (grant agreement nº 776665)
