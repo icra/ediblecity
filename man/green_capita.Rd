@@ -30,7 +30,9 @@ are considered.}
 
 \item{name_col}{(optional) The col in 'x' or in 'neighborhoods' indicating the name of each neighborhood}
 
-\item{private}{If FALSE (default), only public areas are considered in the indicator.}
+\item{private}{If FALSE (default), only public areas are considered in the indicator. If TRUE, elements in
+'city_functions' where 'private' is TRUE are considered. Alternatively, a vector with functions to be
+considered.#'}
 
 \item{verbose}{If FALSE (default), the indicator returns the proportion between the most and the least green neighbourhoods.
 Otherwise, it will return a tibble with the green per capita in each neighborhood, provided that 'inh_col'
@@ -63,6 +65,9 @@ green_capita(city_example, neighbourhoods = neighbourhoods_example,
 # Get the green per capita in each neighbourhood
 green_capita(city_example, neighbourhoods = neighbourhoods_example,
              inh_col = "inhabitants", name_col = "name", verbose = TRUE)
+
+# Use a customized vector of functions to be considered private green
+green_capita(city_example, inhabitants = 6000, private = c("Normal garden", "Commercial garden"))
 }
 \author{
 Josep Pueyo-Ros
