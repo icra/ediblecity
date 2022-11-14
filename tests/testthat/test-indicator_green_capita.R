@@ -25,3 +25,10 @@ test_that("min_inh is working", {
       expect_equal(nrow(neighbourhoods_example)-1)
 })
 
+test_that("private as a vector works", {
+  expect_equal(
+    green_capita(city_example, inhabitants = 6000, private = TRUE),
+    green_capita(city_example, inhabitants = 6000, private = "Normal garden")
+  )
+})
+
