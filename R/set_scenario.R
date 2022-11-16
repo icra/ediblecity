@@ -9,9 +9,9 @@
 #' that will become edible gardens [0-1].
 #' @param pRooftop The proportion of rooftops (Function == 'Flat rooftop') with 'area >= min_area_rooftop'
 #' that will become edible rooftops [0-1].
-#' @param perc_garden The proportion in a range of surface in a garden that is occupied by edible plants [0-1].
-#' @param perc_vacant The proportion in a range of surface in a vacant plot that is occupied by edible plants [0-1].
-#' @param perc_rooftop The proportion in a range of surface in a rooftop that is occupied by edible plants [0-1].
+#' @param edible_area_garden The proportion in a range of surface in a garden that is occupied by edible plants [0-1].
+#' @param edible_area_vacant The proportion in a range of surface in a vacant plot that is occupied by edible plants [0-1].
+#' @param edible_area_rooftop The proportion in a range of surface in a rooftop that is occupied by edible plants [0-1].
 #' @param min_area_garden The minimum area that a garden must have to become an edible garden.
 #' @param min_area_vacant The minimum area that a vacant must have to become an community or commercial garden.
 #' @param min_area_rooftop The minimum area that a flat rooftop must have to become an edible rooftop.
@@ -37,7 +37,7 @@
 #' # Set scenario with 50% of streets converted to community gardens
 #' # randomly occupying between 40 and 60% of street's area.
 #' scenario <- set_scenario(city_example, pGardens = 0, pVacant = 0.5, pRooftop = 0,
-#'                          perc_vacant = c(0.4, 0.6), vacant_from = "Streets")
+#'                          edible_area_vacant = c(0.4, 0.6), vacant_from = "Streets")
 #' table(scenario$Function)
 #'
 #' # Set scenario with 60% of rooftops converted to gardens, and 30% of those with commercial purpose.
@@ -49,9 +49,9 @@ set_scenario <- function(x,
                          pGardens = 1,
                          pVacant = 1,
                          pRooftop = 1,
-                         perc_garden = c(0.02, 0.3),
-                         perc_vacant = c(0.52, 0.75),
-                         perc_rooftop = c(0.6,0.62),
+                         edible_area_garden = c(0.02, 0.3),
+                         edible_area_vacant = c(0.52, 0.75),
+                         edible_area_rooftop = c(0.6,0.62),
                          min_area_garden = 10,
                          min_area_vacant = 100,
                          min_area_rooftop = 100,
@@ -101,7 +101,7 @@ set_scenario <- function(x,
 
     }
 
-    x$edible_area[gardens_index] <- x$area[gardens_index]*runif(length(gardens_index), perc_garden[1], perc_garden[2])
+    x$edible_area[gardens_index] <- x$area[gardens_index]*runif(length(gardens_index), edible_area_garden[1], edible_area_garden[2])
   }
 
 
@@ -153,7 +153,7 @@ set_scenario <- function(x,
 
     new_index <- x$Function %in% c(commercial_garden, community_garden)
     x$edible_area[new_index] <-
-      x$area[new_index]*runif(sum(new_index), perc_vacant[1], perc_vacant[2])
+      x$area[new_index]*runif(sum(new_index), edible_area_vacant[1], edible_area_vacant[2])
 
   }
 
@@ -204,7 +204,7 @@ set_scenario <- function(x,
 
     new_index <- x$Function %in% c(rooftop_garden, hydroponic_rooftop)
     x$edible_area[new_index] <-
-      x$area[new_index]*runif(sum(new_index), perc_rooftop[1], perc_rooftop[2])
+      x$area[new_index]*runif(sum(new_index), edible_area_rooftop[1], edible_area_rooftop[2])
 
   }
 
