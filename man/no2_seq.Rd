@@ -16,7 +16,8 @@ urban features.}
   to 'Function' column in 'x'.
   \item 'no2_seq1': The low range of NO2 sequestration of each function (in ug/s/m2).
   \item 'no2_seq2': The high range of NO2 sequestration of each function (in ug/s/m2).
-  \item 'pGreen': The proportion of green surface in each function (0:1).
+  \item 'pGreen': The proportion of green surface in each function (0:1). This is overriden by 'edible_are' when
+  functions are community garden, commercial garden, rooftop garden and hydroponic rooftop.
 }
 If NULL, the 'city_functions' dataset is used.}
 }

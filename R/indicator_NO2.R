@@ -9,7 +9,8 @@
 #'   to 'Function' column in 'x'.
 #'   \item 'no2_seq1': The low range of NO2 sequestration of each function (in ug/s/m2).
 #'   \item 'no2_seq2': The high range of NO2 sequestration of each function (in ug/s/m2).
-#'   \item 'pGreen': The proportion of green surface in each function (0:1).
+#'   \item 'pGreen': The proportion of green surface in each function (0:1). This is overriden by 'edible_are' when
+#'   functions are community garden, commercial garden, rooftop garden and hydroponic rooftop.
 #' }
 #' If NULL, the 'city_functions' dataset is used.
 #' @return A numeric value with the total NO2 sequestration in the city (in grams/second).
@@ -57,6 +58,9 @@ no2_seq <- function(x,
   green_area_na <- is.na(x_f$green_area)
 
   x_f$green_area[green_area_na] <- as.numeric(sf::st_area(x_f[green_area_na,])) * x_f$pGreen[green_area_na]
+
+  edible_gardens <- x_f$Function == "Edible private garden"
+  x_f$green_area[edible_gardens] <- as.numeric(sf::st_area(x_f[edible_gardens,])) * x_f$pGreen[edible_gardens]
 
   x_f$no2_seq <- 0
 
