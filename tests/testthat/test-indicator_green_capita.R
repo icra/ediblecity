@@ -28,7 +28,14 @@ test_that("min_inh is working", {
 test_that("private as a vector works", {
   expect_equal(
     green_capita(city_example, inhabitants = 6000, private = TRUE),
-    green_capita(city_example, inhabitants = 6000, private = "Normal garden")
+    green_capita(city_example, inhabitants = 6000, private = c("Normal garden", "Edible private garden"))
   )
 })
 
+test_that("when private is true, green_capita is not lower", {
+  expect_gt(
+    set_scenario(city_example, pCommercial = 0.5, quiet = TRUE) %>%
+      green_capita(inhabitants = 6000, private = TRUE),
+    green_capita(city_example, inhabitants = 6000, private = TRUE)
+  )
+})

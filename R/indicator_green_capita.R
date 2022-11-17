@@ -73,7 +73,7 @@ green_capita <- function(
     green_categories <- city_functions$functions[city_functions$public]
 
     if (isTRUE(private)){
-      green_categories <- c(green_categories, city_functions$functions[7])
+      green_categories <- c(green_categories, city_functions$functions[c(1,7)])
     } else if(is.character(private)) {
       green_categories <- c(green_categories, private)
     }
