@@ -1,37 +1,3 @@
-#' @title Set the scenario for your edible city
-#' @description You can adjust different parameters to define different city scenarios.
-#' The object must contain a field 'Function' which describes the function or type of each feature.
-#' @author Josep Pueyo-Ros
-#' @param x An 'sf' object with the urban model of your city and a 'Function' field with categories of urban features.
-#' @param pGardens The proportion of private gardens (Function == 'Gardens')
-#' that will become edible gardens [0-1].
-#' @param pVacant The proportion of vacant plot (Function == 'Vacant') with 'area >= min_area_vacant'
-#' that will become edible gardens [0-1].
-#' @param pRooftop The proportion of rooftops (Function == 'Flat rooftop') with 'area >= min_area_rooftop'
-#' that will become edible rooftops [0-1].
-#' @param perc_garden The proportion in a range of surface in a garden that is occupied by edible plants [0-1].
-#' @param perc_vacant The proportion in a range of surface in a vacant plot that is occupied by edible plants [0-1].
-#' @param perc_rooftop The proportion in a range of surface in a rooftop that is occupied by edible plants [0-1].
-#' @param min_area_garden The minimum area that a garden must have to become an edible garden.
-#' @param min_area_vacant The minimum area that a vacant must have to become an community or commercial garden.
-#' @param min_area_rooftop The minimum area that a flat rooftop must have to become an edible rooftop.
-#' @param private_gardens_from The categories in 'Functions' potentially converted to edible private gardens
-#' @param vacant_from The categories in 'Functions' potentially converted to community or commercial gardens
-#' @param rooftop_from The categories in 'Functions' potentially converted to edible rooftop
-#' (community raised beds or commercial hydroponic)
-#' @param pCommercial The proportion of plots and rooftop that will be commercial. The rest will be community gardens
-#' In rooftops it is equivalent to raised beds and hydroponic system respectively.
-#' @param area_field The field to be used as the area of each feature. If NULL, the area is calculated with
-#' sf::st_area()
-#' @return An 'sf' object as 'x' with the respective proportion of gardens ('Edible private garden'),
-#' vacant plots ('Community plot garden', 'Commercial plot garden') and rooftop gardens ('Community rooftop garden',
-#' 'Commercial hydroponic rooftop')
-#' labeled as edible gardens.
-#' @details When pGardens is lower than 1, the gardens are selected randomly among gardens with an area larger than
-#' 'min_area_garden'. However, vacant plots and rooftops are selected from larger to smaller, assuming that the best
-#' spots (i.e. larger) are occupied first. Likewise, when pCommercial > 0, commercial gardens and hydroponic rooftops are
-#' settled in the larger features, assuming that commercial initiatives have the power to acquire the best spots.
-
 set_scenario_rationale <- function(x,
                          pGardens = 1,
                          pVacant = 1,

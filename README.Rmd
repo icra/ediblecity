@@ -31,7 +31,7 @@ You can install the development version of ediblecity from [GitHub](https://gith
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("icra/edibleCity")
+devtools::install_github("icra/ediblecity")
 ```
 
 ## Indicators estimated
