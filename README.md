@@ -10,6 +10,8 @@
 status](https://www.r-pkg.org/badges/version/ediblecity)](https://CRAN.R-project.org/package=ediblecity)
 [![Codecov test
 coverage](https://codecov.io/gh/icra/edibleCity/branch/master/graph/badge.svg)](https://app.codecov.io/gh/icra/edibleCity?branch=master)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
 The goal of ediblecity is to is to estimate the potential of UA to
