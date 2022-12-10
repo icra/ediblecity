@@ -29,5 +29,6 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
-URL: https://github.com/icra/ediblecity
+URL: https://github.com/icra/ediblecity,
+    https://icra.github.io/ediblecity/
 BugReports: https://github.com/icra/ediblecity/issues
