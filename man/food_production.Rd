@@ -13,21 +13,21 @@ food_production(
 )
 }
 \arguments{
-\item{x}{An 'sf' object with the urban model of your city and a 'Function' column with categories of
+\item{x}{An 'sf' object with the urban model of your city and a 'land_use' column with categories of
 urban features.}
 
 \item{edible_df}{A dataframe of categories that are considered as urban agriculture with three columns:
 \enumerate{
-  \item 'functions': Column with the function to be considered in the calculations corresponding
-  to 'Function' column in 'x'.
-  \item 'food1': The low range of food production in each function (in kg/year/m2).
-  \item 'food2': The high range of food production of each function (in kg/year/m2).
+  \item 'land_uses': Column with the land_use to be considered in the calculations corresponding
+  to 'land_use' column in 'x'.
+  \item 'food1': The low range of food production in each land_use (in kg/year/m2).
+  \item 'food2': The high range of food production of each land_use (in kg/year/m2).
 }}
 
 \item{area_col}{The column to be used as the area of each feature. If NULL, the area is calculated with
 sf::st_area()}
 
-\item{interval}{A numeric value with the confidence interval returned by the function.}
+\item{interval}{A numeric value with the confidence interval returned by the land_use.}
 
 \item{verbose}{If TRUE, the indicators returns a vector (N=1000) with all simulated values.}
 }

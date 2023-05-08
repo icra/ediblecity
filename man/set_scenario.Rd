@@ -24,15 +24,15 @@ set_scenario(
 )
 }
 \arguments{
-\item{x}{An 'sf' object with the urban model of your city and a 'Function' field with categories of urban features.}
+\item{x}{An 'sf' object with the urban model of your city and a 'land_use' field with categories of urban features.}
 
-\item{pGardens}{The proportion of private gardens (Function == 'Gardens')
+\item{pGardens}{The proportion of private gardens (land_use == 'Gardens')
 that will become edible gardens [0-1].}
 
-\item{pVacant}{The proportion of vacant plot (Function == 'Vacant') with 'area >= min_area_vacant'
+\item{pVacant}{The proportion of vacant plot (land_use == 'Vacant') with 'area >= min_area_vacant'
 that will become edible gardens [0-1].}
 
-\item{pRooftop}{The proportion of rooftops (Function == 'Flat rooftop') with 'area >= min_area_rooftop'
+\item{pRooftop}{The proportion of rooftops (land_use == 'Flat rooftop') with 'area >= min_area_rooftop'
 that will become edible rooftops [0-1].}
 
 \item{edible_area_garden}{The proportion in a range of surface in a garden that is occupied by edible plants [0-1].}
@@ -47,11 +47,11 @@ that will become edible rooftops [0-1].}
 
 \item{min_area_rooftop}{The minimum area that a flat rooftop must have to become an edible rooftop.}
 
-\item{private_gardens_from}{The categories in 'Functions' potentially converted to edible private gardens}
+\item{private_gardens_from}{The categories in 'land_uses' potentially converted to edible private gardens}
 
-\item{vacant_from}{The categories in 'Functions' potentially converted to community or commercial gardens}
+\item{vacant_from}{The categories in 'land_uses' potentially converted to community or commercial gardens}
 
-\item{rooftop_from}{The categories in 'Functions' potentially converted to edible rooftop
+\item{rooftop_from}{The categories in 'land_uses' potentially converted to edible rooftop
 (community raised beds or commercial hydroponic)}
 
 \item{pCommercial}{The proportion of plots and rooftop that will be commercial. The rest will be community gardens
@@ -70,7 +70,7 @@ labeled as edible gardens.
 }
 \description{
 You can adjust different parameters to define different city scenarios.
-The object must contain a field 'Function' which describes the function or type of each feature.
+The object must contain a field 'land_use' which describes the function or type of each feature.
 }
 \details{
 When pGardens, pVacant or pRooftop is lower than 1, the gardens are selected randomly among
@@ -84,11 +84,11 @@ the best spots.
 # randomly occupying between 40 and 60\% of street's area.
 scenario <- set_scenario(city_example, pGardens = 0, pVacant = 0.5, pRooftop = 0,
                          edible_area_vacant = c(0.4, 0.6), vacant_from = "Streets")
-table(scenario$Function)
+table(scenario$land_use)
 
 # Set scenario with 60\% of rooftops converted to gardens, and 30\% of those with commercial purpose.
 scenario <- set_scenario(city_example, pGardens = 0, pVacant = 0, pRooftop = 0.6, pCommercial = 0.3)
-table(scenario$Function)
+table(scenario$land_use)
 }
 \author{
 Josep Pueyo-Ros

@@ -17,9 +17,9 @@ green_capita(
 )
 }
 \arguments{
-\item{x}{An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.}
+\item{x}{An 'sf' object with the urban model of your city and a 'land_use' column with categories of urban features.}
 
-\item{green_categories}{The categories that are considered as urban green. If NULL, categories of 'city_functions'
+\item{green_categories}{The categories that are considered as urban green. If NULL, categories of 'city_land_uses'
 are considered.}
 
 \item{inhabitants}{A value representing the inhabitants in the city.}
@@ -31,7 +31,7 @@ are considered.}
 \item{name_col}{(optional) The col in 'x' or in 'neighborhoods' indicating the name of each neighborhood}
 
 \item{private}{If FALSE (default), only public areas are considered in the indicator. If TRUE, elements in
-'city_functions' where 'private' is TRUE are considered. Alternatively, a vector with functions to be
+'city_land_uses' where 'private' is TRUE are considered. Alternatively, a vector with land_uses to be
 considered.#'}
 
 \item{verbose}{If FALSE (default), the indicator returns the proportion between the most and the least green neighbourhoods.
@@ -66,7 +66,7 @@ green_capita(city_example, neighbourhoods = neighbourhoods_example,
 green_capita(city_example, neighbourhoods = neighbourhoods_example,
              inh_col = "inhabitants", name_col = "name", verbose = TRUE)
 
-# Use a customized vector of functions to be considered private green
+# Use a customized vector of land_uses to be considered private green
 green_capita(city_example, inhabitants = 6000, private = c("Normal garden", "Commercial garden"))
 }
 \author{

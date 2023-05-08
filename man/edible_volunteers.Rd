@@ -14,12 +14,12 @@ edible_volunteers(
 )
 }
 \arguments{
-\item{x}{An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.}
+\item{x}{An 'sf' object with the urban model of your city and a 'land_use' column with categories of urban features.}
 
 \item{volunteers}{A vector of length 2 with the range of volunteers involved by square meter of edible gardens.}
 
-\item{edible}{The categories in 'Functions' that represent community edible gardens. If NULL, functions
-from 'city_functions' dataset area used where volunteers is TRUE.}
+\item{edible}{The categories in 'land_uses' that represent community edible gardens. If NULL, land_uses
+from 'city_land_uses' dataset area used where volunteers is TRUE.}
 
 \item{area_col}{The column to be used as the area of each feature. If NULL, the area is calculated with
 sf::st_area().}

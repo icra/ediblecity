@@ -73,15 +73,15 @@ scenario <- set_scenario(city_example,
 ```
 
 All attributes of urban agriculture elements are included in
-`city_functions` dataframe. This can be used as default. Otherwise, a
+`city_land_uses` dataframe. This can be used as default. Otherwise, a
 customized dataframe can be provided to compute each indicator.
 
 ``` r
 
-knitr::kable(city_functions)
+knitr::kable(city_land_uses)
 ```
 
-| functions             | edible | public | pGreen | jobs  | volunteers | location | no2_seq1 | no2_seq2 | food1 | food2 | CN1 | CN2 | water_storage1 | water_storage2 | water_storage |
+| land_uses             | edible | public | pGreen | jobs  | volunteers | location | no2_seq1 | no2_seq2 | food1 | food2 | CN1 | CN2 | water_storage1 | water_storage2 | water_storage |
 |:----------------------|:-------|:-------|-------:|:------|:-----------|:---------|---------:|---------:|------:|------:|----:|----:|---------------:|---------------:|:--------------|
 | Edible private garden | TRUE   | FALSE  |    0.6 | FALSE | FALSE      | garden   |     0.07 |     0.09 |   0.2 |   6.6 |  85 |  88 |              0 |             10 | TRUE          |
 | Community garden      | TRUE   | TRUE   |    1.0 | FALSE | TRUE       | vacant   |     0.07 |     0.09 |   0.2 |   2.2 |  85 |  88 |              0 |             10 | TRUE          |

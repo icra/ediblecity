@@ -8,7 +8,7 @@ green_distance(
   x,
   green_cat = NULL,
   min_area = 5000,
-  residence_col = "Function_verbose",
+  residence_col = "land_use_verbose",
   residences = "Residence",
   percent_out = FALSE,
   max_dist = 300,
@@ -16,10 +16,10 @@ green_distance(
 )
 }
 \arguments{
-\item{x}{An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.}
+\item{x}{An 'sf' object with the urban model of your city and a 'land_use' column with categories of urban features.}
 
-\item{green_cat}{A vector with the categories in 'Function' that must be considered in the calculations. If
-NULL (default), the 'city_functions' dataset is used where 'public' is TRUE.}
+\item{green_cat}{A vector with the categories in 'land_use' that must be considered in the calculations. If
+NULL (default), the 'city_land_uses' dataset is used where 'public' is TRUE.}
 
 \item{min_area}{A numerical value (in meters). smaller green areas are not considered in the calculations.}
 

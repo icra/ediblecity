@@ -3,9 +3,9 @@
 #' larger than 'min_area'. It can return the summary of distances or the percentage of residence buildings further
 #' than a defined distance.
 #' @author Josep Pueyo-Ros
-#' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.
-#' @param green_cat A vector with the categories in 'Function' that must be considered in the calculations. If
-#' NULL (default), the 'city_functions' dataset is used where 'public' is TRUE.
+#' @param x An 'sf' object with the urban model of your city and a 'land_use' column with categories of urban features.
+#' @param green_cat A vector with the categories in 'land_use' that must be considered in the calculations. If
+#' NULL (default), the 'city_land_uses' dataset is used where 'public' is TRUE.
 #' @param min_area A numerical value (in meters). smaller green areas are not considered in the calculations.
 #' @param residence_col The column 'x' where the residences are specified.
 #' @param residences A vector with the categories that represent residences.
@@ -32,7 +32,7 @@
 green_distance <- function(x,
                            green_cat = NULL,
                            min_area = 5000,
-                           residence_col = 'Function_verbose',
+                           residence_col = 'land_use_verbose',
                            residences = 'Residence',
                            percent_out = FALSE,
                            max_dist = 300,
@@ -40,20 +40,20 @@ green_distance <- function(x,
                           ){
 
   #to avoid notes on R CMD check
-  city_functions <- ediblecity::city_functions
-  Function <- NULL
+  city_land_uses <- ediblecity::city_land_uses
+  land_use <- NULL
   area <- NULL
 
   check_sf(x)
 
   #get categories
   if (is.null(green_cat)){
-    green_cat <- city_functions$functions[city_functions$public]
+    green_cat <- city_land_uses$land_uses[city_land_uses$public]
   }
 
   # get green areas layer
   green_areas <- x %>%
-    dplyr::filter(Function %in% green_cat)
+    dplyr::filter(land_use %in% green_cat)
 
   if(is.null(green_areas$area))
       green_areas$area <- as.numeric(sf::st_area(green_areas))

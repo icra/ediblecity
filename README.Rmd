@@ -62,11 +62,11 @@ scenario <- set_scenario(city_example,
                          pRooftop = 0.6,
                          pCommercial = 0.5)
 ```
-All attributes of urban agriculture elements are included in `city_functions` dataframe. This can be used as default. Otherwise, a customized dataframe can be provided to compute each indicator.
+All attributes of urban agriculture elements are included in `city_land_uses` dataframe. This can be used as default. Otherwise, a customized dataframe can be provided to compute each indicator.
 
-```{r city_functions}
+```{r city_land_uses}
 
-knitr::kable(city_functions)
+knitr::kable(city_land_uses)
 
 ```
 

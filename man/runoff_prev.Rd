@@ -14,17 +14,17 @@ runoff_prev(
 )
 }
 \arguments{
-\item{x}{An 'sf' object with the urban model of your city and a 'Function' column with categories
+\item{x}{An 'sf' object with the urban model of your city and a 'land_use' column with categories
 of urban features.}
 
 \item{runoff_df}{A dataframe of categories that are considered impervious area with three columns.
 \enumerate{
-    \item 'functions' with the names of 'Function' in 'x' to be considered as impervious.
+    \item 'land_uses' with the names of 'land_use' in 'x' to be considered as impervious.
     \item Curve numbers columns 'CN1' and 'CN2' the range of curve number of that function.
-    \item 'water_storage', a boolean column indicating whether the functions is potentially harvesting
+    \item 'water_storage', a boolean column indicating whether the land_uses is potentially harvesting
     and storing rainwater using a tank.
 }
-If NULL, categories and values of 'city_functions' are considered.}
+If NULL, categories and values of 'city_land_uses' are considered.}
 
 \item{rain}{The amount of 24h-rain to be simulated, default is 85 mm.}
 

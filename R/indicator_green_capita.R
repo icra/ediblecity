@@ -2,15 +2,15 @@
 #' @description This indicators calculates the amount of green per capita in the city. This may include private green
 #' such as gardens and crops or exclude them.
 #' @author Josep Pueyo-Ros
-#' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.
-#' @param green_categories The categories that are considered as urban green. If NULL, categories of 'city_functions'
+#' @param x An 'sf' object with the urban model of your city and a 'land_use' column with categories of urban features.
+#' @param green_categories The categories that are considered as urban green. If NULL, categories of 'city_land_uses'
 #' are considered.
 #' @param inhabitants A value representing the inhabitants in the city.
 #' @param neighbourhoods (optional) An 'sf' object with polygons representing the neighborhoods in the city.
 #' @param inh_col (optional) The col in 'x' or in 'neighborhoods' indicating the inhabitants in each neighborhood.
 #' @param name_col (optional) The col in 'x' or in 'neighborhoods' indicating the name of each neighborhood
 #' @param private If FALSE (default), only public areas are considered in the indicator. If TRUE, elements in
-#' 'city_functions' where 'private' is TRUE are considered. Alternatively, a vector with functions to be
+#' 'city_land_uses' where 'private' is TRUE are considered. Alternatively, a vector with land_uses to be
 #' considered.#'
 #' @param verbose If FALSE (default), the indicator returns the proportion between the most and the least green neighbourhoods.
 #' Otherwise, it will return a tibble with the green per capita in each neighborhood, provided that 'inh_col'
@@ -34,7 +34,7 @@
 #' green_capita(city_example, neighbourhoods = neighbourhoods_example,
 #'              inh_col = "inhabitants", name_col = "name", verbose = TRUE)
 #'
-#' # Use a customized vector of functions to be considered private green
+#' # Use a customized vector of land_uses to be considered private green
 #' green_capita(city_example, inhabitants = 6000, private = c("Normal garden", "Commercial garden"))
 #' @importFrom magrittr %>%
 #' @importFrom stats median
@@ -59,8 +59,8 @@ green_capita <- function(
                         ){
 
   #to avoid notes on R CMD check
-  city_functions <- ediblecity::city_functions
-  Function <- NULL
+  city_land_uses <- ediblecity::city_land_uses
+  land_use <- NULL
   pGreen <- NULL
 
   check_sf(x)
@@ -70,23 +70,23 @@ green_capita <- function(
 
   if (is.null(green_categories)){
 
-    green_categories <- city_functions$functions[city_functions$public]
+    green_categories <- city_land_uses$land_uses[city_land_uses$public]
 
     if (isTRUE(private)){
-      green_categories <- c(green_categories, city_functions$functions[c(1,7)])
+      green_categories <- c(green_categories, city_land_uses$land_uses[c(1,7)])
     } else if(is.character(private)) {
       green_categories <- c(green_categories, private)
     }
   }
 
   green_areas <- x %>%
-    dplyr::filter(Function %in% green_categories)
+    dplyr::filter(land_use %in% green_categories)
 
   if(is.null(green_areas$area))
     green_areas$area <- as.numeric(sf::st_area(green_areas))
 
-  if (sum(green_areas$Function %in% city_functions$functions) == nrow(green_areas)){
-    green_areas <- dplyr::left_join(green_areas, city_functions, by = c("Function" = "functions"))
+  if (sum(green_areas$land_use %in% city_land_uses$land_uses) == nrow(green_areas)){
+    green_areas <- dplyr::left_join(green_areas, city_land_uses, by = c("land_use" = "land_uses"))
   } else {
     green_areas$pGreen <- NA
     green_areas$location <- NA
@@ -117,7 +117,7 @@ green_capita <- function(
                                   area * 0.61,
                                   area))) %>%
       sf::st_drop_geometry() %>%
-      dplyr::select(Function,!!as.symbol(name_col), !!as.symbol(inh_col), area) %>%
+      dplyr::select(land_use,!!as.symbol(name_col), !!as.symbol(inh_col), area) %>%
       dplyr::group_by(!!as.symbol(name_col)) %>%
       dplyr::summarise(area = sum(as.numeric(area))) %>%
       dplyr::inner_join(neighbourhoods, by=name_col) %>%

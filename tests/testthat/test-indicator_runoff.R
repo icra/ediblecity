@@ -20,10 +20,10 @@ test_that("tank size is working properly", {
 
 test_that("curve number is working properly", {
   result <- runoff_prev(city_example, runoff_df = tibble(
-    functions = city_functions$functions,
-    CN1 = city_functions$CN2,
-    CN2 = city_functions$CN2 * 1.5,
-    water_storage = city_functions$water_storage
+    land_uses = city_land_uses$land_uses,
+    CN1 = city_land_uses$CN2,
+    CN2 = city_land_uses$CN2 * 1.5,
+    water_storage = city_land_uses$water_storage
   ))
   expect_gt(result[["runoff"]], default[["runoff"]])
 })

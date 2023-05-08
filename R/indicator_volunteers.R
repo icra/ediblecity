@@ -5,10 +5,10 @@
 #' within the provided range. The default range came from required work hours in urban agriculture assessed
 #' in scientific literature, assuming that a volunteers dedicates a 10% of a full-time job.
 #' @author Josep Pueyo-Ros
-#' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.
+#' @param x An 'sf' object with the urban model of your city and a 'land_use' column with categories of urban features.
 #' @param volunteers A vector of length 2 with the range of volunteers involved by square meter of edible gardens.
-#' @param edible The categories in 'Functions' that represent community edible gardens. If NULL, functions
-#' from 'city_functions' dataset area used where volunteers is TRUE.
+#' @param edible The categories in 'land_uses' that represent community edible gardens. If NULL, land_uses
+#' from 'city_land_uses' dataset area used where volunteers is TRUE.
 #' @param area_col The column to be used as the area of each feature. If NULL, the area is calculated with
 #' sf::st_area().
 #' @param interval A numeric value with the confidence interval returned by the function.
@@ -34,17 +34,17 @@ edible_volunteers <- function(x,
                         verbose = FALSE){
 
   #to avoid notes in R CMD check
-  city_functions <- ediblecity::city_functions
-  Function <- NULL
+  city_land_uses <- ediblecity::city_land_uses
+  land_use <- NULL
 
   #get categories
   if (is.null(edible)){
-    edible <- city_functions$functions[city_functions$volunteers]
+    edible <- city_land_uses$land_uses[city_land_uses$volunteers]
   }
 
   #filter x based on edible
   filtered <- x %>%
-    dplyr::filter(Function %in% edible)
+    dplyr::filter(land_use %in% edible)
 
   #calculates area of filtered based on st_area() or in area_col
   area <- ifelse(is.null(area_col),

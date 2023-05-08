@@ -3,16 +3,16 @@
 #' capacity and the rain harvesting and storage capacity.
 #' government.
 #' @author Josep Pueyo-Ros
-#' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories
+#' @param x An 'sf' object with the urban model of your city and a 'land_use' column with categories
 #' of urban features.
 #' @param runoff_df A dataframe of categories that are considered impervious area with three columns.
 #' \enumerate{
-#'     \item 'functions' with the names of 'Function' in 'x' to be considered as impervious.
+#'     \item 'land_uses' with the names of 'land_use' in 'x' to be considered as impervious.
 #'     \item Curve numbers columns 'CN1' and 'CN2' the range of curve number of that function.
-#'     \item 'water_storage', a boolean column indicating whether the functions is potentially harvesting
+#'     \item 'water_storage', a boolean column indicating whether the land_uses is potentially harvesting
 #'     and storing rainwater using a tank.
 #' }
-#' If NULL, categories and values of 'city_functions' are considered.
+#' If NULL, categories and values of 'city_land_uses' are considered.
 #' @param rain The amount of 24h-rain to be simulated, default is 85 mm.
 #' @param floors_field The column in 'x' containing the number of floors of each building. Zero is considered
 #' unbuilt areas like gardens or streets. It is used to calculate rainwater harvesting area, since only
@@ -41,13 +41,13 @@ runoff_prev <- function(
                         ){
 
   #to avoid notes in R CMD check
-  city_functions <- ediblecity::city_functions
-  functions <- NULL
+  city_land_uses <- ediblecity::city_land_uses
+  land_uses <- NULL
   water_storage <- NULL
   floors_ <- NULL
   CN1 <- NULL
   CN2 <- NULL
-  Function <- NULL
+  land_use <- NULL
   area <- NULL
   id.x <- NULL
   id.y <- NULL
@@ -57,11 +57,11 @@ runoff_prev <- function(
 
   check_sf(x)
 
-  #if no runoff_df, use the city_functions values
+  #if no runoff_df, use the city_land_uses values
   if(is.null(runoff_df)){
-    runoff_df <- city_functions %>%
+    runoff_df <- city_land_uses %>%
       dplyr::select(
-        functions,
+        land_uses,
         water_storage,
         contains("CN")
       )
@@ -83,7 +83,7 @@ runoff_prev <- function(
   #join runoff_df with x
 
   x <- x %>%
-    dplyr::left_join(runoff_df, by = c("Function" = "functions")) %>%
+    dplyr::left_join(runoff_df, by = c("land_use" = "land_uses")) %>%
     dplyr::mutate(
       CN1 = ifelse(is.na(CN1), 98, CN1),
       CN2 = ifelse(is.na(CN2), 98, CN2)
@@ -94,7 +94,7 @@ runoff_prev <- function(
     dplyr::mutate(
       CN = runif(1, CN1, CN2),
       areaCN = case_when(
-        Function == "Rooftop garden" ~ CN * area * 0.60,
+        land_use == "Rooftop garden" ~ CN * area * 0.60,
         TRUE ~ CN * area)
         ) %>%
     dplyr::pull(areaCN)
@@ -107,18 +107,18 @@ runoff_prev <- function(
   #create unique id
   x$id <- rownames(x)
 
-  harvest_functions <- runoff_df$functions[runoff_df$water_storage]
+  harvest_land_uses <- runoff_df$land_uses[runoff_df$water_storage]
 
-  #buffer of functions with storage using harvest_dist
+  #buffer of land_uses with storage using harvest_dist
   buffer_harv <- x %>%
-    dplyr::filter(Function %in% harvest_functions) %>%
+    dplyr::filter(land_use %in% harvest_land_uses) %>%
     dplyr::select(id, floors_, area) %>%
     sf::st_buffer(harvest_dist)
 
   #join rooftops as harvesting surfaces with buffer_harv
   rooftops <- x %>%
     dplyr::filter(floors_ > 0,
-                  !(Function %in% harvest_functions))
+                  !(land_use %in% harvest_land_uses))
 
   rooftops <- suppressWarnings(sf::st_join(rooftops, buffer_harv, largest = FALSE)) %>%
     dplyr::select(id.x, id.y, floors_.x, area.x) %>%

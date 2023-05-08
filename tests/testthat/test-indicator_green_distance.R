@@ -7,7 +7,7 @@ test_that("No larger areas than min_area present", {
 
 test_that("No residence", {
   city_example %>%
-    filter(Function_verbose != "Residence") %>%
+    filter(land_use_verbose != "Residence") %>%
     green_distance() %>%
     expect_error()
 })
@@ -24,7 +24,7 @@ test_that("percent_out true returns number between 0 and 100", {
 
 
 test_that("verbose true returns as value as residences", {
-  n_residences <- length(with(city_example, Function_verbose[Function_verbose == "Residence"]))
+  n_residences <- length(with(city_example, land_use_verbose[land_use_verbose == "Residence"]))
   green_distance(city_example, verbose = TRUE) %>%
     expect_length(n_residences)
 })

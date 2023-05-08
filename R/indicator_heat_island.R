@@ -2,12 +2,12 @@
 #' @description The indicator calculates the urban heat island (UHI) using the DPRA guidelines of the Dutch
 #' government.
 #' @author Josep Pueyo-Ros
-#' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.
+#' @param x An 'sf' object with the urban model of your city and a 'land_use' column with categories of urban features.
 #' @param SVF A 'stars' object representing sky view factor. It can be computed, e.g. with SAGA's
 #' Sky View Factor algorithm and then loaded with stars::read_stars().
-#' @param green_df A dataframe of categories that are considered as urban green with two columns. 'functions'
-#' with the names of 'Function' in 'x' to be considered as green; a 'pGreen' column with the percentage of green
-#' of that function. If NULL, categories and values of 'city_functions' dataset are considered.
+#' @param green_df A dataframe of categories that are considered as urban green with two columns. 'land_uses'
+#' with the names of 'land_use' in 'x' to be considered as green; a 'pGreen' column with the percentage of green
+#' of that function. If NULL, categories and values of 'city_land_uses' dataset are considered.
 #' @param Qql A numerical value representing the average solar radiation in W/m2/hour.
 #' @param Cair A numerical value representing the air heat capacity in J.
 #' @param Pair A numerical value representing the air density in kg/m3.
@@ -45,24 +45,24 @@ UHI <- function(
 
   # To avoid notes in R CMD Check
   pGreen <- NULL
-  functions <- NULL
+  land_uses <- NULL
   . <- NULL
 
   check_sf(x)
   if (!("stars" %in% class(SVF))) rlang::abort("SVF must be an object of class 'stars'")
 
-  city_functions <- city_functions %>%
+  city_land_uses <- city_land_uses %>%
     mutate(pGreen = ifelse(!is.na(pGreen),
                            pGreen,
                            ifelse(location == "rooftop",
                                   0.61,
                                   1))) %>%
-    select(functions, pGreen)
+    select(land_uses, pGreen)
 
-  if (is.null(green_df)) green_df <- city_functions
+  if (is.null(green_df)) green_df <- city_land_uses
 
   x <- x %>%
-    left_join(green_df, by = c("Function" = "functions")) %>%
+    left_join(green_df, by = c("land_use" = "land_uses")) %>%
     mutate(pGreen = ifelse(is.na(pGreen),
                            0,
                            pGreen))

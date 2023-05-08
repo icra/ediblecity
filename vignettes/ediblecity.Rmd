@@ -41,7 +41,7 @@ The warnings are triggered when there are not elements enough to fulfill the pro
 
 in this examples, we use the scenario created with `set_scenario`, but all the indicators can be calculated using an `sf` object with the same structure as `city_example`.
 
-Likewise, all the parameters used by the indicators are defined in `city_functions`. However, all indicators provide an option to override this an provide a customized dataframe with the parameters. The structure of this dataframe is detailed in the documentation of each function.
+Likewise, all the parameters used by the indicators are defined in `city_land_uses`. However, all indicators provide an option to override this an provide a customized dataframe with the parameters. The structure of this dataframe is detailed in the documentation of each function.
 
 ## Estimate the benefits of urban agriculture
 

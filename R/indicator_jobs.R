@@ -4,10 +4,10 @@
 #' confidence interval of the number of jobs by simulating a random uniform distribution of 1000 values
 #' within the provided range.
 #' @author Josep Pueyo-Ros
-#' @param x An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.
+#' @param x An 'sf' object with the urban model of your city and a 'land_use' column with categories of urban features.
 #' @param jobs A vector of length 2 with the range of jobs created by square meter of edible gardens.
-#' @param edible The categories in 'Functions' that represent commercial edible gardens. If NULL, the
-#' functions from 'city_functions' dataset are used where jobs is TRUE.
+#' @param edible The categories in 'land_uses' that represent commercial edible gardens. If NULL, the
+#' land_uses from 'city_land_uses' dataset are used where jobs is TRUE.
 #' @param area_col The column to be used as the area of each feature. If NULL, the area is calculated with
 #' sf::st_area()
 #' @param interval A numeric value with the confidence interval returned by the function.
@@ -34,19 +34,19 @@ edible_jobs <- function(x,
                         verbose = FALSE){
 
     #top avoid notes on R CMD Check
-    city_functions <- ediblecity::city_functions
-    Function <- NULL
+    city_land_uses <- ediblecity::city_land_uses
+    land_use <- NULL
     . <- NULL
 
 
     #get categories
     if (is.null(edible)){
-      edible <- city_functions$functions[city_functions$jobs]
+      edible <- city_land_uses$land_uses[city_land_uses$jobs]
     }
 
     #filter x based on edible
     filtered <- x %>%
-      dplyr::filter(Function %in% edible)
+      dplyr::filter(land_use %in% edible)
 
     #calculates area of filtered based on st_area() or in area_col
     area <- ifelse(is.null(area_col),

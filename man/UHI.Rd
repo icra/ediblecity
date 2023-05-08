@@ -19,14 +19,14 @@ UHI(
 )
 }
 \arguments{
-\item{x}{An 'sf' object with the urban model of your city and a 'Function' column with categories of urban features.}
+\item{x}{An 'sf' object with the urban model of your city and a 'land_use' column with categories of urban features.}
 
 \item{SVF}{A 'stars' object representing sky view factor. It can be computed, e.g. with SAGA's
 Sky View Factor algorithm and then loaded with stars::read_stars().}
 
-\item{green_df}{A dataframe of categories that are considered as urban green with two columns. 'functions'
-with the names of 'Function' in 'x' to be considered as green; a 'pGreen' column with the percentage of green
-of that function. If NULL, categories and values of 'city_functions' dataset are considered.}
+\item{green_df}{A dataframe of categories that are considered as urban green with two columns. 'land_uses'
+with the names of 'land_use' in 'x' to be considered as green; a 'pGreen' column with the percentage of green
+of that function. If NULL, categories and values of 'city_land_uses' dataset are considered.}
 
 \item{Qql}{A numerical value representing the average solar radiation in W/m2/hour.}
 
