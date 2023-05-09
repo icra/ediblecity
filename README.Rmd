@@ -29,11 +29,10 @@ The goal of ediblecity is to is to estimate the potential of UA to contribute to
 
 ## Installation
 
-You can install the development version of ediblecity from [GitHub](https://github.com/) with:
+You can install the development version of ediblecity from [r-universe](https://r-universe.dev) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("icra/ediblecity")
+install.packages("ediblecity", repos = "jospueyo.r-universe.dev")
 ```
 
 ## Indicators estimated

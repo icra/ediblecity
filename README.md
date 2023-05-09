@@ -24,11 +24,10 @@ related to one or several urban challenges.
 ## Installation
 
 You can install the development version of ediblecity from
-[GitHub](https://github.com/) with:
+[r-universe](https://r-universe.dev) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("icra/ediblecity")
+install.packages("ediblecity", repos = "jospueyo.r-universe.dev")
 ```
 
 ## Indicators estimated
