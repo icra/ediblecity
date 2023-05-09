@@ -97,7 +97,8 @@ upper surface are considered. Missing values are considered as zero.</p></dd>
 
 
 <dt>tank_size</dt>
-<dd><p>A two-length vector with the range of tank size possibilities (in m3).</p></dd>
+<dd><p>A two-length vector with the range of tank size possibilities, proportional
+to the surface of each element where the tank size is located (in l/m2).</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -117,12 +118,12 @@ and harvested rainwater in cubic meters.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Get the total values of runoff, rainfall and rain harvested</span></span></span>
 <span class="r-in"><span><span class="fu">runoff_prev</span><span class="op">(</span><span class="va">city_example</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       runoff     rainfall  rainharvest </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     36.22372 108169.04500   1159.84771 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     37.24197 108169.04500   1331.68282 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Adjust the parameters for rain, maximum distance to harvest rainwater and tank size</span></span></span>
 <span class="r-in"><span><span class="fu">runoff_prev</span><span class="op">(</span><span class="va">city_example</span>, rain <span class="op">=</span> <span class="fl">160</span>, harvest_dist <span class="op">=</span> <span class="fl">5</span>, tank_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">30</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      runoff    rainfall rainharvest </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    102.3151 203612.3200   1387.1141 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     99.9076 203612.3200   1382.7811 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

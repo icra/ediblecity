@@ -118,14 +118,14 @@ Otherwise, it returns a vector of length 1000 with all simulated values.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Get the 95% confidence interval</span></span></span>
 <span class="r-in"><span><span class="fu">edible_volunteers</span><span class="op">(</span><span class="va">city_example</span>, interval <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        5%       50%       95% </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  1.725485 17.419276 33.395424 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2.036172 17.368194 33.338708 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the raw values from the Monte Carlo simulation</span></span></span>
 <span class="r-in"><span><span class="co"># and adjust the number of volunteers by squared meter.</span></span></span>
 <span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">edible_volunteers</span><span class="op">(</span><span class="va">city_example</span>, volunteers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">result</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 20.50857 22.89086 29.95678 22.02531 28.09539 29.48669 20.83165 30.27948</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] 27.17688 27.44648</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 16.37496 28.07756 19.10991 26.60801 18.50666 23.71910 19.14094 31.78653</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] 30.71592 24.55994</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
