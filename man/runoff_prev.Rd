@@ -34,7 +34,8 @@ upper surface are considered. Missing values are considered as zero.}
 
 \item{harvest_dist}{Maximum distance (in meters) of buildings where to harvest rainwater}
 
-\item{tank_size}{A two-length vector with the range of tank size possibilities (in m3).}
+\item{tank_size}{A two-length vector with the range of tank size possibilities, proportional
+to the surface of each element where the tank size is located (in l/m2).}
 }
 \value{
 It returns a named vector with values of runoff in mm, total rainfall

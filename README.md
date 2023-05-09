@@ -5,6 +5,7 @@
 
 <!-- badges: start -->
 
+[![DOI](https://zenodo.org/badge/404743169.svg)](https://zenodo.org/badge/latestdoi/404743169)
 [![R-CMD-check](https://github.com/icra/edibleCity/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/icra/edibleCity/actions/workflows/R-CMD-check.yaml)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/ediblecity)](https://CRAN.R-project.org/package=ediblecity)
