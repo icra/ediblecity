@@ -117,15 +117,15 @@ Otherwise, it returns a vector of length 1000 with all simulated values.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Get the 95% confidence interval</span></span></span>
 <span class="r-in"><span><span class="fu">edible_volunteers</span><span class="op">(</span><span class="va">city_example</span>, interval <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        5%       50%       95% </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  2.689867 18.356995 32.936412 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       5%      50%      95% </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1.97770 17.54419 33.62892 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the raw values from the Monte Carlo simulation</span></span></span>
 <span class="r-in"><span><span class="co"># and adjust the number of volunteers by squared meter.</span></span></span>
 <span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">edible_volunteers</span><span class="op">(</span><span class="va">city_example</span>, volunteers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">result</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 28.70779 18.49390 24.76431 24.73952 16.00244 26.94010 19.00265 17.94508</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] 28.22680 23.35300</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 31.40589 22.57952 31.42786 28.83522 27.10978 20.80846 27.05475 20.37877</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] 27.17574 27.77977</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

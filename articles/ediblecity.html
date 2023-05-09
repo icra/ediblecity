@@ -124,7 +124,7 @@ factor. See <code><a href="../reference/UHI.html">?UHI</a></code> for more detai
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/UHI.html">UHI</a></span><span class="op">(</span><span class="va">scenario</span>, <span class="va">SVF</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span><span class="co">#&gt;  0.0000  0.5466  1.0159  1.0329  1.4257  2.5867</span></span></code></pre></div>
+<span><span class="co">#&gt;  0.0000  0.5468  1.0163  1.0341  1.4304  2.5867</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="../reference/UHI.html">UHI</a></span><span class="op">(</span><span class="va">scenario</span>, <span class="va">SVF</span>, return_raster <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ediblecity_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
@@ -139,7 +139,7 @@ agriculture.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/runoff_prev.html">runoff_prev</a></span><span class="op">(</span><span class="va">scenario</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       runoff     rainfall  rainharvest </span></span>
-<span><span class="co">#&gt;     34.68007 108169.04500   1430.54453</span></span></code></pre></div>
+<span><span class="co">#&gt;     34.96443 108169.04500   1522.28071</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="distance-to-closest-green-area">Distance to closest green area<a class="anchor" aria-label="anchor" href="#distance-to-closest-green-area"></a>
@@ -172,7 +172,7 @@ between the neighbourhoods with minimum and maximum value (min /
 max).</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/green_capita.html">green_capita</a></span><span class="op">(</span><span class="va">scenario</span>, inhabitants <span class="op">=</span> <span class="fl">6000</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 10.65717</span></span>
+<span><span class="co">#&gt; [1] 10.63583</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/green_capita.html">green_capita</a></span><span class="op">(</span><span class="va">scenario</span>, </span>
 <span>             neighbourhoods <span class="op">=</span> <span class="va">neighbourhoods_example</span>, </span>
@@ -182,14 +182,14 @@ max).</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 4</span></span></span>
 <span><span class="co">#&gt;   name              area inhabitants green_capita</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Sant Narcís nord <span style="text-decoration: underline;">35</span>783        <span style="text-decoration: underline;">1</span>028        34.8 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Sant Narcís sud  <span style="text-decoration: underline;">33</span>952        <span style="text-decoration: underline;">5</span>290         6.42</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Sant Narcís nord <span style="text-decoration: underline;">35</span>999        <span style="text-decoration: underline;">1</span>028        35.0 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Sant Narcís sud  <span style="text-decoration: underline;">33</span>581        <span style="text-decoration: underline;">5</span>290         6.35</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/green_capita.html">green_capita</a></span><span class="op">(</span><span class="va">scenario</span>, </span>
 <span>             neighbourhoods <span class="op">=</span> <span class="va">neighbourhoods_example</span>, </span>
 <span>             inh_col <span class="op">=</span> <span class="st">'inhabitants'</span>,</span>
 <span>             name_col <span class="op">=</span> <span class="st">'name'</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.1843852</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 0.1812761</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="nitrogen-dioxide-no2-sequestered-by-urban-green">Nitrogen dioxide (NO<sub>2</sub>) sequestered by urban green<a class="anchor" aria-label="anchor" href="#nitrogen-dioxide-no2-sequestered-by-urban-green"></a>
@@ -199,8 +199,8 @@ NO<sub>2</sub> sequestered by urban green in gr/s.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="../reference/no2_seq.html">no2_seq</a></span><span class="op">(</span><span class="va">scenario</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   gr/s </span></span>
-<span><span class="co">#&gt; 109.44</span></span></code></pre></div>
+<span><span class="co">#&gt;     gr/s </span></span>
+<span><span class="co">#&gt; 109.3671</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="jobs-created-by-commercial-urban-agriculture">Jobs created by commercial urban agriculture<a class="anchor" aria-label="anchor" href="#jobs-created-by-commercial-urban-agriculture"></a>
@@ -212,8 +212,8 @@ to estimate the value and returns the confidence interval (unless
 <code>verbose = TRUE</code>).</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/edible_jobs.html">edible_jobs</a></span><span class="op">(</span><span class="va">scenario</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       5%      50%      95% </span></span>
-<span><span class="co">#&gt;  223.976 1764.683 3261.946</span></span></code></pre></div>
+<span><span class="co">#&gt;        5%       50%       95% </span></span>
+<span><span class="co">#&gt;  194.5904 1675.6295 3183.2881</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="volunteers-involved-in-community-urban-agriculture">Volunteers involved in community urban agriculture<a class="anchor" aria-label="anchor" href="#volunteers-involved-in-community-urban-agriculture"></a>
@@ -226,7 +226,7 @@ interval (unless <code>verbose = TRUE</code>).</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/edible_volunteers.html">edible_volunteers</a></span><span class="op">(</span><span class="va">scenario</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        5%       50%       95% </span></span>
-<span><span class="co">#&gt;  235.7397 2171.0592 4309.5677</span></span></code></pre></div>
+<span><span class="co">#&gt;  255.9142 2294.3526 4253.6734</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="food-production">Food production<a class="anchor" aria-label="anchor" href="#food-production"></a>
@@ -239,7 +239,7 @@ the value and returns the confidence interval (unless
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/food_production.html">food_production</a></span><span class="op">(</span><span class="va">scenario</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        5%       50%       95% </span></span>
-<span><span class="co">#&gt;  685694.1  907848.9 1151332.7</span></span></code></pre></div>
+<span><span class="co">#&gt;  664935.1  913428.8 1142899.7</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">

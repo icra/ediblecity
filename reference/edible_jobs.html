@@ -116,14 +116,14 @@ Otherwise, it returns a vector of length 1000 with all simulated values.</p>
 <span class="r-in"><span><span class="va">scenario</span> <span class="op">&lt;-</span> <span class="fu"><a href="set_scenario.html">set_scenario</a></span><span class="op">(</span><span class="va">city_example</span>, pCommercial <span class="op">=</span> <span class="fl">1</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># Get the 95% confidence interval</span></span></span>
 <span class="r-in"><span><span class="fu">edible_jobs</span><span class="op">(</span><span class="va">scenario</span>, interval <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        5%       50%       95% </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  156.7204 1486.3215 2802.4964 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       5%      50%      95% </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  152.429 1348.550 2778.882 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the raw values from the Monte Carlo simulation and adjust the number of jobs by square meter.</span></span></span>
 <span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">edible_jobs</span><span class="op">(</span><span class="va">scenario</span>, jobs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.02</span>, <span class="fl">0.03</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">result</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 3946.548 3178.484 3456.924 3642.850 2992.517 3477.774 3925.699 3137.190</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] 3555.793 2883.596</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 3462.991 3322.369 3994.371 3141.399 3344.613 3003.504 2684.971 3275.787</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] 3242.358 3358.705</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
