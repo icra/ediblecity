@@ -20,6 +20,7 @@ test_that("private gardens produce food", {
 test_that("community gardens produce food", {
   result <- set_scenario(city_example, pGardens = 0, pVacant = 1, pRooftop = 0, quiet = TRUE) %>%
     food_production()
+  cat("result", result[[2]], "bau", bau[[2]], "\n")
   expect_gt(result[[2]], bau[[2]])
 })
 
