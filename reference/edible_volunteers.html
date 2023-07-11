@@ -18,7 +18,7 @@ in scientific literature, assuming that a volunteers dedicates a 10"><!-- mathja
     
     <a class="navbar-brand me-2" href="../index.html">ediblecity</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -120,15 +120,15 @@ Otherwise, it returns a vector of length 1000 with all simulated values.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Get the 95% confidence interval</span></span></span>
 <span class="r-in"><span><span class="fu">edible_volunteers</span><span class="op">(</span><span class="va">city_example</span>, interval <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       5%      50%      95% </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  2.38500 18.35842 33.46784 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        5%       50%       95% </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1.751269 17.459086 33.494280 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the raw values from the Monte Carlo simulation</span></span></span>
 <span class="r-in"><span><span class="co"># and adjust the number of volunteers by squared meter.</span></span></span>
 <span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">edible_volunteers</span><span class="op">(</span><span class="va">city_example</span>, volunteers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">result</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 16.42029 31.60795 17.36350 30.65490 22.74330 21.14808 19.19473 18.69853</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] 16.69724 31.01758</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 28.36549 31.01513 16.85794 20.10374 29.12362 20.02458 28.01087 26.91942</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] 20.02392 25.76099</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

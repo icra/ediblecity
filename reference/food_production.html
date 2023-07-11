@@ -16,7 +16,7 @@ within the provided range."><!-- mathjax --><script src="https://cdnjs.cloudflar
     
     <a class="navbar-brand me-2" href="../index.html">ediblecity</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,13 +117,13 @@ sf::st_area()</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Estimate the food production within 95% confidence interval</span></span></span>
 <span class="r-in"><span><span class="fu">food_production</span><span class="op">(</span><span class="va">city_example</span>, interval <span class="op">=</span> <span class="fl">0.95</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        5%       50%       95% </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  49.27197 191.83196 335.47207 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  46.70925 188.74517 333.30590 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the raw values instead of the confidence interval</span></span></span>
 <span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">food_production</span><span class="op">(</span><span class="va">city_example</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">result</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 265.13619 248.50512 123.48252 224.47779  84.12676 112.68918 145.05501</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8]  96.82662  80.60366 258.59961</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 149.22070 227.99701 123.71740  61.54808 137.57378 294.77605 217.82880</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] 296.25073 187.86866  48.23958</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
