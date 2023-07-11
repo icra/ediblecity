@@ -30,6 +30,9 @@ within the provided range."><!-- mathjax --><script src="https://cdnjs.cloudflar
 <li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -114,13 +117,13 @@ sf::st_area()</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Estimate the food production within 95% confidence interval</span></span></span>
 <span class="r-in"><span><span class="fu">food_production</span><span class="op">(</span><span class="va">city_example</span>, interval <span class="op">=</span> <span class="fl">0.95</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        5%       50%       95% </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  54.71526 200.89526 338.70305 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  49.27197 191.83196 335.47207 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the raw values instead of the confidence interval</span></span></span>
 <span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">food_production</span><span class="op">(</span><span class="va">city_example</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">result</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  38.47424 162.49316 233.60161 225.58420 227.22179  47.14985 270.83524</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] 232.55237 168.52423 248.16302</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 265.13619 248.50512 123.48252 224.47779  84.12676 112.68918 145.05501</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8]  96.82662  80.60366 258.59961</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

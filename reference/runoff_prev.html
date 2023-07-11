@@ -28,6 +28,9 @@ government."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs
 <li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -118,12 +121,12 @@ and harvested rainwater in cubic meters.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Get the total values of runoff, rainfall and rain harvested</span></span></span>
 <span class="r-in"><span><span class="fu">runoff_prev</span><span class="op">(</span><span class="va">city_example</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       runoff     rainfall  rainharvest </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     36.64933 108169.04500   1275.27667 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     38.78609 108169.04500   1357.02543 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Adjust the parameters for rain, maximum distance to harvest rainwater and tank size</span></span></span>
 <span class="r-in"><span><span class="fu">runoff_prev</span><span class="op">(</span><span class="va">city_example</span>, rain <span class="op">=</span> <span class="fl">160</span>, harvest_dist <span class="op">=</span> <span class="fl">5</span>, tank_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">30</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      runoff    rainfall rainharvest </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    101.3623 203612.3200   1363.6375 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    100.8281 203612.3200   1366.4859 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
