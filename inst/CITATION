@@ -1,15 +1,10 @@
-citHeader("To cite ediblecity in publications use:")
-
-citEntry(
-  entry    = "Article",
+bibentry(
+  bibtype  = "Article",
   title    = "ediblecity: an R package to model and estimate the benefits of urban agriculture",
   author   = "Josep Pueyo-Ros, Joaquim Comas, Lluís Corominas",
   journal  = "Open Research Europe",
   year     = 2023,
   volume   = 3,
   number   = 112,
-  doi      = "10.12688/openreseurope.16054.1",
-  textVersion = paste(
-    "Pueyo-Ros J, Comas J and Corominas L. ediblecity: an R package to model and estimate the benefits of urban agriculture. Open Research Europe 2023, 3:112 (https://doi.org/10.12688/openreseurope.16054.1)"
-  )
+  doi      = "10.12688/openreseurope.16054.1"
 )
