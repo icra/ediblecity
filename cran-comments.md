@@ -5,7 +5,7 @@ This is a resubmission. In this version I have:
   * Used Authors@R in DESCRIPTION
   * Added executable examples in Rd files
   * Replaced all T and F by TRUE and FALSE
-  * Added references describing the methods
+  * Added references describing the methods to DESCRIPTION
   * Added citation file
 
 ## R CMD check results
