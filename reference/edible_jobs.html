@@ -120,13 +120,13 @@ Otherwise, it returns a vector of length 1000 with all simulated values.</p>
 <span class="r-in"><span><span class="co"># Get the 95% confidence interval</span></span></span>
 <span class="r-in"><span><span class="fu">edible_jobs</span><span class="op">(</span><span class="va">scenario</span>, interval <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        5%       50%       95% </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  180.0275 1532.6774 2799.8413 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  168.0057 1492.4724 2784.4747 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the raw values from the Monte Carlo simulation and adjust the number of jobs by square meter.</span></span></span>
 <span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">edible_jobs</span><span class="op">(</span><span class="va">scenario</span>, jobs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.02</span>, <span class="fl">0.03</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">result</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 2819.102 2714.407 3695.474 3893.936 3934.631 3376.866 2961.809 3318.445</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] 3119.143 3385.646</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 3062.422 2716.719 3989.417 2746.790 3276.490 2939.322 2821.497 2919.269</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] 3748.884 2813.995</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
