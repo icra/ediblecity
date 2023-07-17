@@ -23,7 +23,11 @@ related to one or several urban challenges.
 
 ## Installation
 
+<<<<<<< HEAD
 You can install the last LTR version from CRAN:
+=======
+You can install the last LTS version from CRAN:
+>>>>>>> f4f6b2a986746fee5cdc75dff64d2ed675dca608
 
 ``` r
 install.packages("ediblecity")
