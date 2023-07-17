@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ediblecity
+# ediblecity 0.2.1.900
 
 <!-- badges: start -->
 
@@ -11,7 +11,7 @@
 status](https://www.r-pkg.org/badges/version/ediblecity)](https://CRAN.R-project.org/package=ediblecity)
 <!-- [![Codecov test coverage](https://codecov.io/gh/icra/edibleCity/branch/master/graph/badge.svg)](https://app.codecov.io/gh/icra/edibleCity?branch=master) -->
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
 The goal of ediblecity is to is to estimate the potential of UA to
