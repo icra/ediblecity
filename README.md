@@ -23,8 +23,14 @@ related to one or several urban challenges.
 
 ## Installation
 
-You can install the development version of ediblecity from
-[r-universe](https://r-universe.dev) with:
+You can install the last LTR version from CRAN:
+
+``` r
+install.packages("ediblecity")
+```
+
+Alternatively, you can install the development version of ediblecity
+from [r-universe](https://r-universe.dev) with:
 
 ``` r
 install.packages("ediblecity", repos = "jospueyo.r-universe.dev")
