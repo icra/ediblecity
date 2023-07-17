@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   ediblecity: ediblecity.html
-last_built: 2023-07-15T16:07Z
+last_built: 2023-07-17T08:08Z
 urls:
   reference: https://icra.github.io/ediblecity/reference
   article: https://icra.github.io/ediblecity/articles
