@@ -29,7 +29,13 @@ The goal of ediblecity is to is to estimate the potential of UA to contribute to
 
 ## Installation
 
-You can install the development version of ediblecity from [r-universe](https://r-universe.dev) with:
+You can install the last LTS version from CRAN:
+
+``` r
+install.packages("ediblecity")
+```
+
+Alternatively, you can install the development version of ediblecity from [r-universe](https://r-universe.dev) with:
 
 ``` r
 install.packages("ediblecity", repos = "jospueyo.r-universe.dev")
