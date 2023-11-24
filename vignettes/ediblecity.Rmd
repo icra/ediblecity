@@ -50,11 +50,13 @@ Likewise, all the parameters used by the indicators are defined in `city_land_us
 The urban heat island indicator can return a summary of values or a `stars` object. It needs a raster representing the Sky view factor. See `?UHI` for more details. We use the `SVF` object provided with the package.
 
 ```{r}
+withr::local_envvar(new = c("GTIFF_SRS_SOURCE" = "ESPG")) # To avoid CRS warning
 UHI(scenario, SVF)
 
 ```
 
 ```{r}
+withr::local_envvar(new = c("GTIFF_SRS_SOURCE" = "ESPG")) # To avoid CRS warning
 plot(UHI(scenario, SVF, return_raster = TRUE))
 
 ```

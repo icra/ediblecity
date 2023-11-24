@@ -19,15 +19,17 @@ Imports:
     dplyr (>= 1.0.6),
     magrittr (>= 2.0.1),
     stars (>= 0.5),
-    rlang (>= 1.0)
+    rlang (>= 1.0),
 Depends: 
     R (>= 2.10)
 Suggests: 
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
+    withr (>= 2.5.1)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 URL: https://github.com/icra/ediblecity,
     https://icra.github.io/ediblecity/
 BugReports: https://github.com/icra/ediblecity/issues
+Config/potools/style: explicit

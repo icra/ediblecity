@@ -53,7 +53,7 @@ food_production <- function(x,
       dplyr::select(land_uses, food1, food2)
   } else {
     if (!all(c("land_uses", "food1", "food2") %in% colnames(edible_df)))
-      rlang::abort("edible_df must have the columns 'land_uses', 'food1' and 'food2'. See `?food_production` for details.")
+      rlang::abort(tr_("edible_df must have the columns 'land_uses', 'food1' and 'food2'. See `?food_production` for details."))
   }
 
   #filter x based on edible

@@ -40,7 +40,7 @@ set_scenario_rationale <- function(x,
       x$land_use[gardens_index] <- city_land_uses$land_uses[city_land_uses$location == "garden"]
 
       if (nGardens*pGardens >= length(gardens_index)){
-        warning(paste("Only", length(gardens_index), "private gardens out of", nGardens*pGardens, "assumed satisfy the 'min_area_garden'\n"))
+        rlang::warn(tr_(paste("Only", length(gardens_index), "private gardens out of", nGardens*pGardens, "assumed satisfy the 'min_area_garden'\n")))
       }
 
     } else if (pGardens < 1){
@@ -72,7 +72,7 @@ set_scenario_rationale <- function(x,
 
 
     if (length(vacant_index) < nVacant*pVacant){
-      warning(paste("Only", length(vacant_index), "vacant plots out of", nVacant*pVacant, "assumed satisfy the 'min_area_vacant'\n"))
+      rlang::warn(tr_(paste("Only", length(vacant_index), "vacant plots out of", nVacant*pVacant, "assumed satisfy the 'min_area_vacant'\n")))
       nVacant <- length(vacant_index)
 
     } else {
@@ -120,7 +120,7 @@ set_scenario_rationale <- function(x,
     hydroponic_rooftop <- city_land_uses$land_uses[city_land_uses$jobs & city_land_uses$location == 'rooftop']
 
     if (length(rooftop_index) < nRooftop*pRooftop){
-      warning(paste("Only", length(rooftop_index), "rooftops out of", nRooftop*pRooftop, "assumed satisfy the 'min_area_rooftop'\n"))
+      rlang::warn(tr_(paste("Only", length(rooftop_index), "rooftops out of", nRooftop*pRooftop, "assumed satisfy the 'min_area_rooftop'\n")))
       nRooftop <- length(rooftop_index)
 
     } else {

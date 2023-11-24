@@ -49,7 +49,7 @@ UHI <- function(
   . <- NULL
 
   check_sf(x)
-  if (!("stars" %in% class(SVF))) rlang::abort("SVF must be an object of class 'stars'")
+  if (!("stars" %in% class(SVF))) rlang::abort(tr_("SVF must be an object of class 'stars'"))
 
   city_land_uses <- city_land_uses %>%
     mutate(pGreen = ifelse(!is.na(pGreen),
@@ -71,7 +71,7 @@ UHI <- function(
 
   # Reproject SVF if necessary
   if(sf::st_crs(x_rast) != sf::st_crs(SVF)){
-    warning("Reprojecting SVF to ", sf::st_crs(x_rast)[[1]])
+    rlang::warn(tr_("Reprojecting SVF to ", sf::st_crs(x_rast)[[1]]))
     SVF <- sf::st_transform(SVF, sf::st_crs(x_rast))
     }
 

@@ -69,7 +69,7 @@ set_scenario <- function(x,
   check_sf(x)
 
   #check if land_use col exists
-  if (!("land_use" %in% colnames(x))) rlang::abort("x needs a column called land_use, see ?set_scenario for more detail")
+  if (!("land_use" %in% colnames(x))) rlang::abort(tr_("x needs a column called land_use, see ?set_scenario for more detail"))
 
   #if area_field is null, calculates de area of each feature
   if (is.null(area_field)) {

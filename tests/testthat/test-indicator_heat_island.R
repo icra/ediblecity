@@ -1,3 +1,5 @@
+withr::local_envvar(new = c("GTIFF_SRS_SOURCE" = "ESPG"))
+
 test_that("when return_raster an verbose are False, it returns a summary", {
   UHI(city_example, SVF) %>%
     expect_s3_class("summaryDefault")

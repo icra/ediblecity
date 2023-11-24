@@ -46,7 +46,7 @@ no2_seq <- function(x,
   }
 
   if(!(all(c("land_uses", "no2_seq1", "no2_seq2") %in% colnames(green_df))))
-    rlang::abort("green_df must contain the columns 'land_uses', 'no2_seq1' & 'no2_seq2'. See ?no2_seq for details")
+    rlang::abort(tr_("green_df must contain the columns 'land_uses', 'no2_seq1' & 'no2_seq2'. See ?no2_seq for details"))
 
   x_f <- x %>% filter(land_use %in% green_df$land_uses)
 

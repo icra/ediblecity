@@ -61,12 +61,12 @@ green_distance <- function(x,
   green_areas <- green_areas %>%
     dplyr::filter(area >= min_area)
 
-  if(nrow(green_areas) == 0) rlang::warn("No public green areas larger than 'min_area' in 'x'. Returning 'NAs'")
+  if(nrow(green_areas) == 0) rlang::warn(tr_("No public green areas larger than 'min_area' in 'x'. Returning 'NAs'"))
 
   houses <- x %>%
     dplyr::filter(!!as.symbol(residence_col) %in% residences)
 
-  if(nrow(houses) == 0) rlang::abort("No residences found in 'x'")
+  if(nrow(houses) == 0) rlang::abort(tr_("No residences found in 'x'"))
 
   nearest <- sf::st_nearest_feature(houses,green_areas)
   distance <- sf::st_distance(houses, green_areas[nearest,], by_element = TRUE)

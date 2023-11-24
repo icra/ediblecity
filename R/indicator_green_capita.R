@@ -65,8 +65,8 @@ green_capita <- function(
 
   check_sf(x)
 
-  if(all(is.null(inh_col), is.null(inhabitants))) rlang::abort("'inhabitants' or 'inh_col' must be provided.")
-  if(!is.null(inh_col) && is.null(name_col)) rlang::abort("'name_col' must be provided along with 'inh_col'")
+  if(all(is.null(inh_col), is.null(inhabitants))) rlang::abort(tr_("'inhabitants' or 'inh_col' must be provided."))
+  if(!is.null(inh_col) && is.null(name_col)) rlang::abort(tr_("'name_col' must be provided along with 'inh_col'"))
 
   if (is.null(green_categories)){
 
