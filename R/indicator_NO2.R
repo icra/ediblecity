@@ -59,10 +59,14 @@ no2_seq <- function(x,
   } else {
     x_f$green_area <- NA
   }
-  
+
   green_area_na <- is.na(x_f$green_area)
 
-  x_f$green_area[green_area_na] <- as.numeric(sf::st_area(x_f[green_area_na,])) * x_f$pGreen[green_area_na]
+  if(is.null(x_f$area)){
+    x_f$green_area[green_area_na] <- as.numeric(sf::st_area(x_f[green_area_na,])) * x_f$pGreen[green_area_na]
+  } else {
+    x_f$green_area[green_area_na] <- x_f$area[green_area_na] * x_f$pGreen[green_area_na]
+  }
 
   edible_gardens <- x_f$land_use == "Edible private garden"
   x_f$green_area[edible_gardens] <- as.numeric(sf::st_area(x_f[edible_gardens,])) * x_f$pGreen[edible_gardens]
@@ -83,9 +87,5 @@ no2_seq <- function(x,
     }
   }
 
-
  return(c("gr/s" = sum(x_f$no2_seq)/1000))
-
-
-
 }
