@@ -51,7 +51,7 @@ no2_seq <- function(x,
   x_f <- x %>% filter(land_use %in% green_df$land_uses)
 
 
-  x_f <- left_join(x_f,green_df, by=c("land_use" = "land_uses"))
+  x_f <- left_join(x_f, green_df, by = c("land_use" = "land_uses"))
   x_f$pGreen[is.na(x_f$pGreen)] <- 0
 
   if ("edible_area" %in% names(x_f)) {

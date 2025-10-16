@@ -129,7 +129,7 @@ green_capita <- function(
 
     } else {
 
-      result <- min(green_areas$green_capita) / max(green_areas$green_capita)
+      result <- max(green_areas$green_capita) / min(green_areas$green_capita)
     }
 
   } else {
