@@ -1,0 +1,4 @@
+# License
+
+    YEAR: 2023
+    COPYRIGHT HOLDER: Fundació Institut Català de Recerca de l'Aigua, Josep Pueyo-Ros
