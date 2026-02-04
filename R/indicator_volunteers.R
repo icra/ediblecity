@@ -51,7 +51,7 @@ edible_volunteers <- function(x,
                  sum(sf::st_area(filtered)),
                  sf::st_drop_geometry(filtered) %>%
                    dplyr::select(matches(area_col)) %>%
-                   dplyr::summarise(sum(!!sym(area_col)))) |>
+                   dplyr::summarise(sum(!!sym(area_col)))) %>%
     unlist()
 
   #use the jobs range to create a random uniform distribution
