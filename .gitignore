@@ -9,3 +9,5 @@ unit_test.R
 inst/doc
 /Meta/
 docs
+
+/.quarto/
