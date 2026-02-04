@@ -32,6 +32,7 @@ no2_seq <- function(x,
   no2_seq1 <- NULL
   no2_seq2 <- NULL
   land_use <- NULL
+  location <- NULL
 
   check_sf(x)
 

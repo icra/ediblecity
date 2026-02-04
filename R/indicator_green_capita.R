@@ -62,6 +62,7 @@ green_capita <- function(
   city_land_uses <- ediblecity::city_land_uses
   land_use <- NULL
   pGreen <- NULL
+  location <- NULL
 
   check_sf(x)
 

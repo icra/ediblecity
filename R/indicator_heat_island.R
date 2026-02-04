@@ -47,6 +47,7 @@ UHI <- function(
   pGreen <- NULL
   land_uses <- NULL
   . <- NULL
+  location <- NULL
 
   check_sf(x)
   if (!("stars" %in% class(SVF))) rlang::abort(tr_("SVF must be an object of class 'stars'"))
