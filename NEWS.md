@@ -1,4 +1,4 @@
-# ediblecity (development version)
+# ediblecity 0.2.2
 
 # ediblecity 0.2.1
 
